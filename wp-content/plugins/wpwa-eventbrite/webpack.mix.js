@@ -14,9 +14,7 @@ require('laravel-mix-tailwind');
  |
  */
 
-mix.js('resources/scripts/admin.js', 'dist/')
-	.js('resources/scripts/main.js','dist/')
-	.sass('resources/styles/admin.scss', 'dist/')
+mix.js('resources/scripts/main.js', 'dist/')
 	.sass('resources/styles/main.scss', 'dist/')
     .tailwind();
 

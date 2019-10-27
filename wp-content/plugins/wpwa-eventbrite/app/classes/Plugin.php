@@ -125,13 +125,6 @@ final class Plugin
      */
     public function define_admin_hooks()
     {
-
-        add_action('admin_enqueue_scripts', function () {
-            wp_enqueue_style($this->plugin_name, Plugin::asset_path('admin.css'), array(), $this->version, 'all');
-        }, 'enqueue_styles');
-        add_action('admin_enqueue_scripts', function () {
-            wp_enqueue_script($this->plugin_name, Plugin::asset_path('admin.js'), array('jquery'), $this->version, true);
-        }, 'enqueue_scripts');
         add_action('fetch_eventbrite', array($this, 'fetch_eventbrite'));
     }
 
