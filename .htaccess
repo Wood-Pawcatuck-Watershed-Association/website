@@ -10,7 +10,6 @@ RewriteRule . /index.php [L]
 
 # END WordPress
 
-Redirect 301 / http://wpwa.org/
 Redirect 301 /volunteer.php http://wpwa.org/volunteer/
 Redirect 301 /education.htm http://wpwa.org/events/
 Redirect 301 /river.php http://wpwa.org/river-conditions-report/
@@ -18,7 +17,6 @@ Redirect 301 /privacy.htm http://wpwa.org/privacy-policy/
 Redirect 301 /education-awesome.htm http://wpwa.org/kids-programs/
 Redirect 301 /waterQuality.htm http://wpwa.org/water-quality/
 Redirect 301 /donate.php?donate=Donate+Online! http://wpwa.org/donate/
-Redirect 301 /index.php http://wpwa.org/
 Redirect 301 /reports.php http://wpwa.org/studies-and-reports/
 Redirect 301 /press.php http://wpwa.org/
 Redirect 301 /gallery.php http://wpwa.org/
