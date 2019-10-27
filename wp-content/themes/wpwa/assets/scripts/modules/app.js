@@ -4,13 +4,6 @@ import 'lity';
 
 class App {
 
-	constructor() {
-
-	}
-
-	init() {
-		console.info( 'App Initialized' );
-	}
 	hamburger(element){
 		this.element = element
 		// Look for .hamburger
@@ -58,7 +51,7 @@ class App {
 			  dots: false,
 			  centerMode: false,
 			  focusOnSelect: true,
-			  responsive: 
+			  responsive:
 		 		[
 			 		{
 			 			breakpoint: 640,
@@ -66,7 +59,7 @@ class App {
 			 				slidesToShow: 3,
 			 				slidesToScroll: 1,
 						}
-			 		}, 
+			 		},
 			 		{
 			 			breakpoint: 420,
 			 			settings: {
