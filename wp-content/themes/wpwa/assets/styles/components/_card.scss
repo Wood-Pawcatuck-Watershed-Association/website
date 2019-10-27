@@ -1,0 +1,123 @@
+// .feature-card-header {
+//     border-bottom: 2px solid $green;
+//     margin: 0 1.25rem;
+//     background: 0;
+//     padding: 1rem 0;
+// }
+//
+// Base styles
+//
+
+.feature-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: $card-bg;
+  background-clip: border-box;
+  box-shadow: 8px 5px 15px #cacaca;
+  transition: box-shadow 0.2s;
+  transition: transform 0.2s;
+  height: 100%;
+  &:hover{
+  	//box-shadow: none;
+    text-decoration: none;
+    transform: translateY(5px);
+    .feature-card__footer--link{
+      text-decoration: none;
+      transform: translateX(0);
+    }
+  }
+  @include border-radius($card-border-radius);
+
+  > hr {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  > .list-group:first-child {
+    .list-group-item:first-child {
+      @include border-top-radius($card-border-radius);
+    }
+  }
+
+  > .list-group:last-child {
+    .list-group-item:last-child {
+      @include border-bottom-radius($card-border-radius);
+    }
+  }
+}
+
+.feature-card__body {
+  // Enable `flex-grow: 1` for decks and groups so that feature-card blocks take up
+  // as much space as possible, ensuring footers are aligned to the bottom.
+  flex: 1 1 auto;
+  padding: $card-spacer-x;
+}
+
+.feature-card__title {
+  margin-bottom: $card-spacer-y;
+}
+
+.feature-card__subtitle {
+  margin-top: -($card-spacer-y / 2);
+  margin-bottom: 0;
+}
+
+.feature-card__text:last-child {
+  margin-bottom: 0;
+}
+
+.feature-card__link {
+  @include hover {
+    text-decoration: none;
+  }
+
+  + .feature-card__link {
+    margin-left: $card-spacer-x;
+  }
+}
+
+//
+// Optional textual caps
+//
+
+.feature-card__header {
+  padding: 1rem 0;
+  margin: 0 1.25rem;
+  border-bottom: 2px solid $green;
+
+  &:first-child {
+    @include border-radius($card-inner-border-radius $card-inner-border-radius 0 0);
+  }
+
+  + .list-group {
+    .list-group-item:first-child {
+      border-top: 0;
+    }
+  }
+  .feature-card__title{
+  	margin-bottom: 0;
+  	color: $blue;
+  }
+}
+
+.feature-card__footer {
+  padding: $card-spacer-y $card-spacer-x;
+
+  &:last-child {
+    @include border-radius(0 0 $card-inner-border-radius $card-inner-border-radius);
+  }
+}
+
+
+.feature-card__footer--link{
+	display: block;
+	transform: translateX(-15px);
+	transition: all 0.3s;
+	// &:hover{
+	// 	text-decoration: none;
+	// 	transform: translateX(0);
+	// }
+}

@@ -1,0 +1,30 @@
+//utilities
+.bg-cover-center{
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+.bg-overlay{
+	box-shadow: inset 0 0 0 1000px rgba(000, 0, 0, 0.5);
+}
+//colors
+.bg-black{
+	background-color: #333;
+}
+.bg-pitchBlack{
+	background-color: #000;
+}//
+.bg-light-green{
+	background-color: $light-green;
+}
+.color-blue{
+	color: $blue;
+}
+.bg-blue{
+	background-color: $blue;
+}
+.mobile-text-center{
+	@include media-breakpoint-down(sm) {
+		text-align: center;
+	}
+}

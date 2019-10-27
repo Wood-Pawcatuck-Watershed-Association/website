@@ -1,0 +1,114 @@
+// Search form
+.search-form {
+  @extend .form-inline;
+}
+.search-form label {
+  font-weight: normal;
+  @extend .form-group;
+}
+.search-form .search-field {
+  @extend .form-control;
+}
+.search-form .search-submit {
+  @extend .btn;
+  @extend .btn-secondary;
+}
+
+#donation-form-container,
+#registration-form-container,
+#email-registration-form{
+	  background: #fff;
+    border-top: 30px solid $blue;
+    border-radius: 5px;
+    box-shadow: 0 18px 35px rgba(50, 50, 93, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
+    margin-bottom: 50px;
+    padding: 15px;
+	.section{
+		@extend .form-group;	
+	}
+	.field{
+		input[type="text"],textarea,select{
+			@extend .form-control;
+			max-width: 100%;
+		}
+	}
+	.btn-submit{
+		@extend .btn;
+  	@extend .btn-orange;
+  	color: #fff;
+	}
+	.donation{
+		.field:not(.other-option):not(.other-amount){
+			@include media-breakpoint-up(md) {
+				display: inline-block;
+				margin-right: 5%;
+			}
+		}
+		h3{
+			//display: none;
+		}
+	}
+	.field.radio{
+  	input{
+  		display: none;
+  		&:checked + .label{
+				@extend .btn-green;
+  		}
+  	}
+  	.label{
+  		@extend .btn;
+  		@extend .btn-outline-green;
+  	}
+	}
+	.field.checkbox{
+		@extend .custom-control;
+		@extend .custom-checkbox;
+		input[type="checkbox"]{
+			@extend .custom-control-input;
+		}
+		.label{
+			@extend .custom-control-label;
+		}
+	}
+	.renewal-form{
+		.field.radio{
+	  	.label{
+	  		min-width: 300px;
+	  	}
+		}
+	}
+	&.email-registration-form{
+		margin-bottom: 0;
+		border-top-right-radius: 0;
+		border-top-left-radius: 0;
+		.section{
+			@extend .form-group;	
+			&.contact{
+				h3{
+					display: none;
+				}
+			}
+		}
+	}
+}
+body:not(.donate){
+	.donation-form{
+		.other-option,.other-amount,.recurring{
+			display: none !important;
+		}
+	}
+}
+.single-cpt_memberships{
+	.donation{
+		&:before {
+    	content: 'Choose Membership';
+    	font-size: 1.75rem;
+    	font-weight: 500;
+    	display: block;
+    	margin-bottom: 1rem;
+    }
+    h3{
+    	display: none;
+    }
+	}	
+}

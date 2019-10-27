@@ -1,0 +1,43 @@
+a{
+	font-weight: $font-regular;
+	font-weight: 500;
+	&.btn-link{
+		@extend .OpenSans-Bold;
+		padding: 0;
+		text-decoration: none !important;
+	}
+}
+
+.Lato{
+	font-family: $Lato;
+}
+
+.Lato-Regular{
+	@extend .Lato;
+	font-weight: $font-regular;
+}
+
+.Lato-Bold{
+	@extend .Lato;
+	font-weight: $font-bold;
+}
+
+
+.OpenSans{
+	font-family: $OpenSans;
+}
+
+.OpenSans-Regular{
+	@extend .OpenSans;
+	font-weight: $font-regular;
+}
+
+.OpenSans-SemiBold{
+	@extend .OpenSans;
+	font-weight: $font-semibold;
+}
+
+.OpenSans-Bold{
+	@extend .OpenSans;
+	font-weight: $font-bold;
+}

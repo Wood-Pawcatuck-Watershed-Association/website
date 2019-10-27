@@ -1,0 +1,18 @@
+//$font-family-base: $alegreya-sans;
+//$headings-font-family: $alegreya-sans;
+$btn-font-weight: 400;
+$nav-link-disabled-color: #333;
+$dark: #333;
+$body-color: #555;
+$theme-colors: (
+  "blue": $blue,
+  "green": $green,
+  "white": #fff,
+  "orange": $orange
+);
+.list-group {
+	&:not(.list-group-flush){
+		box-shadow: 3px 3px 0px $light-grey;
+    border-radius: 3px;
+	}
+}

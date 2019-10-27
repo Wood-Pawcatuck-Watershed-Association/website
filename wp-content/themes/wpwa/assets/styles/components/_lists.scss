@@ -1,0 +1,13 @@
+
+.list-files{
+	list-style: none;
+	padding-left: inherit;
+	li{
+		background-color: $paper;
+		&:before{
+			content: "\f15c";
+    	font-family: $fontawesome;
+    	margin-right: 0.5rem;
+		}
+	}
+}

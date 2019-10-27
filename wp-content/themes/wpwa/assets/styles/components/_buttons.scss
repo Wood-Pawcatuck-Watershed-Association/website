@@ -1,0 +1,56 @@
+button{
+	&:focus{
+		outline: 0;
+	}
+}
+.btn{
+	font-weight: 600;
+}
+.btn-white{
+	color: $blue;
+}
+.btn-orange{
+	color: #fff;
+}
+
+button, html [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: none;
+    text-decoration: none;
+}
+button{
+	&:focus{
+		outline: 0;
+	}
+}
+button.lity-close:focus {
+  border: 1px solid #fff;
+}
+.btn-link{
+  letter-spacing: 1px;
+  white-space: normal;
+  text-align: left;
+  @include media-breakpoint-down(sm){
+    font-size: 0.9rem;
+  }
+  @include media-breakpoint-only(md){
+    //white-space: pre-wrap;
+  }
+  &:hover:after,
+  &[aria-pressed="true"]:after,
+  &[role="button"][aria-pressed="true"]:after,
+  &:active:after,
+  &:focus:after{
+    width: 100%;
+  }
+  &:after{
+    content: '';
+    display: block;
+    border-bottom: 2px solid;
+    width: 0;
+    transition: all 0.2s;
+  }
+}
+.btn-square-thick {
+  border-radius: 1px;
+  border-width: 2px;
+}

@@ -1,0 +1,17 @@
+.accordion-newsletter{
+	.list-group-item[aria-expanded="true"]{
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		background-color: $green;
+		color: #fff;
+	}
+	.list-group-item__child{
+		.list-group-item:first-child {
+	    border-top-left-radius: 0;
+	    border-top-right-radius: 0;
+		}
+	}
+	.accordin-header{
+		font-weight: 600;
+	}
+}
