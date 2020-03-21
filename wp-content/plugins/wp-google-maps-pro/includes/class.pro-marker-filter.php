@@ -242,6 +242,7 @@ class ProMarkerFilter extends MarkerFilter
 		// TODO: This will not work for mashups
 		$controller = apply_filters('wpgmza_get_custom_field_filter_controlller', array(
 			'map_id'		=> $this->_map_id,
+			'mashup_ids'	=> $this->_mashupIDs,
 			'widgetData' 	=> $this->_customFields
 		));
 		

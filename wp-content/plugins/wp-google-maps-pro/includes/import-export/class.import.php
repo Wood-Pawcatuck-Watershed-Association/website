@@ -286,19 +286,16 @@ abstract class Import {
 
 		if(empty($api_key))
 		{
-			$this->log("Geocode failed (No API key)");
 			return false;
 		}
 			
 		if(empty($location))
 		{
-			$this->log("Geocode failed (Location empty)");
 			return false;
 		}
 		
 		if('address' != $type && 'latlng' != $type)
 		{
-			$this->log("Geocode failed (Invalid type)");
 			return false;
 		}
 

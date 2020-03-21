@@ -6,7 +6,7 @@
 	</div>
 	<ul class="wpgmza-modern-marker-listing-list-item-container">
 		<li class="wpgmaps_mlist_row">
-			<img class="wpgmza-marker-listing-pic"/>
+			<img data-name="pic" class="wpgmza-marker-listing-pic wpgmza-marker-listing-image-container"/>
 			<div data-name="title" class="wpgmza_marker_title"></div>
 			<div data-name="address" class="wpgmza_marker_address"></div>
 			<div data-name="desc" class="wpgmza-desc"></div>

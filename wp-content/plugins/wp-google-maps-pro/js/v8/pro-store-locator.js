@@ -153,7 +153,7 @@ jQuery(function($) {
 		
 		"get": function() {
 			
-			if(this.map.settings.sl_fill_opacity)
+			if(this.map.settings.sl_fill_opacity !== undefined)
 				return parseFloat(this.map.settings.sl_fill_opacity);
 			
 			return 0.15;
@@ -212,6 +212,7 @@ jQuery(function($) {
 			
 			this._marker = WPGMZA.Marker.createInstance(options);
 			this._marker.disableInfoWindow = true;
+			this._marker.isFilterable = false;
 			
 			if(this.map.settings.wpgmza_sl_animation)
 				this._marker.setAnimation(this.map.settings.wpgmza_sl_animation);

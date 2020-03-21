@@ -200,11 +200,12 @@ jQuery(function($) {
 			container.append(p);
 		}
 		
-		if(!empty(marker.desc))
+		if(!empty(marker.desc) || !empty(marker.description))
 		{
 			var div = $("<div class='wpgmza_infowindow_description'></div>");
+			var html = empty(marker.desc) ? marker.description : marker.desc;
 			
-			div.html(marker.desc);
+			div.html(html);
 			
 			container.append(div);
 		}
@@ -446,53 +447,58 @@ jQuery(function($) {
 		this.legacyCreateModernInfoWindow(map);
 		
 		modern_iw_open[map.id] = true;
-
-		/* reset the elements */
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_marker_image").attr("src",""); 
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_title").html(""); 
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_description").html(""); 
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_address_p").html(""); 
-
-
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_more_info_button").attr("href","#"); 
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_more_info_button").attr("target",""); 
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").attr("gps",""); 
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").attr("href","#"); 
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").attr("id",""); 
-		jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").attr("wpgm_addr_field",""); 
-
 		
-		
+		var element = this.element = jQuery("#wpgmza_iw_holder_" + map.id);
+
+		// Reset the contents first
+		element.find(".wpgmza_iw_marker_image").attr("src",""); 
+		element.find(".wpgmza_iw_title").html(""); 
+		element.find(".wpgmza_iw_description").html(""); 
+		element.find(".wpgmza_iw_address_p").html(""); 
+
+		element.find(".wpgmza_more_info_button").attr("href","#"); 
+		element.find(".wpgmza_more_info_button").attr("target",""); 
+		element.find(".wpgmza_directions_button").attr("gps",""); 
+		element.find(".wpgmza_directions_button").attr("href","#"); 
+		element.find(".wpgmza_directions_button").attr("id",""); 
+		element.find(".wpgmza_directions_button").attr("wpgm_addr_field",""); 
+
 		if (marker_data.image === "" && marker_data.title === "") {  
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_image").css("display","none"); 
+			element.find(".wpgmza_iw_image").css("display","none"); 
 		} else {
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_image").css("display","block"); 
+			element.find(".wpgmza_iw_image").css("display","block"); 
 		}
-
 
 		if (marker_data.pic.length) { 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_marker_image").css("display","block"); 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_marker_image").attr("src",marker_data.pic); 
+			element.find(".wpgmza_iw_marker_image").css("display","block"); 
+			element.find(".wpgmza_iw_marker_image").attr("src",marker_data.pic); 
 			// Removed !important; to allow customisation
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_title").css({"position": "absolute"});
-			if (marker_data.title !== "") { jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_title").html(marker_data.title); }
+			element.find(".wpgmza_iw_title").css({"position": "absolute"});
+			if (marker_data.title !== "") { element.find(".wpgmza_iw_title").html(marker_data.title); }
 
 		} else {
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_marker_image").css("display","none"); 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_title").attr("style","position: relative !important"); 
-			if (marker_data.title !== "") { jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_title").html(marker_data.title); }
+			element.find(".wpgmza_iw_marker_image").css("display","none"); 
+			element.find(".wpgmza_iw_title").attr("style","position: relative !important"); 
+			if (marker_data.title !== "") { element.find(".wpgmza_iw_title").html(marker_data.title); }
 		}
+		
+		var description = "";
+		
+		if(marker_data.desc)
+			description = marker_data.desc;
+		else if(marker_data.description)
+			description = marker_data.description;
 
-		if (marker_data.desc !== "") { 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_description").css("display","block"); 
-			if (typeof marker_data.desc !== "undefined" && marker_data.desc !== "") { jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_description").html(marker_data.desc); }
-		} else {
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_description").css("display","none"); 
-
+		if (description && description.length)
+		{ 
+			element.find(".wpgmza_iw_description").css("display","block"); 
+			element.find(".wpgmza_iw_description").html(description); 
 		}
+		else
+			element.find(".wpgmza_iw_description").css("display","none");
 
 		// Custom fields
-		var container = jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_description");
+		var container = element.find(".wpgmza_iw_description");
 		if(marker_data.custom_fields_html)
 		{
 			container.append(marker_data.custom_fields_html);
@@ -501,28 +507,28 @@ jQuery(function($) {
 		
 		if (typeof wpgmaps_localize_global_settings['wpgmza_settings_infowindow_address'] !== 'undefined' && wpgmaps_localize_global_settings['wpgmza_settings_infowindow_address'] === "yes") {
 		} else {
-			if (typeof marker_data.address !== "undefined" && marker_data.address !== "") { jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_iw_address_p").html(marker_data.address); }
+			if (typeof marker_data.address !== "undefined" && marker_data.address !== "") { element.find(".wpgmza_iw_address_p").html(marker_data.address); }
 		}
 		
 
 		if (typeof marker_data.linkd !== "undefined" && marker_data.linkd !== "") { 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_more_info_button").show();
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_more_info_button").attr("href",marker_data.linkd);
+			element.find(".wpgmza_more_info_button").show();
+			element.find(".wpgmza_more_info_button").attr("href",marker_data.linkd);
 			
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_more_info_button").attr("target",this.linkTarget); 
+			element.find(".wpgmza_more_info_button").attr("target",this.linkTarget); 
 		} else {
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_more_info_button").hide();
+			element.find(".wpgmza_more_info_button").hide();
 		}
 		if (map.directionsEnabled) { 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").show();
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").attr("href","javascript:void(0);"); 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").attr("gps",marker_data.lat + "," + marker_data.lng); 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").attr("wpgm_addr_field",marker_data.address); 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").attr("id",map.id); 
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").addClass("wpgmza_gd"); 
+			element.find(".wpgmza_directions_button").show();
+			element.find(".wpgmza_directions_button").attr("href","javascript:void(0);"); 
+			element.find(".wpgmza_directions_button").attr("gps",marker_data.lat + "," + marker_data.lng); 
+			element.find(".wpgmza_directions_button").attr("wpgm_addr_field",marker_data.address); 
+			element.find(".wpgmza_directions_button").attr("id",map.id); 
+			element.find(".wpgmza_directions_button").addClass("wpgmza_gd"); 
 
 		} else {
-			jQuery("#wpgmza_iw_holder_"+map.id+" .wpgmza_directions_button").hide();
+			element.find(".wpgmza_directions_button").hide();
 		}
 		
 		this.trigger("domready");
@@ -544,11 +550,16 @@ jQuery(function($) {
 		});
 	});
 	
-	$(document.body).on("click", ".wpgmza-infowindow .wpgmza_gd", function(event) {
+	$(document.body).on("click", ".wpgmza-infowindow .wpgmza_gd, .wpgmza_modern_infowindow .wpgmza_gd", function(event) {
 		
 		var map = $(event.target).closest("[data-map-id]")[0].wpgmzaMap;
+		var latLng;
 		
-		var latLng = new WPGMZA.LatLng($(event.target).attr("data-latlng"));
+		if($(event.target).attr("data-latlng"))
+			latLng = new WPGMZA.LatLng($(event.target).attr("data-latlng"));
+		else
+			latLng = new WPGMZA.LatLng($(event.target).attr("gps"));
+
 		var address = $(event.target).attr("data-address");
 		
 		if( !WPGMZA.settings.forceNativeDirections && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )

@@ -7,11 +7,11 @@ jQuery(function($) {
 	
 	var Parent;
 	
-	WPGMZA.OLPolyline = function(row, olFeature)
+	WPGMZA.OLPolyline = function(options, olFeature)
 	{
 		var self = this;
 		
-		WPGMZA.Polyline.call(this, row);
+		WPGMZA.Polyline.call(this, options);
 		
 		this.olStyle = new ol.style.Style();
 		
@@ -23,15 +23,28 @@ jQuery(function($) {
 		{
 			var coordinates = [];
 			
-			if(row && row.points)
+			if(options && (options.polydata || options.points))
 			{
-				var path = this.parseGeometry(row.points);
+				var path;
+				
+				if(options.polydata)
+					path = this.parseGeometry(options.polydata);
+				else	
+					path = options.points;
 				
 				for(var i = 0; i < path.length; i++)
+				{
+					if(!($.isNumeric(path[i].lat)))
+						throw new Error("Invalid latitude");
+					
+					if(!($.isNumeric(path[i].lng)))
+						throw new Error("Invalid longitude");
+					
 					coordinates.push(ol.proj.fromLonLat([
 						parseFloat(path[i].lng),
 						parseFloat(path[i].lat)
 					]));
+				}
 			}
 			
 			var params = this.getStyleFromSettings();

@@ -13,9 +13,9 @@ class ProMarker extends Marker
 	protected $customFields;
 	protected $custom_fields;
 
-	public function __construct($id_or_fields=-1)
+	public function __construct($id_or_fields=-1, $read_mode=Crud::SINGLE_READ)
 	{
-		Marker::__construct($id_or_fields);
+		Marker::__construct($id_or_fields, $read_mode);
 		
 		$this->custom_fields = new CustomMarkerFields($this->id);
 	}
@@ -159,6 +159,7 @@ class ProMarker extends Marker
 					Marker::__set("category", implode(',', $categories));
 				}
 				
+				return;	// Don't proceed any further
 				break;
 		}
 		
@@ -166,8 +167,8 @@ class ProMarker extends Marker
 	}
 }
 
-add_filter('wpgmza_create_WPGMZA\\Marker', function($id_or_fields=-1) {
+add_filter('wpgmza_create_WPGMZA\\Marker', function($id_or_fields=-1, $read_mode=Crud::SINGLE_READ) {
 	
-	return new ProMarker($id_or_fields);
+	return new ProMarker($id_or_fields, $read_mode);
 	
-}, 10, 1);
+}, 10, 2);

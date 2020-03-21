@@ -25,11 +25,17 @@ jQuery(function($) {
 		if(!(element instanceof HTMLElement))
 			throw new Error("Argument must be a HTMLElement");
 		
-		this.id = element.getAttribute("data-map-id");
+		// NB: This should be moved to a getID function or similar and offloaded to Pro. ID should be fixed to 1 in basic.
+		if(element.hasAttribute("data-map-id"))
+			this.id = element.getAttribute("data-map-id");
+		else
+			this.id = 1;
+		
 		if(!/\d+/.test(this.id))
 			throw new Error("Map ID must be an integer");
 		
 		WPGMZA.maps.push(this);
+		
 		this.element = element;
 		this.element.wpgmzaMap = this;
 		
@@ -39,6 +45,7 @@ jQuery(function($) {
 		this.polygons = [];
 		this.polylines = [];
 		this.circles = [];
+		this.rectangles = [];
 		
 		this.loadSettings(options);
 		
@@ -50,7 +57,8 @@ jQuery(function($) {
 				console.warn("Error parsing shortcode attributes");
 			}
 		
-		this.initStoreLocator();
+		if(WPGMZA.getCurrentPage() != WPGMZA.PAGE_MAP_EDIT)
+			this.initStoreLocator();
 		
 		this.markerFilter = WPGMZA.MarkerFilter.createInstance(this);
 	}
@@ -100,6 +108,70 @@ jQuery(function($) {
 	}
 	
 	/**
+	 * The maps current latitude
+	 * 
+	 * @property lat
+	 * @memberof WPGMZA.Map
+	 * @name WPGMZA.Map#lat
+	 * @type Number
+	 */
+	Object.defineProperty(WPGMZA.Map.prototype, "lat", {
+		
+		get: function() {
+			return this.getCenter().lat;
+		},
+		
+		set: function(value) {
+			var center = this.getCenter();
+			center.lat = value;
+			this.setCenter(center);
+		}
+		
+	});
+	
+	/**
+	 * The maps current longitude
+	 * 
+	 * @property lng
+	 * @memberof WPGMZA.Map
+	 * @name WPGMZA.Map#lng
+	 * @type Number
+	 */
+	Object.defineProperty(WPGMZA.Map.prototype, "lng", {
+		
+		get: function() {
+			return this.getCenter().lng;
+		},
+		
+		set: function(value) {
+			var center = this.getCenter();
+			center.lng = value;
+			this.setCenter(center);
+		}
+		
+	});
+	
+	/**
+	 * The maps current zoom level
+	 *  
+	 * @property zoom
+	 * @memberof WPGMZA.Map
+	 * @name WPGMZA.Map#zoom
+	 * @type Number
+	 */
+	Object.defineProperty(WPGMZA.Map.prototype, "zoom", {
+		
+		get: function() {
+			return this.getZoom();
+		},
+		
+		set: function(value) {
+			this.setZoom(value);
+		}
+		
+	});
+	
+	/**
 	 * Loads the maps settings and sets some defaults
 	 * @method
 	 * @memberof WPGMZA.Map
@@ -128,15 +200,6 @@ jQuery(function($) {
 		if(storeLocatorElement.length)
 			this.storeLocator = WPGMZA.StoreLocator.createInstance(this, storeLocatorElement[0]);
 	}
-	
-	/**
-	 * This override should automatically dispatch a .wpgmza scoped event on the element
-	 * TODO: Implement
-	 */
-	/*WPGMZA.Map.prototype.trigger = function(event)
-	{
-		
-	}*/
 	
 	/**
 	 * Sets options in bulk on map
@@ -284,6 +347,26 @@ jQuery(function($) {
 			if(this.markers[i].id == id)
 				return this.markers[i];
 		}
+		
+		return null;
+	}
+	
+	WPGMZA.Map.prototype.getMarkerByTitle = function(title)
+	{
+		if(typeof title == "string")
+			for(var i = 0; i < this.markers.length; i++)
+			{
+				if(this.markers[i].title == title)
+					return this.markers[i];
+			}
+		else if(title instanceof RegExp)
+			for(var i = 0; i < this.markers.length; i++)
+			{
+				if(title.test(this.markers[i].title))
+					return this.markers[i];
+			}
+		else
+			throw new Error("Invalid argument");
 		
 		return null;
 	}
@@ -549,6 +632,19 @@ jQuery(function($) {
 		this.removeCircle(circle);
 	}
 	
+	WPGMZA.Map.prototype.nudgeLatLng = function(latLng, x, y)
+	{
+		var pixels = this.latLngToPixels(latLng);
+		
+		pixels.x += parseFloat(x);
+		pixels.y += parseFloat(y);
+		
+		if(isNaN(pixels.x) || isNaN(pixels.y))
+			throw new Error("Invalid coordinates supplied");
+		
+		return this.pixelsToLatLng(pixels);
+	}
+	
 	/**
 	 * Nudges the map viewport by the given pixel coordinates
 	 * @method
@@ -559,17 +655,29 @@ jQuery(function($) {
 	 */
 	WPGMZA.Map.prototype.nudge = function(x, y)
 	{
-		var pixels = this.latLngToPixels(this.getCenter());
+		var nudged = this.nudgeLatLng(this.getCenter(), x, y);
 		
-		pixels.x += parseFloat(x);
-		pixels.y += parseFloat(y);
+		this.setCenter(nudged);
+	}
+	
+	WPGMZA.Map.prototype.animateNudge = function(x, y, origin, milliseconds)
+	{
+		var nudged;
+	
+		if(!origin)
+			origin = this.getCenter();
+		else if(!(origin instanceof WPGMZA.LatLng))
+			throw new Error("Origin must be an instance of WPGMZA.LatLng");
+
+		nudged = this.nudgeLatLng(origin, x, y);
 		
-		if(isNaN(pixels.x) || isNaN(pixels.y))
-			throw new Error("Invalid coordinates supplied");
+		if(!milliseconds)
+			milliseconds = WPGMZA.getScrollAnimationDuration();
 		
-		var latLng = this.pixelsToLatLng(pixels);
-		
-		this.setCenter(latLng);
+		$(this).animate({
+			lat: nudged.lat,
+			lng: nudged.lng
+		}, milliseconds);
 	}
 	
 	/**
@@ -617,6 +725,39 @@ jQuery(function($) {
 	WPGMZA.Map.prototype.onIdle = function(event)
 	{
 		this.trigger("idle");
+	}
+
+	WPGMZA.Map.prototype.hasVisibleMarkers = function(event)
+	{
+		// see how many markers is visible
+		var markers_visible = 0;
+
+		// loop through the markers
+		for(var marker_id in marker_array)
+		{
+			// find markers on map after search
+			var marker = marker_array[marker_id];
+			
+			// NB: We check whether the marker is on a map or not here, Pro toggles visibility, basic adds and removes markers
+			if(marker.isFilterable && marker.getMap())
+			{
+				// count markers visible
+				markers_visible++;
+				break;			
+			}
+		}
+
+		return markers_visible > 0; // Returns true if markers are visible, false if not
+	}
+	
+	WPGMZA.Map.prototype.closeAllInfoWindows = function()
+	{
+		this.markers.forEach(function(marker) {
+			
+			if(marker.infoWindow)
+				marker.infoWindow.close();
+				
+		});
 	}
 	
 });

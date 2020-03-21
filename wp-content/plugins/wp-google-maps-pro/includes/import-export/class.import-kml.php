@@ -512,7 +512,7 @@ class ImportKML extends Import {
 
 			$pins_xml = simplexml_load_string( $pin_placemark->asXML() );
 			$pins     = $pins_xml->xpath( '//Point' );
-
+			
 			foreach ( $pins as $pin ) {
 
 				$marker                = array();

@@ -3,12 +3,86 @@
 Plugin Name: WP Google Maps - Pro Add-on
 Plugin URI: http://www.wpgmaps.com
 Description: This is the Pro add-on for WP Google Maps. The Pro add-on enables you to add descriptions, pictures, links and custom icons to your markers as well as allows you to download your markers to a CSV file for quick editing and re-upload them when complete.
-Version:  7.11.55
+Version:  7.11.67
 Author: WP Google Maps
 Author URI: http://www.wpgmaps.com
 */
 
 /*
+ * 7.11.67 :- 2020-02-12 :- Medium priority
+ * Fixed polygon data not initially populated on edit polygon page
+ * Fixed notices in legacy-core.php on fresh installation
+ * Fixed Directions button unresponsive in Modern style infowindows
+ *
+ * 7.11.66 :- 2020-01-16 :- Medium priority
+ * Updated combined/minified JavaScript with WP Google Maps 8.0.15
+ * New event on window - ready.wpgmza. This fires when all modules are ready, but maps haven't started loading
+ * WPGMZA.LatLng.fromString is now static
+ * Removed console logging on theme panel when theme data is invalid
+ * Scheduled import now assumes JSON in absense of file / URL extension
+ * Fixed OpenLayers geocoder trying to geocode coordinates resulting in markers added by coordinates moving
+ * Fixed notice in class.category-tree.php
+ *
+ * 7.11.65 :- 2019-12-10 :- Medium priority
+ * CSV importer now converts UTF-8 special characters to HTML entities
+ * Updated combined/minified JavaScript with WP Google Maps 8.0.11
+ * Fixed importer crashing on bad CSV data rather than issuing a warning for the current row
+ * Fixed importer attempting to call logging functions
+ * Fixed modern store locator always showing alert
+ * Fixed modern store locator "not found" alert blank
+ *
+ * 7.11.64 :- 2019-11-26 :- Medium priority
+ * Added fusion tables deprecation warning
+ * Updated combined/minified JavaScript with WP Google Maps 8.0.10
+ * Fixed JSON importer searching deleted categories
+ * Fixed category remapping not working with existing category IDs
+ * Fixed modern InfoWindow not reading description from legacy XML format
+ *
+ * 7.11.63 :- 2019-11-12 :- Medium priority
+ * Fixed infowindowopen event not bubbling to DOM tree for Modern style InfoWindows
+ * Fixed missing function toGoogleLatLngArray
+ * Fixed custom attributes missing from custom fields
+ * Cleaned up Modern style InfoWindow JavaScript
+ * Updated combined/minified JavaScript with WP Google Maps 8.0.9
+ *
+ * 7.11.62 :- 2019-10-22 :- Medium priority
+ * Fixed description not visible in Modern style marker listing
+ * Fixed XML cache converter using basic 7.* XML node names for description and link, resulting in these being empty in InfoWindows
+ * Fixed notices regarding wpgmza_override_users_location_zoom_levels in legacy-core.php
+ *
+ * 7.11.61 :- 2019-10-15 :- Medium priority
+ * Theme parser will now attempt to strip slashes before abandoning parsing
+ * Added "Remove duplicate markers" button to Utilities tab
+ * Added new Utilities tab on Advanced page
+ *
+ * 7.11.60 :- 2019-10-13 :- Medium priority
+ * Fixed can't save empty string in exclude/include API on page settings
+ * Fixed dragging marker in OpenLayers also pans map
+ * Fixed XML pull duplicating markers on map load with basic >= 8.0.0
+ *
+ * 7.11.59 :- 2019-10-10 :- Medium priority
+ * Built with / merged in basic 8.0.0 JavaScript
+ * Fixed notice sl_fill_opacity undefined
+ * Fixed can't edit marker when running basic >= 8.0.0
+ *
+ * 7.11.58 :- 2019-10-03 :- Low priority
+ * Fixed "All" missing from datatables page size dropdown
+ * Added polyfill for slice on Uint8Array, fixing issues with compressed path variables and IE
+ * Removed code which enqueues DataTables for Pro, this is handled by Basic's ScriptLoader
+ * Added isFilterable property to Marker
+ * Removed .gitattributes from production build
+ *
+ * 7.11.57 :- 2019-09-26 :- Medium priority
+ * Added new property isFilterable to markers
+ * Fixed store locator search making separator grouped markers visible when group state was closed, obscuring group placeholder (group would not open)
+ * Fixed hide all markers until a search is performed not working with marker separator
+ * Fixed "zero results" message showing after resetting store locator when hide all markers until a search is performed is enabled
+ *
+ * 7.11.56 :- 2019-09-24 :- Medium priority
+ * Added Astra theme compatibilty module, fixes InfoWindows not opening with Astra theme
+ * Fixed invalid heatmap gradient JSON breaking map edit page
+ * Fixed sort order wrong after initial advanced tables pagination on servers that interpret string "false" as true
+ *
  * 7.11.55 :- 2019-09-19 :- Medium priority
  * Fixed create shapes buttons not working in map edit page before Global Settings (engine) have been saved
  * Fixed Modern Store Locator Radius causing Safari (mobile) to reload page

@@ -5,7 +5,7 @@ namespace WPGMZA;
 if(!defined('ABSPATH'))
 	return;
 
-class Database
+class Database extends Factory
 {
 	public function __construct()
 	{
@@ -15,7 +15,29 @@ class Database
 		$this->version = get_option('wpgmza_db_version');
 		
 		if(version_compare($this->version, $wpgmza_version, '<'))
+		{
+			if(!empty($this->version))
+			{
+				$upgrader = new Upgrader();
+				$upgrader->upgrade($this->version);
+			}
+			
 			$this->install();
+		}
+	}
+	
+	public static function getCharsetAndCollate()
+	{
+		global $wpdb;
+		$charset_collate = '';
+
+		if(!empty($wpdb->charset))
+			$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
+
+		if (!empty($wpdb->collate))
+			$charset_collate .= " COLLATE $wpdb->collate";
+		
+		return $charset_collate;
 	}
 	
 	public function install()
@@ -32,6 +54,8 @@ class Database
 		$this->installCircleTable();
 		$this->installRectangleTable();
 		
+		$this->setDefaults();
+		
 		update_option('wpgmza_db_version', $wpgmza_version);
 	}
 	
@@ -41,7 +65,7 @@ class Database
 		
 		$sql = "CREATE TABLE `$WPGMZA_TABLE_NAME_MAPS` (
 			id int(11) NOT NULL AUTO_INCREMENT,
-			map_title varchar(55) NOT NULL,
+			map_title varchar(256) NOT NULL,
 			map_width varchar(6) NOT NULL,
 			map_height varchar(6) NOT NULL,
 			map_start_lat varchar(700) NOT NULL,
@@ -76,7 +100,7 @@ class Database
 			default_to VARCHAR(700) NOT NULL,
 			other_settings longtext NOT NULL,
 			PRIMARY KEY  (id)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+			) AUTO_INCREMENT=1 " . Database::getCharsetAndCollate();
 
 		dbDelta($sql);
 	}
@@ -103,12 +127,17 @@ class Database
 			retina tinyint(1) DEFAULT '0',
 			type tinyint(1) DEFAULT '0',
 			did varchar(500) NOT NULL,
+			sticky tinyint(1) DEFAULT '0',
 			other_data LONGTEXT NOT NULL,
 			latlng POINT,
 			PRIMARY KEY  (id)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+			) AUTO_INCREMENT=1 " . Database::getCharsetAndCollate();
 
 		dbDelta($sql);
+		
+		// TODO: Create marker first
+		
+		// $wpdb->query("ALTER TABLE `$WPGMZA_TABLE_NAME_MARKERS` ADD SPATIAL INDEX(lnglat)");
 	}
 	
 	protected function installPolygonTable()
@@ -119,6 +148,7 @@ class Database
 			id int(11) NOT NULL AUTO_INCREMENT,
 			map_id int(11) NOT NULL,
 			polydata LONGTEXT NOT NULL,
+			description TEXT NOT NULL,
 			innerpolydata LONGTEXT NOT NULL,
 			linecolor VARCHAR(7) NOT NULL,
 			lineopacity VARCHAR(7) NOT NULL,
@@ -131,7 +161,7 @@ class Database
 			ohopacity VARCHAR(3) NOT NULL,
 			polyname VARCHAR(100) NOT NULL,
 			PRIMARY KEY  (id)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+			) AUTO_INCREMENT=1 " . Database::getCharsetAndCollate();
 
 		dbDelta($sql);
 	}
@@ -149,7 +179,7 @@ class Database
 			opacity VARCHAR(3) NOT NULL,
 			polyname VARCHAR(100) NOT NULL,
 			PRIMARY KEY  (id)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+			) AUTO_INCREMENT=1 " . Database::getCharsetAndCollate();
 
 		dbDelta($sql);
 	}
@@ -167,7 +197,7 @@ class Database
 			color VARCHAR(16),
 			opacity FLOAT,
 			PRIMARY KEY  (id)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+			) AUTO_INCREMENT=1 " . Database::getCharsetAndCollate();
 
 		dbDelta($sql);
 	}
@@ -185,8 +215,13 @@ class Database
 			color VARCHAR(16),
 			opacity FLOAT,
 			PRIMARY KEY  (id)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+			) AUTO_INCREMENT=1 " . Database::getCharsetAndCollate();
 
 		dbDelta($sql);
+	}
+	
+	protected function setDefaults()
+	{
+		
 	}
 }

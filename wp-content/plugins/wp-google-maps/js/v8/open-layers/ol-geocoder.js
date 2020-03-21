@@ -139,6 +139,22 @@ jQuery(function($) {
 		if(!options)
 			throw new Error("Invalid options");
 		
+		if(WPGMZA.LatLng.REGEXP.test(options.address))
+		{
+			var latLng = WPGMZA.LatLng.fromString(options.address);
+			
+			callback([{
+				geometry: {
+					location: latLng
+				},
+				latLng: latLng,
+				lat: latLng.lat,
+				lng: latLng.lng
+			}], WPGMZA.Geocoder.SUCCESS);
+			
+			return;
+		}
+		
 		if(options.location)
 			options.latLng = new WPGMZA.LatLng(options.location);
 		
@@ -163,6 +179,17 @@ jQuery(function($) {
 						lat: parseFloat(response[i].lat),
 						lng: parseFloat(response[i].lon)
 					};
+					
+					response[i].bounds = new WPGMZA.LatLngBounds(
+						new WPGMZA.LatLng({
+							lat: response[i].boundingbox[1],
+							lng: response[i].boundingbox[2]
+						}),
+						new WPGMZA.LatLng({
+							lat: response[i].boundingbox[0],
+							lng: response[i].boundingbox[3]
+						})
+					);
 					
 					// Backward compatibility with old UGM
 					response[i].lng = response[i].lon;

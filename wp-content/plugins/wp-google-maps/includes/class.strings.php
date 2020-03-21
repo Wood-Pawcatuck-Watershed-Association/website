@@ -22,7 +22,7 @@ class Strings
 			'use_my_location'			=> __('Use my location', 'wp-google-maps'),
 			
 			'google_api_not_loaded'		=> __('The map cannot be initialized because the Maps API has not been loaded. Please check your settings.', 'wp-google-maps'),
-			'no_google_maps_api_key'	=> __('You have not entered a Google Maps API Key. Please see our documentation on obtaining an API key.', 'wp-google-maps'),
+			'no_google_maps_api_key'	=> __('You have not entered a <b>Google Maps API Key</b>.<br /><br />Please go to the your admin area, then Maps, then Settings, then the Advanced tab to enter your Google Maps API key.<br /><br />Alternatively, choose the Open Layers engine to avoid getting an API key.', 'wp-google-maps'),
 			
 			'documentation'				=> __('Documentation', 'wp-google-maps'),
 			'api_dashboard'				=> __('API Dashboard', 'wp-google-maps'),
@@ -44,9 +44,49 @@ class Strings
 			'save_marker'				=> __('Save Marker', 'wp-google-maps'),
 			'please_wait'				=> __('Please Wait...', 'wp-google-maps'),
 			'zero_results'				=> __('No results found for this address', 'wp-google-maps'),
+			'address_not_found'			=> __('Couldn\'t find this address', 'wp-google-maps'),
 			'geocode_fail'				=> __('Geocode failed due to technical reasons', 'wp-google-maps'),
 			
-			'you_must_check_gdpr_consent'	=> __('You must check the GDPR consent box to continue', 'wp-google-maps')
+			'you_must_check_gdpr_consent'	=> __('You must check the GDPR consent box to continue', 'wp-google-maps'),
+
+			'no_gps_coordinates'		=> __('No GPS coordinates found', 'wp-google-maps'),
+			
+			'fetching_directions'						=> __("Fetching directions...","wp-google-maps"),
+			'unknown_directions_service_status'			=> __("Unknown directions service status", "wp-google-maps"),
+			'please_fill_out_both_from_and_to_fields' 	=> __("Please fill out both the \"from\" and \"to\" fields","wp-google-maps"),
+			
+			'no_picture_found'			=> __('No picture found', 'wp-google-maps'),
+			'overwrite_theme_data'		=> __('Are you sure you want to overwrite the existing theme data?', 'wp-google-maps'),
+			
+			'upload_complete'			=> __('Upload Complete', 'wp-google-maps'),
+			'uploading_file'			=> __('Uploading file', 'wp-google-maps'),
+			'bulk_jpeg_media_title'		=> __('WP Google Maps - Bulk JPEG Upload'),
+			
+			'from_your_location'		=> __('from your location', 'wp-google-maps'),
+			'from_searched_location'	=> __('from searched location', 'wp-google-maps'),
+			
+			'yes'						=> __('Yes', 'wp-google-maps'),
+			'no'						=> __('No', 'wp-google-maps'),
+			
+			'requires_gold_v5'			=> __('Requires WP Google Maps - Gold add-on 5.0.0 or above', 'wp-google-maps'),
+			
+			'confirm_remove_duplicates'	=> __('This operation is not reversable. We recommend you take a backup before proceeding. Would you like to continue?', 'wp-google-maps'),
+
+			'invalid_theme_data'		=> __('Invalid theme data', 'wp-google-maps'),
+
+			'duplicate_custom_field_name'	=> __('Duplicate custom field names, please ensure you only add unique custom field names.', 'wp-google-maps'),
+		
+			'disabled_interactions_notice'	=> __('Some interactions are disabled.', 'wp-google-maps'),
+			'interactions_enabled_notice'	=> __('Interactions Enabled', 'wp-google-maps'),
+			'disabled_interactions_button'	=> __('Re-Enable Interactions', 'wp-google-maps'),
+
+			'use_two_fingers'			=> __('Use two fingers to move the map', 'wp-google-maps'),
+			'use_ctrl_scroll_to_zoom'	=> __('Use ctrl + scroll to zoom the map', 'wp-google-maps'),
+			'geocode_was_not_successful'	=> __('Geocode was not successful for the following reason: ', 'wp-google-maps'),
+			'geocoding_library_notice'	=> __('Geocoding this address failed. Please check you have enabled the Geocoding API for your Google Maps API project.', 'wp-google-maps'),
+			
+			'map_delete_prompt_text'		=> __('Are you sure you want to delete this map?', 'wp-google-maps'),
+			'map_bulk_delete_prompt_text'	=> __('Are you sure you want to delete these maps?', 'wp-google-maps')
 		));
 	}
 	

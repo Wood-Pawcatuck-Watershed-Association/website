@@ -353,7 +353,7 @@
                     var wpgmza_edit_lng = ""; 
 
                     jQuery("body").on("click", ".wpgmza_edit_btn", function() {
-                        var cur_id = jQuery(this).attr("id");
+                        var cur_id = jQuery(this).attr("data-edit-marker-id");
 						
 						jQuery("#tabs-m-1>.wpgmza-panel-preloader").show();
 								
@@ -1160,7 +1160,14 @@
 				heatmapInstance.set("opacity", options.opacity);
 				heatmapInstance.set("radius", options.radius);
 				
-				if(options.gradient)
+				var json;
+				try{
+					json = JSON.parse(options.gradient);
+				}catch(e) {
+					console.warn("Invalid heatmap gradient");
+				}
+				
+				if(json && typeof json == "object")
 					heatmapInstance.set("gradient", JSON.parse(options.gradient));
 			}
 			

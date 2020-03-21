@@ -277,6 +277,14 @@ class MarkerListing extends AjaxTable
 		// Hide description if selected
 		if($this->hideDescription && $el = $item->querySelector('.wpgmza-desc, .wpgmza_marker_description'))
 			$el->remove();
+
+		// Add class when no image is present in marker listing
+		if($pic = $item->querySelector('.wpgmza-marker-listing-image-container'))
+		{
+			if(empty($marker->pic)){
+				$item->querySelector('.wpgmza-marker-listing-image-container')->addClass('wpgmza_no_marker_image');
+			}
+		}
 	}
 	
 	protected function appendListingItem($document, $item, $marker)
@@ -295,6 +303,11 @@ class MarkerListing extends AjaxTable
 				$customFields = new CustomMarkerFields($marker->id);
 				$customFieldsContainer->import($customFields->html());
 			}
+		}
+
+		if($wpgmza->settings->wpgmza_settings_infowindow_links !== "yes" && $a = $item->querySelector('.wpgmza-link > a') )
+		{
+			$a->setAttribute('target', '_self');
 		}
 		
 		$this->removeHiddenFields($item, $marker);

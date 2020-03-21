@@ -1,5 +1,5 @@
 <div class="wpgmaps_mlist_row">
-	<div class="wpgmza_carousel_image_holder">
+	<div class="wpgmza_carousel_image_holder wpgmza-marker-listing-image-container">
 		<img class="wpgmza_map_image"/>
 	</div>
 	<div class="wpgmza_carousel_image_holder">

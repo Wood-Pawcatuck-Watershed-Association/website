@@ -336,7 +336,7 @@ class AdvancedTable extends \WPGMZA\MarkerDataTable
 	{
 		$useDefaultOrderBy = true;
 		
-		if(isset($input_params['overrideListingOrderSettings']))
+		if(isset($input_params['overrideListingOrderSettings']) && $input_params['overrideListingOrderSettings'] !== 'false')
 		{
 			switch($input_params['overrideListingOrderSettings'])
 			{

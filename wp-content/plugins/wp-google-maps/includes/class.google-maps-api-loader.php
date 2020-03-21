@@ -108,18 +108,12 @@ class GoogleMapsAPILoader
 		
 		// Locale
 		$locale = get_locale();
-		$suffix = '.com';
 		
 		switch($locale)
 		{
 			case 'he_IL':
 				// Hebrew correction
 				$locale = 'iw';
-				break;
-			
-			case 'zh_CN':
-				// Chinese integration
-				$suffix = '.cn';
 				break;
 		}
 		
@@ -129,20 +123,23 @@ class GoogleMapsAPILoader
 		// Default params for google maps
 		$params = array(
 			'v' 		=> 'quarterly',
-			'language'	=> $locale,
-			'suffix'	=> $suffix
+			'language'	=> $locale
 		);
 		
 		// API Key
 		$key = get_option('wpgmza_google_maps_api_key');
 		
-		if($key)
+		if(!empty($key))
 			$params['key'] = $key;
 		else if(is_admin())
 			$params['key'] = get_option('wpgmza_temp_api');
 		
 		// Libraries
 		$libraries = array('geometry', 'places', 'visualization');
+		
+		if($wpgmza->getCurrentPage() == Plugin::PAGE_MAP_EDIT)
+			$libraries[] = 'drawing';
+		
 		$params['libraries'] = implode(',', $libraries);
 		
 		$params = apply_filters( 'wpgmza_google_maps_api_params', $params );
@@ -169,10 +166,7 @@ class GoogleMapsAPILoader
 		
 		$params = $this->getGoogleMapsAPIParams();
 		
-		$suffix = $params['suffix'];
-		unset($params['suffix']);
-
-		$url = '//maps.google' . $suffix . '/maps/api/js?' . http_build_query($params);
+		$url = '//maps.googleapis.com/maps/api/js?' . http_build_query($params);
 		
 		wp_register_script('wpgmza_api_call', $url);
 		
@@ -189,6 +183,8 @@ class GoogleMapsAPILoader
 		// Block other plugins from including the API
 		if(!empty($settings['wpgmza_prevent_other_plugins_and_theme_loading_api']))
 			add_filter('script_loader_tag', array($this, 'preventOtherGoogleMapsTag'), 9999999, 3);
+		
+		add_filter('script_loader_tag', array($this, 'onScriptLoaderTag'), 10, 3);
 	}
 	
 	/**
@@ -375,6 +371,15 @@ class GoogleMapsAPILoader
 				return str_replace($src, $src . '?' . http_build_query($this->getGoogleMapsAPIParams()), $tag);
 		}
 
+		return $tag;
+	}
+	
+	public function onScriptLoaderTag($tag, $handle, $src)
+	{
+		// Add UserCentrics tag
+		if($handle == 'wpgmza_api_call')
+			return preg_replace('#></script>#', ' data-usercentrics="Google Maps"></script>', $tag);
+		
 		return $tag;
 	}
 	

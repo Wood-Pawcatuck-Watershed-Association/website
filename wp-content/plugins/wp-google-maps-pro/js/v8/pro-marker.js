@@ -46,10 +46,11 @@ jQuery(function($) {
 		if(this == this.map.userLocationMarker)
 			return;
 		
-		if(this.map.settings.store_locator_hide_before_search == 1 && WPGMZA.is_admin != 1)
+		if(this.map.settings.store_locator_hide_before_search == 1 && WPGMZA.is_admin != 1 && this.isFilterable)
 		{
 			this.isFiltered = true;
 			this.setVisible(false);
+			
 			return;
 		}
 		
@@ -72,7 +73,13 @@ jQuery(function($) {
 		WPGMZA.Marker.prototype.onClick.apply(this, arguments);
 		
 		if(this.map.settings.click_open_link == 1 && this.linkd && this.linkd.length)
+		
+		if(WPGMZA.settings.wpgmza_settings_infowindow_links == "yes"){
 			window.open(this.linkd);
+		}
+		else{
+			window.open(this.linkd, '_self');
+		}
 	}
 	
 	WPGMZA.ProMarker.prototype.onMouseOver = function(event)

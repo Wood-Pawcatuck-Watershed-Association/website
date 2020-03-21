@@ -347,6 +347,8 @@ function import_ajax_import() {
 		else if($extension == 'php')
 			$extension = 'json';	// Assume JSON
 	}
+	if(empty($extension))
+		$extension = 'json';
 
 	if ( ! empty( $extension ) /*&& array_key_exists( strtolower( $extension ), $import_mimes )*/ ) {
 
@@ -440,7 +442,7 @@ function import_cron_import( $schedule_id ) {
 
 		}
 	}
-	else
+	if(empty($extension))
 		$extension = 'json';	// Assume JSON
 
 	if ( ! empty( $extension ) /*&& array_key_exists( strtolower( $extension ), $import_mimes )*/ ) {

@@ -14,15 +14,14 @@ mix.setResourceRoot('../');
  */
 
 mix.js('assets/scripts/main.js', 'dist/scripts/')
-   .sass('assets/styles/main.scss', 'dist/styles/')
-   .copy('assets/fonts/', 'dist/fonts/')
-   .copy('assets/images/', 'dist/images/');
+    .sass('assets/styles/main.scss', 'dist/styles/')
+    .copy('assets/fonts/', 'dist/fonts/')
+    .copy('assets/images/', 'dist/images/');
 
 if (!mix.inProduction()) {
     mix.webpackConfig({
-        devtool: 'source-map'
-    })
-    .sourceMaps()
+        devtool: 'source-map',
+    }).sourceMaps();
 }
 // Full API
 // mix.js(src, output);

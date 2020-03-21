@@ -110,6 +110,10 @@ jQuery(function($) {
 				);
 					
 			});
+
+			if(this.settings.override_users_location_zoom_level == "1"){
+				WPGMZA.maps[0].setZoom(this.settings.override_users_location_zoom_levels);
+			}
 		
 		}
 
@@ -179,6 +183,8 @@ jQuery(function($) {
 			options.icon = icon;
 		
 		var marker = WPGMZA.Marker.createInstance(options);
+		
+		marker.isFilterable = false;
 		
 		WPGMZA.watchPosition(function(position) {
 			
@@ -289,6 +295,28 @@ jQuery(function($) {
 			return local;
 		
 		return WPGMZA.ProInfoWindow.STYLE_NATIVE_GOOGLE;
+	}
+	
+	WPGMZA.ProMap.prototype.hasVisibleMarkers = function(event)
+	{
+		 // Grab markers
+		 var markers = this.markers;
+		 
+		 // Create variable for visible markers after filtering
+		 var visible_markers = 0;
+		 
+		 // Loop through all the markers
+		 for (var i = 0; i < markers.length; i++)
+		 {
+			 // Find only visible markers after filtering
+			 if(markers[i].isFilterable && markers[i].getVisible())
+			 {
+				 visible_markers++;
+				 break;	// No need to iterate any further, at least one marker isi visible
+			 }
+		 }
+		 
+		 return visible_markers > 0; // Returns true if markers are visible, false if not
 	}
 	
 });

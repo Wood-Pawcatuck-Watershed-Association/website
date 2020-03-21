@@ -14,18 +14,10 @@ jQuery(function($) {
 		this.center = {lat: 0, lng: 0};
 		this.radius = 0;
 		
+		this.fillcolor = "#ff0000";
+		this.opacity = 0.6;
+		
 		Parent.call(this, options, olFeature);
-		
-		if(!this.settings.fillColor)
-		{
-			this.settings.fillColor = "#ff0000";
-			this.settings.fillOpacity = 0.6;
-		}
-		
-		if(options.fillColor)
-			this.settings.fillColor = options.fillColor;
-		if(options.fillOpacity)
-			this.settings.fillOpacity = options.fillOpacity;
 		
 		this.olStyle = new ol.style.Style(this.getStyleFromSettings());
 		
@@ -55,14 +47,13 @@ jQuery(function($) {
 			return;
 		
 		// IMPORTANT: Please note that due to what appears to be a bug in OpenLayers, the following code MUST be exected specifically in this order, or the circle won't appear
-		var wgs84Sphere = new ol.Sphere(6378137);
-		var radius = parseFloat(this.radius) * 1000;
+		var radius = parseFloat(this.radius) * 1000 / 2;
 		var x, y;
 		
 		x = this.center.lng;
 		y = this.center.lat;
 		
-		var circle4326 = ol.geom.Polygon.circular(wgs84Sphere, [x, y], radius, 64);
+		var circle4326 = ol.geom.Polygon.circular([x, y], radius, 64);
 		var circle3857 = circle4326.clone().transform('EPSG:4326', 'EPSG:3857');
 		
 		this.olFeature = new ol.Feature(circle3857);
@@ -74,14 +65,14 @@ jQuery(function($) {
 	{
 		var params = {};
 				
-		if(this.settings.strokeOpacity)
+		/*if(this.settings.strokeOpacity)
 			params.stroke = new ol.style.Stroke({
 				color: WPGMZA.hexOpacityToRGBA(this.settings.strokeColor, this.settings.strokeOpacity)
-			});
+			});*/
 		
-		if(this.settings.fillOpacity)
+		if(this.opacity)
 			params.fill = new ol.style.Fill({
-				color: WPGMZA.hexOpacityToRGBA(this.settings.fillColor, this.settings.fillOpacity)
+				color: WPGMZA.hexOpacityToRGBA(this.fillColor, this.opacity)
 			});
 			
 		return params;

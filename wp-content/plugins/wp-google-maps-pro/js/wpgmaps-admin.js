@@ -182,6 +182,41 @@ jQuery(document).ready(function() {
         }
     });
 
+    if(jQuery('#wpgmza_automatically_pan_to_users_location').attr('checked')){
+        jQuery('#wpgmza_override_user_location_setting').fadeIn();
+        jQuery('#wpgmza_override_user_location_zoom_value_option').fadeIn();
+    }else{
+        jQuery('#wpgmza_override_user_location_setting').fadeOut();
+        jQuery('#wpgmza_override_user_location_zoom_value_option').fadeOut();
+    }
+
+    jQuery('#wpgmza_automatically_pan_to_users_location').on('change', function(){
+        if(jQuery(this).attr('checked')){
+            jQuery('#wpgmza_override_user_location_setting').fadeIn();
+            jQuery('#wpgmza_override_user_location_zoom_value_option').fadeIn();
+        }else{
+            jQuery('#wpgmza_override_user_location_setting').fadeOut();
+            jQuery('#wpgmza_override_user_location_zoom_value_option').fadeOut();
+        }
+    });
+
+    if(jQuery('#wpgmza_override_users_location_zoom_level').attr('checked')){ 
+        console.log('nowww11');
+        jQuery('select[name="wpgmza_override_users_location_zoom_levels"]').removeAttr("disabled");
+    }else{
+        jQuery('select[name="wpgmza_override_users_location_zoom_levels"]').attr('disabled', 'disabled');
+    }
+
+    jQuery('#wpgmza_override_users_location_zoom_level').on('change', function(){
+       
+        if(jQuery(this).attr('checked')){
+            console.log('nowww222');
+            jQuery('select[name="wpgmza_override_users_location_zoom_levels"]').removeAttr("disabled");
+        }else{
+            jQuery('select[name="wpgmza_override_users_location_zoom_levels"]').attr('disabled', 'disabled');
+        }
+    });
+
     jQuery("body").on("click","#wpgmza_gradient_show", function(e) {
         e.preventDefault();
         var gtype = jQuery(this).attr("gtype");

@@ -804,11 +804,19 @@ class ImportJSON extends Import {
 			unset($fields['category']);
 			unset($fields['categories']);
 			
-			foreach($oldCategories as $old)
-				$newCategories[] = $this->cat_id_map[$old];
+			if($oldCategories)
+			{
+				foreach($oldCategories as $old)
+				{
+					if(isset($this->cat_id_map[$old]))
+						$newCategories[] = $this->cat_id_map[$old];
+					else
+						$newCategories[] = $old; // Nothing to re-map to, use raw ID
+				}
+			}
 			
 			// Create the marker
-			$marker = Marker::createInstance($fields);
+			$marker = Marker::createInstance($fields);			
 			$marker->categories = $newCategories;
 			
 			// Custom field data

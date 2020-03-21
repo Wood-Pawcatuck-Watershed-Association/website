@@ -22,7 +22,7 @@ jQuery(function($) {
 		WPGMZA.assertInstanceOf(this, "ModernStoreLocator");
 		
 		if(WPGMZA.isProVersion())
-			original = $(".wpgmza_sl_search_button[mid='" + map_id + "']").closest(".wpgmza_sl_main_div");
+			original = $(".wpgmza_sl_search_button[mid='" + map_id + "'], .wpgmza_sl_search_button_" + map_id).closest(".wpgmza_sl_main_div");
 		else
 			original = $(".wpgmza_sl_search_button").closest(".wpgmza_sl_main_div");
 		
@@ -34,15 +34,6 @@ jQuery(function($) {
 		
 		var inner = $(this.element).find(".wpgmza-inner");
 		
-		var titleSearch = $(original).find("[id='nameInput_" + map_id + "']");
-		if(titleSearch.length)
-		{
-			var placeholder = wpgmaps_localize[map_id].other_settings.store_locator_name_string;
-			if(placeholder && placeholder.length)
-				titleSearch.attr("placeholder", placeholder);
-			inner.append(titleSearch);
-		}
-		
 		var addressInput;
 		if(WPGMZA.isProVersion())
 			addressInput = $(original).find(".addressInput");
@@ -53,6 +44,15 @@ jQuery(function($) {
 			addressInput.attr("placeholder", wpgmaps_localize[map_id].other_settings.store_locator_query_string);
 		
 		inner.append(addressInput);
+		
+		var titleSearch = $(original).find("[id='nameInput_" + map_id + "']");
+		if(titleSearch.length)
+		{
+			var placeholder = wpgmaps_localize[map_id].other_settings.store_locator_name_string;
+			if(placeholder && placeholder.length)
+				titleSearch.attr("placeholder", placeholder);
+			inner.append(titleSearch);
+		}
 		
 		var button;
 		if(button = $(original).find("button.wpgmza-use-my-location"))
@@ -76,7 +76,7 @@ jQuery(function($) {
 		// inner.append($(original).find(".wpgmza_filter_select_" + map_id));
 		
 		// Buttons
-		this.searchButton = $(original).find( ".wpgmza_sl_search_button" );
+		this.searchButton = $(original).find( ".wpgmza_sl_search_button, .wpgmza_sl_search_button_div" );
 		inner.append(this.searchButton);
 		
 		this.resetButton = $(original).find( ".wpgmza_sl_reset_button_div" );
@@ -189,6 +189,49 @@ jQuery(function($) {
 		$(this.element).find("input, select").on("blur", function() {
 			$(inner).removeClass("active");
 		});
+		
+		$(this.element).on("mouseover", "li.wpgmza_cat_checkbox_item_holder", function(event) {
+			self.onMouseOverCategory(event);
+		});
+		
+		$(this.element).on("mouseleave", "li.wpgmza_cat_checkbox_item_holder", function(event) {
+			self.onMouseLeaveCategory(event);
+		});
+		
+		$(map.markerFilter).on("filteringcomplete", function(event) {
+
+			if(!this.map.hasVisibleMarkers())
+				alert(WPGMZA.localized_strings.zero_results);
+
+		});
+
+
+		$('body').on('click', '.wpgmza_store_locator_options_button', function(event) {
+			setTimeout(function(){
+
+				if ($('.wpgmza_cat_checkbox_holder').hasClass('wpgmza-open')) {
+
+					var p_cat = $( ".wpgmza_cat_checkbox_holder" );
+					var position_cat = p_cat.position().top + p_cat.outerHeight(true) + $('.wpgmza-modern-store-locator').height();
+			
+					var $p_map = $('.wpgmza_map');  
+					var position_map = $p_map.position().top + $p_map.outerHeight(true); 
+
+					var cat_height = position_cat;
+
+					if (cat_height >= position_map) {
+			
+						$('.wpgmza_cat_ul').css('overflow', 'scroll ');
+					
+						$('.wpgmza_cat_ul').css('height', '100%');
+				
+						$('.wpgmza-modern-store-locator').css('height','100%');
+						$('.wpgmza_cat_checkbox_holder.wpgmza-open').css({'padding-bottom': '50px', 'height': '100%'});
+					}
+				}
+			}, 500);
+		});
+
 	}
 	
 	/**
@@ -210,6 +253,21 @@ jQuery(function($) {
 				return new WPGMZA.GoogleModernStoreLocator(map_id);
 				break;
 		}
+	}
+	
+	// TODO: Move these to a Pro module
+	WPGMZA.ModernStoreLocator.prototype.onMouseOverCategory = function(event)
+	{
+		var li = event.currentTarget;
+		
+		$(li).children("ul.wpgmza_cat_checkbox_item_holder").stop(true, false).fadeIn();
+	}
+	
+	WPGMZA.ModernStoreLocator.prototype.onMouseLeaveCategory = function(event)
+	{
+		var li = event.currentTarget;
+		
+		$(li).children("ul.wpgmza_cat_checkbox_item_holder").stop(true, false).fadeOut();
 	}
 	
 });

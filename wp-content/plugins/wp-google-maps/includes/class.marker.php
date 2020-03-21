@@ -13,7 +13,7 @@ require_once(plugin_dir_path(__FILE__) . '/class.crud.php');
  */
 class Marker extends Crud implements \JsonSerializable
 {
-	const DEFAULT_ICON = "//maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png";
+	const DEFAULT_ICON = WPGMZA_PLUGIN_DIR_URL . 'images/spotlight-poi2.png';
 	
 	private static $columns;
 	protected $custom_fields;
@@ -22,11 +22,11 @@ class Marker extends Crud implements \JsonSerializable
 	 * Constructor
 	 * @param int|array|object An integer ID to read a marker, or an array or object to read data from to create a new one. If this argument is not specified, a new marker will be created.
 	 */
-	public function __construct($id_or_fields=-1)
+	public function __construct($id_or_fields=-1, $read_mode=Crud::SINGLE_READ)
 	{
 		global $wpdb;
 		
-		Crud::__construct("{$wpdb->prefix}wpgmza", $id_or_fields);
+		Crud::__construct("{$wpdb->prefix}wpgmza", $id_or_fields, $read_mode);
 		
 		// TODO: Why is this happening here and not in the ProMarker module? Keep the filter, but move this
 		if(class_exists('WPGMZA\\CustomMarkerFields'))
@@ -70,6 +70,7 @@ class Marker extends Crud implements \JsonSerializable
 		$json = Crud::jsonSerialize();
 		
 		unset($json['latlng']);
+		unset($json['lnglat']);
 		
 		return $json;
 	}
@@ -97,6 +98,9 @@ class Marker extends Crud implements \JsonSerializable
 	protected function get_column_parameter($name)
 	{
 		if($name == 'latlng')
+			return "POINT(" . floatval($this->lat) . " " . floatval($this->lng) . ")";
+		
+		if($name == 'lnglat')
 			return "POINT(" . floatval($this->lat) . " " . floatval($this->lng) . ")";
 		
 		return Crud::get_column_parameter($name);
@@ -132,10 +136,16 @@ class Marker extends Crud implements \JsonSerializable
 			$this->lat,
 			$this->lng,
 			$this->get_column_parameter('latlng'),
+			$this->get_column_parameter('lnglat'),
 			$this->id
 		);
 		
-		$stmt = $wpdb->prepare("UPDATE " . $this->get_table_name() . " SET lat=%s, lng=%s, latlng={$wpgmza->spatialFunctionPrefix}GeomFromText(%s) WHERE id=%d", $params);
+		$stmt = $wpdb->prepare("UPDATE " . $this->get_table_name() . " 
+			SET lat=%s, 
+			lng=%s, 
+			latlng={$wpgmza->spatialFunctionPrefix}GeomFromText(%s), 
+			lnglat={$wpgmza->spatialFunctionPrefix}GeomFromText(%s)
+			WHERE id=%d", $params);
 		
 		$wpdb->query($stmt);
 	}
@@ -160,6 +170,17 @@ class Marker extends Crud implements \JsonSerializable
 	public function getPosition()
 	{
 		return new LatLng($this->lat, $this->lng);
+	}
+	
+	public function setPosition($latlng)
+	{
+		if(!($latlng instanceof LatLng))
+			throw new \Exception("Argument is not an instance of LatLng");
+		
+		$this->lat = $latlng->lat;
+		$this->lng = $latlng->lng;
+		
+		$this->update_latlng();
 	}
 }
 

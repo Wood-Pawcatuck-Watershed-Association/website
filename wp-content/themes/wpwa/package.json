@@ -1,53 +1,67 @@
 {
-  "name": "sage-vibrato",
-  "version": "1.0.0",
-  "author": "Jon Waldstein <jpwaldstein@gmail.com>",
-  "homepage": "https://jonwaldstein.com",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Jpwaldstein/sage-vibrato.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Jpwaldstein/sage-vibrato/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/MIT"
+    "name": "wpwa-website",
+    "version": "1.0.0",
+    "author": "Jon Waldstein <jpwaldstein@gmail.com>",
+    "homepage": "https://jonwaldstein.com",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Wood-Pawcatuck-Watershed-Association/website.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Wood-Pawcatuck-Watershed-Association/website/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "scripts": {
+        "dev": "NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "production": "NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix"
+    },
+    "engines": {
+        "node": ">= 4.5"
+    },
+    "devDependencies": {
+        "asset-builder": "^1.1.0",
+        "axios": "^0.18.0",
+        "babel-eslint": "^9.0.0",
+        "bootstrap": "^4.1.3",
+        "browser-sync": "^2.26.3",
+        "del": "^2.2.2",
+        "eslint": "^6.1.0",
+        "eslint-config-airbnb": "^18.0.0",
+        "eslint-config-prettier": "^4.1.0",
+        "eslint-plugin-html": "^5.0.3",
+        "eslint-plugin-import": "^2.18.0",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-prettier": "^3.0.1",
+        "eslint-plugin-react": "^7.14.2",
+        "eslint-plugin-react-hooks": "^1.4.0",
+        "hamburgers": "^0.9.3",
+        "imagemin-pngcrush": "^5.0.0",
+        "laravel-mix": "^2.1.14",
+        "lazypipe": "^1.0.1",
+        "merge-stream": "^1.0.0",
+        "minimist": "^1.1.3",
+        "prettier": "^1.16.4",
+        "run-sequence": "^1.1.2",
+        "sass-rem": "^2.0.1",
+        "traverse": "^0.6.6",
+        "wiredep": "^4.0.0"
+    },
+    "dependencies": {
+        "@wordpress/dom-ready": "^2.7.0",
+        "jquery": "^3.3.1",
+        "lity": "^2.3.1",
+        "popper.js": "^1.14.4",
+        "slick-carousel": "^1.8.1",
+        "vue-template-compiler": "^2.5.17"
     }
-  ],
-  "scripts": {
-    "dev": "NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "production": "NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-  },
-  "engines": {
-    "node": ">= 4.5"
-  },
-  "devDependencies": {
-    "asset-builder": "^1.1.0",
-    "axios": "^0.18.0",
-    "bootstrap": "^4.1.3",
-    "browser-sync": "^2.26.3",
-    "del": "^2.2.2",
-    "hamburgers": "^0.9.3",
-    "imagemin-pngcrush": "^5.0.0",
-    "laravel-mix": "^2.1.14",
-    "lazypipe": "^1.0.1",
-    "merge-stream": "^1.0.0",
-    "minimist": "^1.1.3",
-    "run-sequence": "^1.1.2",
-    "sass-rem": "^2.0.1",
-    "traverse": "^0.6.6",
-    "wiredep": "^4.0.0"
-  },
-  "dependencies": {
-    "jquery": "^3.3.1",
-    "lity": "^2.3.1",
-    "popper.js": "^1.14.4",
-    "slick-carousel": "^1.8.1",
-    "vue-template-compiler": "^2.5.17"
-  }
 }

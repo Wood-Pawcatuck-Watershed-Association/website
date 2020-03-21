@@ -29,6 +29,15 @@ jQuery(function($) {
 	WPGMZA.OLInfoWindow.prototype = Object.create(Parent.prototype);
 	WPGMZA.OLInfoWindow.prototype.constructor = WPGMZA.OLInfoWindow;
 	
+	Object.defineProperty(WPGMZA.OLInfoWindow.prototype, "isPanIntoViewAllowed", {
+		
+		"get": function()
+		{
+			return true;
+		}
+		
+	});
+	
 	/**
 	 * Opens the info window
 	 * TODO: This should take a mapObject, not an event
@@ -61,6 +70,15 @@ jQuery(function($) {
 		
 		$(this.element).show();
 		
+		if(WPGMZA.OLMarker.renderMode == WPGMZA.OLMarker.RENDER_MODE_VECTOR_LAYER)
+		{
+			WPGMZA.getImageDimensions(mapObject.getIcon(), function(size) {
+				
+				$(self.element).css({left: Math.round(size.width / 2) + "px"});
+				
+			});
+		}
+		
 		this.trigger("infowindowopen");
 		this.trigger("domready");
 	}
@@ -91,6 +109,48 @@ jQuery(function($) {
 		if(options.maxWidth)
 		{
 			$(this.element).css({"max-width": options.maxWidth + "px"});
+		}
+	}
+	
+	WPGMZA.OLInfoWindow.prototype.onOpen = function()
+	{
+		var self = this;
+		var imgs = $(this.element).find("img");
+		var numImages = imgs.length;
+		var numImagesLoaded = 0;
+		
+		WPGMZA.InfoWindow.prototype.onOpen.apply(this, arguments);
+		
+		if(this.isPanIntoViewAllowed)
+		{
+			function inside(el, viewport)
+			{
+				var a = $(el)[0].getBoundingClientRect();
+				var b = $(viewport)[0].getBoundingClientRect();
+				
+				return a.left >= b.left && a.left <= b.right &&
+						a.right <= b.right && a.right >= b.left &&
+						a.top >= b.top && a.top <= b.bottom &&
+						a.bottom <= b.bottom && a.bottom >= b.top;
+			}
+			
+			function panIntoView()
+			{
+				var height	= $(self.element).height();
+				var offset	= -height * 0.45;
+				
+				self.mapObject.map.animateNudge(0, offset, self.mapObject.getPosition());
+			}
+			
+			imgs.each(function(index, el) {
+				el.onload = function() {
+					if(++numImagesLoaded == numImages && !inside(self.element, self.mapObject.map.element))
+						panIntoView();
+				}
+			});
+			
+			if(numImages == 0 && !inside(self.element, self.mapObject.map.element))
+				panIntoView();
 		}
 	}
 	

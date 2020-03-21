@@ -10,7 +10,7 @@ defined( 'THE_SEO_FRAMEWORK_PRESENT' ) or die;
 
 /**
  * The SEO Framework plugin
- * Copyright (C) 2015 - 2019 Sybre Waaijer, CyberWire (https://cyberwire.nl/)
+ * Copyright (C) 2015 - 2020 Sybre Waaijer, CyberWire (https://cyberwire.nl/)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as published
@@ -58,6 +58,7 @@ class Generate_Image extends Generate_Url {
 	 * Returns image details.
 	 *
 	 * @since 4.0.0
+	 * @since 4.0.5 The output is now filterable.
 	 *
 	 * @param array|null $args    The query arguments. Accepts 'id' and 'taxonomy'.
 	 *                            Leave null to autodetermine query.
@@ -87,7 +88,31 @@ class Generate_Image extends Generate_Url {
 			);
 		}
 
-		return $clean ? $this->s_image_details( $details ) : $details;
+		/**
+		 * @since 4.0.5
+		 * @param array      $details The image details array, sequential: int => {
+		 *    string url:    The image URL,
+		 *    int    id:     The image ID,
+		 *    int    width:  The image width in pixels,
+		 *    int    height: The image height in pixels,
+		 *    string alt:    The image alt tag,
+		 * }
+		 * @param array|null $args    The query arguments. Accepts 'id' and 'taxonomy'.
+		 *                            Is null when query is autodetermined.
+		 * @param bool       $single  Whether to fetch one image, or multiple.
+		 * @param string     $context The filter context. Default 'social'.
+		 * @param bool       $clean   Whether to clean the image, like stripping duplicates and erroneous items.
+		 */
+		return \apply_filters_ref_array(
+			'the_seo_framework_image_details',
+			[
+				$clean ? $this->s_image_details( $details ) : $details,
+				$args,
+				$single,
+				$context,
+				$clean,
+			]
+		);
 	}
 
 	/**
@@ -510,5 +535,36 @@ class Generate_Image extends Generate_Url {
 	public function get_image_alt_tag( $src_id ) {
 		// phpcs:ignore, WordPress.WP.AlternativeFunctions.strip_tags_strip_tags -- Fix `wp_get_attachment_image()` first.
 		return $src_id ? trim( strip_tags( \get_post_meta( $src_id, '_wp_attachment_image_alt', true ) ) ) : '';
+	}
+
+	/**
+	 * Returns the largest acceptable image size's details.
+	 *
+	 * @since 4.0.2
+	 *
+	 * @param int $id       The image ID.
+	 * @param int $max_size The largest acceptable size in pixels. Accounts for both width and height.
+	 * @return false|array Returns an array (url, width, height, is_intermediate), or false, if no image is available.
+	 */
+	public function get_largest_acceptable_image_src( $id, $max_size = 4096 ) {
+
+		// Imply there's a correct ID set. When there's not, the loop won't run.
+		$meta  = \wp_get_attachment_metadata( $id );
+		$sizes = ! empty( $meta['sizes'] ) && is_array( $meta['sizes'] ) ? $meta['sizes'] : [];
+
+		// law = largest accepted width.
+		$law  = 0;
+		$size = '';
+
+		foreach ( $sizes as $_s => $_d ) {
+			if ( isset( $_d['width'], $_d['height'] ) ) {
+				if ( $_d['width'] <= $max_size && $_d['height'] <= $max_size && $_d['width'] > $law ) {
+					$law  = $_d['width'];
+					$size = $_s;
+				}
+			}
+		}
+
+		return $size ? \wp_get_attachment_image_src( $id, $size ) : false;
 	}
 }

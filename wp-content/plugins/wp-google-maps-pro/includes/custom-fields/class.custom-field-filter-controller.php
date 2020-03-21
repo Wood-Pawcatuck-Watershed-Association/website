@@ -44,8 +44,19 @@ class CustomFieldFilterController
 		
 		$queries = $this->getFilterQueries();
 		
+		$mapIDClause = "map_id" . (int)$this->params['map_id'];
+		if(!empty($this->params['mashup_ids']))
+		{
+			$ids = array_map('intval', 
+				array_merge(array($this->params['map_id']), $this->params['mashup_ids'])
+			);
+			
+			$imploded = implode(',', $ids);
+			$mapIDClause = "map_id IN ($imploded)";
+		}
+		
 		if(empty($queries))
-			return "SELECT id FROM {$wpdb->prefix}wpgmza WHERE map_id=" . (int)$this->params['map_id'];
+			return "SELECT id FROM {$wpdb->prefix}wpgmza WHERE $mapIDClause";
 		
 		$numQueries = count($queries);
 		

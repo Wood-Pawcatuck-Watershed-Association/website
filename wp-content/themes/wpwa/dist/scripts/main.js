@@ -10682,34 +10682,22 @@ module.exports = __webpack_require__(9);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_app_js__ = __webpack_require__(6);
-//Import Libraries
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__wordpress_dom_ready__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bootstrap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_app__ = __webpack_require__(6);
+// Import Libraries
+
 
 
 // Import custom modules
 
 
-//Initiate Classes Here
-var app = new __WEBPACK_IMPORTED_MODULE_1__modules_app_js__["a" /* default */]();
-
 // Run Class Based Scripts Here
-function run() {
-
-  app.init();
-  app.hamburger(".hamburger");
-  app.mediaSlickSlider();
-}
-
-// in case the document is already rendered
-if (document.readyState != 'loading') run();
-// modern browsers
-else if (document.addEventListener) document.addEventListener('DOMContentLoaded', run);
-  // IE <= 8
-  else document.attachEvent('onreadystatechange', function () {
-      if (document.readyState == 'complete') run();
-    });
+Object(__WEBPACK_IMPORTED_MODULE_0__wordpress_dom_ready__["a" /* default */])(function () {
+  __WEBPACK_IMPORTED_MODULE_2__modules_app__["a" /* default */].hamburger(".hamburger");
+  __WEBPACK_IMPORTED_MODULE_2__modules_app__["a" /* default */].mediaSlickSlider();
+});
 
 /***/ }),
 /* 3 */
@@ -17910,80 +17898,78 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var App = function () {
-	function App() {
-		_classCallCheck(this, App);
-	}
+  function App() {
+    _classCallCheck(this, App);
+  }
 
-	_createClass(App, [{
-		key: 'hamburger',
-		value: function hamburger(element) {
-			this.element = element;
-			// Look for .hamburger
-			var hamburger = document.querySelector(element);
-			// On click
-			hamburger.addEventListener("click", function () {
-				// Toggle class "is-active"
-				hamburger.classList.toggle("is-active");
-				if (hamburger.classList.contains("is-active")) {
-					hamburger.setAttribute("aria-label", "Close Menu");
-				} else {
-					hamburger.setAttribute("aria-label", "Open Menu");
-				}
-				// Do something else, like open/close menu
-			});
-		}
-	}, {
-		key: 'mediaSlickSlider',
-		value: function mediaSlickSlider() {
+  _createClass(App, null, [{
+    key: "hamburger",
+    value: function hamburger(element) {
+      this.element = element;
+      // Look for .hamburger
+      var hamburger = document.querySelector(element);
+      // On click
+      hamburger.addEventListener("click", function () {
+        // Toggle class "is-active"
+        hamburger.classList.toggle("is-active");
 
-			__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.slider-for').each(function (key, item) {
+        if (hamburger.classList.contains("is-active")) {
+          hamburger.setAttribute("aria-label", "Close Menu");
+        } else {
+          hamburger.setAttribute("aria-label", "Open Menu");
+        }
+      });
+    }
+  }, {
+    key: "mediaSlickSlider",
+    value: function mediaSlickSlider() {
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".slider-for").each(function (key, item) {
+        var sliderIdName = "slider" + key;
+        var sliderNavIdName = "sliderNav" + key;
 
-				var sliderIdName = 'slider' + key;
-				var sliderNavIdName = 'sliderNav' + key;
+        this.id = sliderIdName;
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".slider-nav")[key].id = sliderNavIdName;
 
-				this.id = sliderIdName;
-				__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.slider-nav')[key].id = sliderNavIdName;
+        var sliderId = "#" + sliderIdName;
+        var sliderNavId = "#" + sliderNavIdName;
 
-				var sliderId = '#' + sliderIdName;
-				var sliderNavId = '#' + sliderNavIdName;
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()(sliderId).slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          fade: true,
+          asNavFor: sliderNavId
+        });
 
-				__WEBPACK_IMPORTED_MODULE_0_jquery___default()(sliderId).slick({
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					arrows: false,
-					fade: true,
-					asNavFor: sliderNavId
-				});
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()(sliderNavId).slick({
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          asNavFor: sliderId,
+          arrows: true,
+          prevArrow: '<button class="slick-prev slick-arrow" aria-label="Previous Image" type="button" style="">Previous Image</button>',
+          nextArrow: '<button class="slick-next slick-arrow" aria-label="Next Image" type="button" style="">Next Image</button>',
+          dots: false,
+          centerMode: false,
+          focusOnSelect: true,
+          responsive: [{
+            breakpoint: 640,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1
+            }
+          }, {
+            breakpoint: 420,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1
+            }
+          }]
+        });
+      });
+    }
+  }]);
 
-				__WEBPACK_IMPORTED_MODULE_0_jquery___default()(sliderNavId).slick({
-					slidesToShow: 4,
-					slidesToScroll: 1,
-					asNavFor: sliderId,
-					arrows: true,
-					prevArrow: '<button class="slick-prev slick-arrow" aria-label="Previous Image" type="button" style="">Previous Image</button>',
-					nextArrow: '<button class="slick-next slick-arrow" aria-label="Next Image" type="button" style="">Next Image</button>',
-					dots: false,
-					centerMode: false,
-					focusOnSelect: true,
-					responsive: [{
-						breakpoint: 640,
-						settings: {
-							slidesToShow: 3,
-							slidesToScroll: 1
-						}
-					}, {
-						breakpoint: 420,
-						settings: {
-							slidesToShow: 2,
-							slidesToScroll: 1
-						}
-					}]
-				});
-			});
-		}
-	}]);
-
-	return App;
+  return App;
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (App);
@@ -21401,6 +21387,66 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Lity - v2.4.
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = domReady;
+/**
+ * @typedef {() => void} Callback
+ *
+ * TODO: Remove this typedef and inline `() => void` type.
+ *
+ * This typedef is used so that a descriptive type is provided in our
+ * automatically generated documentation.
+ *
+ * An in-line type `() => void` would be preferable, but the generated
+ * documentation is `null` in that case.
+ *
+ * @see https://github.com/WordPress/gutenberg/issues/18045
+ */
+
+/**
+ * Specify a function to execute when the DOM is fully loaded.
+ *
+ * @param {Callback} callback A function to execute after the DOM is ready.
+ *
+ * @example
+ * ```js
+ * import domReady from '@wordpress/dom-ready';
+ *
+ * domReady( function() {
+ * 	//do something after DOM loads.
+ * } );
+ * ```
+ *
+ * @return {void}
+ */
+function domReady(callback) {
+  if (document.readyState === 'complete' || // DOMContentLoaded + Images/Styles/etc loaded, so we call directly.
+  document.readyState === 'interactive' // DOMContentLoaded fires at this point, so we call directly.
+  ) {
+      return void callback();
+    } // DOMContentLoaded has not fired yet, delay callback until then.
+
+
+  document.addEventListener('DOMContentLoaded', callback);
+}
+//# sourceMappingURL=index.js.map
 
 /***/ })
 /******/ ]);

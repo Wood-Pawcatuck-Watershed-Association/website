@@ -22,6 +22,14 @@ class CustomFieldFilterWidget
 			'data-field-id'						=> $this->filter->getFieldID()
 		);
 		
+		$fieldAttributes = $this->filter->getFieldData()->attributes;
+		
+		if(is_string($fieldAttributes))
+			$fieldAttributes = json_decode($fieldAttributes);
+		
+		foreach($fieldAttributes as $key => $value)
+			$result[$key] = $value;
+		
 		return $result;
 	}
 	

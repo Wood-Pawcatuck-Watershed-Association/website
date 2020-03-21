@@ -38,6 +38,12 @@ jQuery(function($) {
 				infoopen:		getField("infoopen")
 			};
 			
+			if(getField("description") && getField("description").length)
+				data.description = getField("description");
+			
+			if(getField("link") && getField("link").length)
+				data.link = getField("link");
+			
 			markers[data.marker_id] = data;
 			
 		});

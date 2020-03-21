@@ -1,6 +1,6 @@
 <div class="wpgmaps_mlist_row wpgmza_basic_row">
 	<div class="wpgmza-basic-listing-content-holder">
-		<div class="wpgmza-basic-listing-image-holder">
+		<div class="wpgmza-basic-listing-image-holder wpgmza-marker-listing-image-container">
 			<img src="<?php echo \WPGMZA\ProPlugin::getDirectoryURL(); ?>images/no-image.jpg" alt="" class="wpgmza_map_image" style="height: 100px; width: 200px;"/>
 		</div>
 		<div class="wpgmza-content-address-holder">

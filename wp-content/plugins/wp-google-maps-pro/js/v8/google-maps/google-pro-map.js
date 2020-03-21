@@ -68,6 +68,8 @@ jQuery(function($) {
 		if(!this.settings.fusion)
 			return;
 		
+		console.warn("Fusion Table Layers are deprecated and will cease functioning from 2019/12/03");
+		
 		this.fusionLayer = new google.maps.FusionTablesLayer(this.settings.fusion, {
 			map: this.googleMap,
 			surpressInfoWindows: true

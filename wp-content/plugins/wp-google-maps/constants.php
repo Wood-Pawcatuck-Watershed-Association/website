@@ -5,6 +5,9 @@ if(!defined('ABSPATH'))
 
 global $wpdb;
 
+define('WPGMZA_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
+define('WPGMZA_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
+
 global $WPGMZA_TABLE_NAME_MARKERS;
 global $WPGMZA_TABLE_NAME_MAPS;
 global $WPGMZA_TABLE_NAME_POLYGONS;

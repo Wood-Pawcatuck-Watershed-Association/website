@@ -92,7 +92,9 @@ function InitMap() {
 	
 	MYMAP.placeMarkers(wpgmaps_markerurl+'?u='+UniqueCode,wpgmaps_localize[wpgmaps_mapid].id,null,null,null);
 	
-	if(wpgmaps_localize[wpgmaps_mapid].other_settings.store_locator_style == 'modern')
+	if((wpgmaps_localize[wpgmaps_mapid].other_settings.store_locator_style == 'modern' && WPGMZA.isModernComponentStyleAllowed())
+		||
+		WPGMZA.settings.user_interface_style == "modern")
 	{
 		if(!MYMAP.map)
 			return;
@@ -184,7 +186,7 @@ function wpgmza_create_places_autocomplete() {
 	if(!google.maps.places || !google.maps.places.Autocomplete)
 		return;
 	
-	if(WPGMZA.settings.engine != "google-maps")
+	if(WPGMZA.settings.engine == "open-layers")
 		return;
 	
 	var options = {
@@ -209,7 +211,7 @@ MYMAP.init = function(selector, latLng, zoom) {
 
 	var maptype = null;
 	
-	if(window.google)
+	if(window.google && google.maps)
 	{
 		if (typeof wpgmaps_localize[wpgmaps_mapid].type !== "undefined") {
 			if (wpgmaps_localize[wpgmaps_mapid].type === "1") { maptype = google.maps.MapTypeId.ROADMAP; }
@@ -287,7 +289,7 @@ MYMAP.init = function(selector, latLng, zoom) {
 	this.map = WPGMZA.Map.createInstance(element, myOptions);
     this.bounds = new WPGMZA.LatLngBounds();
 
-	if(MYMAP.modernStoreLocator)
+	if(MYMAP.modernStoreLocator && MYMAP.modernStoreLocator.element)
 	{
 		MYMAP.modernStoreLocator.element.index = 1;
 		this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(MYMAP.modernStoreLocator.element);
@@ -402,53 +404,7 @@ var wpgmza_last_default_circle = null;
 
 function wpgmza_show_store_locator_radius(map_id, center, radius, distance_type)
 {
-	var style = wpgmaps_localize[map_id].other_settings.wpgmza_store_locator_radius_style;
-	
-	// Force legacy style on iOS, it appears CanvasLayer crashes some iOS devices
-	if(WPGMZA.isDeviceiOS())
-		style = "legacy";
-	
-	switch(style)
-	{
-		case "modern":
-			if(MYMAP.modernStoreLocatorCircle)
-				MYMAP.modernStoreLocatorCircle.destroy();
-				
-			MYMAP.modernStoreLocatorCircle = WPGMZA.ModernStoreLocatorCircle.createInstance(map_id);
-			
-			MYMAP.modernStoreLocatorCircle.setOptions({
-				visible: true,
-				center: center,
-				radius: radius * (distance_type == 1 ? WPGMZA.Distance.KILOMETERS_PER_MILE : 1),
-				radiusString: radius
-			});
-			
-			break;
-		
-		default:
-			var options = {
-				strokeColor: '#FF0000',
-				strokeOpacity: 0.25,
-				strokeWeight: 2,
-				fillColor: '#FF0000',
-				fillOpacity: 0.15,
-				map: MYMAP.map,
-				center: center
-			};
-			
-			if (distance_type == "1")
-				options.radius = parseInt(radius / 0.000621371);
-			else
-				options.radius = parseInt(radius / 0.001);
-
-			if(typeof wpgmza_last_default_circle !== "undefined" && wpgmza_last_default_circle !== null){
-				wpgmza_last_default_circle.setMap(null);
-				wpgmza_last_default_circle = null;
-			}
-
-			wpgmza_last_default_circle = WPGMZA.Circle.createInstance(options);
-			break;
-	}
+	return; // Deprecated as of 8.0.0
 }
 
 MYMAP.placeMarkers = function(filename,map_id,radius,searched_center,distance_type) {
@@ -532,8 +488,10 @@ MYMAP.placeMarkers = function(filename,map_id,radius,searched_center,distance_ty
 						if(WPGMZA.isTouchDevice())
 							temp_actiontype = "click";
 						
+						var html = '<span>'+wpmgza_address+'</span>';
+						
 						marker.on(temp_actiontype, function() {
-							if(window.infoWindow)
+							/*if(window.infoWindow)
 								infoWindow.close();
 							if(!wpgmaps_localize_global_settings["wpgmza_settings_disable_infowindows"])
 							{
@@ -542,7 +500,10 @@ MYMAP.placeMarkers = function(filename,map_id,radius,searched_center,distance_ty
 								
 								infoWindow.setContent(html);
 								infoWindow.open(MYMAP.map, marker);
-							}
+							}*/
+							
+							this.openInfoWindow();
+							this.infoWindow.setContent(html);
                         });
 
 	                    marker_array[wpmgza_marker_id] = marker;
@@ -579,21 +540,7 @@ MYMAP.placeMarkers = function(filename,map_id,radius,searched_center,distance_ty
 
                         if (radius !== null) {
                             if (check1 > 0 ) { } else {
-
-
 								var point = searched_center;
-                                // MYMAP.bounds.extend(point);
-	                            if (typeof wpgmaps_localize[wpgmaps_mapid]['other_settings']['store_locator_bounce'] === "undefined" || wpgmaps_localize[wpgmaps_mapid]['other_settings']['store_locator_bounce'] === 1) {
-		                            var marker = WPGMZA.Marker.createInstance({
-		                                    position: point,
-		                                    map: MYMAP.map/*,
-		                                    animation: google.maps.Animation.BOUNCE*/
-		                            });
-		                            marker_sl = marker;
-	                            } else { /* dont show icon */ }
-                               
-								wpgmza_show_store_locator_radius(map_id, point, radius, distance_type);
-							   
                                 check1 = check1 + 1;
                             }
                             var R = 0;
@@ -712,7 +659,7 @@ MYMAP.placeMarkers = function(filename,map_id,radius,searched_center,distance_ty
 
 function add_polygon(polygonid) {
 	
-	if(WPGMZA.settings.engine != "google-maps")
+	if(WPGMZA.settings.engine == "open-layers")
 		return;
 	
     var tmp_data = wpgmaps_localize_polygon_settings[polygonid];
@@ -771,7 +718,7 @@ function add_polygon(polygonid) {
 }
 function add_polyline(polyline) {
     
-    if(WPGMZA.settings.engine != "google-maps")
+    if(WPGMZA.settings.engine == "open-layers")
 		return;
 	
     var tmp_data = wpgmaps_localize_polyline_settings[polyline];
@@ -900,6 +847,16 @@ function searchLocationsNear(mapid,center_searched) {
 	};
 	
 	MYMAP.map.trigger(event);
+	
+	var event = {
+		type:		"filteringcomplete",
+		filteringParams: {
+			center:		center_searched,
+			radius:		radius
+		}
+	};
+	
+	MYMAP.map.markerFilter.trigger(event);
 }
 
 function toRad(Value) {
@@ -941,7 +898,7 @@ function toRad(Value) {
 
 function add_circle(mapid, data)
 {
-	if(WPGMZA.settings.engine != "google-maps")
+	if(WPGMZA.settings.engine == "open-layers")
 		return;
 	
 	data.map = MYMAP.map.googleMap;
@@ -970,7 +927,7 @@ function add_circle(mapid, data)
 
 function add_rectangle(mapid, data)
 {
-	if(WPGMZA.settings.engine != "google-maps")
+	if(WPGMZA.settings.engine == "open-layers")
 		return;
 	
 	data.map = MYMAP.map.googleMap;

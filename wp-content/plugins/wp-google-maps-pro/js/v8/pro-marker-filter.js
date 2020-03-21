@@ -119,12 +119,12 @@ jQuery(function($) {
 		
 		this.map.markers.forEach(function(marker) {
 			
-			if((self.map.storeLocator && marker == self.map.storeLocator.marker) || marker == self.map.userLocationMarker)
+			if(!marker.isFilterable)
 				return;
 				
-			var allowByFilter = map[marker.id];
+			var allowByFilter = map[marker.id] ? true : false;
 			
-			marker.isFiltered = (allowByFilter ? false : true);
+			marker.isFiltered = !allowByFilter;
 			marker.setVisible(allowByFilter);
 			
 		});

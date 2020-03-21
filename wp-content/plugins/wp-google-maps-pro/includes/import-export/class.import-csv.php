@@ -71,8 +71,6 @@ class ImportCSV extends Import {
 			$this->failed_rows_by_handle[$handle] = array();
 		
 		$this->failed_rows_by_handle[$handle][] = $row_index;
-		
-		$this->log("$handle on $row_index");
 	}
 	
 	/**
@@ -1022,6 +1020,8 @@ class ImportCSV extends Import {
 							
 							if(function_exists('iconv') && function_exists('mb_detect_encoding') && function_exists('mb_detect_order'))
 								$param = iconv(mb_detect_encoding($param, mb_detect_order(), true), "UTF-8", $param);
+							
+							$param = DOMDocument::convertUTF8ToHTMLEntities($param);
 							
 							$params[] = $param;
 							break;

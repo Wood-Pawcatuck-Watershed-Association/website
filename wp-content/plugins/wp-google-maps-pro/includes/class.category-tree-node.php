@@ -5,10 +5,12 @@ namespace WPGMZA;
 class CategoryTreeNode implements \JsonSerializable
 {
 	public $id;
-	public $name;
+	public $category_name;
+	public $category_icon;
 	public $children;
 	public $parent;
 	public $marker_count = 0;
+	public $priority = 0;
 	
 	public function __construct($parent=null)
 	{
