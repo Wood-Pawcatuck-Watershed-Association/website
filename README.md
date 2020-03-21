@@ -1,1 +1,2 @@
-# website
+# Wood-Pawcatuck Watershed Association Website
+Since its inception in 1983 as a 501(c)(3) non-profit organization, the Wood-Pawcatuck Watershed Association (WPWA) has fostered a mission to preserve and protect the integrity of the lands and waters of the Wood-Pawcatuck Watershed for the benefit of our natural and human communities. WPWA is recognized as an outspoken voice working for those who use and enjoy the rivers. Many of WPWA’s activities are directed toward educating and informing residents, visitors, and public officials about the watershed’s pristine lands and water resources.
