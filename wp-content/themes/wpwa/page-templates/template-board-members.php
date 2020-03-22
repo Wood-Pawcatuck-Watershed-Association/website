@@ -40,7 +40,7 @@ while (have_posts()) : the_post();
 
                     while ($Query->have_posts()) : $Query->the_post();
 
-                        get_template_part('templates/board-member');
+                        get_template_part('views/board-member');
 
                     endwhile;
                     wp_reset_postdata();

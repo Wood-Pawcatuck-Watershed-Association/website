@@ -37,17 +37,17 @@ use Roots\Sage\Classes\Theme;
 
                 <ul class="list-files list-group list-group-flush d-inline-block pl-0">
 
-                <?php
+                    <?php
 
-                while ($Query->have_posts()) : $Query->the_post();
+                    while ($Query->have_posts()) : $Query->the_post();
 
-                    get_template_part('templates/annual-report');
+                        get_template_part('views/annual-report');
 
-                endwhile;
+                    endwhile;
 
-                wp_reset_postdata();
+                    wp_reset_postdata();
 
-                ?>
+                    ?>
 
                 </ul>
             </div>

@@ -60,7 +60,7 @@ while (have_posts()) : the_post();
                     <div class="accordion-newsletter" id="accordionNewsletter">
                         <?php while ($Query->have_posts()) : $Query->the_post(); ?>
                             <div class="list-group mb-2" role="tablist">
-                                <?php get_template_part('templates/newsletter'); ?>
+                                <?php get_template_part('views/components/newsletter'); ?>
                             </div>
                         <?php endwhile;
                         wp_reset_postdata(); ?>

@@ -33,7 +33,7 @@ $projecttypes = get_terms('ct_project-type', array(
             </div>
             <div class="col-md-8 card-deck">
                 <?php while ($Query->have_posts()) : $Query->the_post(); ?>
-                    <?php get_template_part('templates/feature-card'); ?>
+                    <?php get_template_part('views/components/feature-card'); ?>
                 <?php endwhile; ?>
             </div>
         </div>

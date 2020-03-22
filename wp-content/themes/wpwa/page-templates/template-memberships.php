@@ -32,7 +32,7 @@ use Roots\Sage\Classes\Theme;
 
             while ($Query->have_posts()) : $Query->the_post();
 
-                get_template_part('templates/membership-card');
+                get_template_part('views/components/membership-card');
 
             endwhile;
 

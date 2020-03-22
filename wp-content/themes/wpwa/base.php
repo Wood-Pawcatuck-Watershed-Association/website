@@ -7,7 +7,7 @@ use Roots\Sage\Classes\Setup;
 
 <!doctype html>
 <html <?php language_attributes(); ?>>
-<?php get_template_part('templates/head'); ?>
+<?php get_template_part('views/partials/head'); ?>
 
 <body <?php body_class(); ?>>
     <!--[if IE]>
@@ -17,8 +17,8 @@ use Roots\Sage\Classes\Setup;
     <![endif]-->
     <?php
     do_action('get_header');
-    get_template_part('templates/header');
-    get_template_part('templates/banner');
+    get_template_part('views/partials/header');
+    get_template_part('views/partials/banner');
     ?>
     <div class="wrap">
         <div class="content">
@@ -34,7 +34,7 @@ use Roots\Sage\Classes\Setup;
     </div><!-- /.wrap -->
     <?php
     do_action('get_footer');
-    get_template_part('templates/footer');
+    get_template_part('views/partials/footer');
     wp_footer();
     ?>
 </body>
