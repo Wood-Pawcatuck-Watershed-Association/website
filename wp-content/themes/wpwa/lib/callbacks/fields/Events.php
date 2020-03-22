@@ -12,7 +12,7 @@ Container::make('post_meta', 'Event Options')
         Field::make('date', 'event_end_date'),
     ));
 Container::make('post_meta', 'Events Template')
-    ->where('post_template', '=', 'template-events.php')
+    ->where('post_template', '=', 'page-templates/template-events.php')
     ->add_fields(array(
         Field::make('rich_text', 'events_template_before_content'),
         Field::make('rich_text', 'events_template_after_content'),
