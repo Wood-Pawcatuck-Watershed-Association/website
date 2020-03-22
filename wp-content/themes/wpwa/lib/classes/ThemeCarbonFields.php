@@ -23,7 +23,6 @@ final class ThemeCarbonFields
 
     public function theme_options()
     {
-
         get_template_part('lib/callbacks/fields/ThemeOptions');
     }
 
@@ -33,22 +32,18 @@ final class ThemeCarbonFields
         get_template_part('lib/callbacks/fields/Gutenberg');
     }
 
-    public function front_page()
-    {
-
-        //get_template_part('lib/callbacks/fields/FrontPage');
-
-    }
-
     public function page_sidebar_options()
     {
-
         get_template_part('lib/callbacks/fields/PageSidebarOptions');
+    }
+
+    public function page_newsletter_options()
+    {
+        get_template_part('lib/callbacks/fields/PageNewsletterOptions');
     }
 
     public function bannner()
     {
-
         get_template_part('lib/callbacks/fields/Banner');
     }
 
