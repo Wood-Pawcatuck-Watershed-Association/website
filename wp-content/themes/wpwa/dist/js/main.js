@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/scripts/main.js":
-/*!********************************!*\
-  !*** ./assets/scripts/main.js ***!
-  \********************************/
+/***/ "./assets/js/main.js":
+/*!***************************!*\
+  !*** ./assets/js/main.js ***!
+  \***************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -98,55 +98,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/dom-ready */ "./node_modules/@wordpress/dom-ready/build-module/index.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _modules_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/app */ "./assets/scripts/modules/app.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-// Import Libraries
-
- // Import custom modules
+/* harmony import */ var _modules_Theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Theme */ "./assets/js/modules/Theme.js");
 
 
-var _wp$element = wp.element,
-    render = _wp$element.render,
-    useState = _wp$element.useState; // Run Class Based Scripts Here
 
+var render = wp.element.render;
 Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
-  _modules_app__WEBPACK_IMPORTED_MODULE_2__["default"].hamburger(".hamburger");
+  _modules_Theme__WEBPACK_IMPORTED_MODULE_2__["default"].hamburger(".hamburger");
 });
 
-var Votes = function Votes() {
-  var _useState = useState(0),
-      _useState2 = _slicedToArray(_useState, 2),
-      votes = _useState2[0],
-      setVotes = _useState2[1];
+var App = function App() {};
 
-  var addVote = function addVote() {
-    setVotes(votes + 1);
-  };
-
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", null, votes, " Votes"), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
-    onClick: addVote
-  }, "Vote!")));
-};
-
-render( /*#__PURE__*/React.createElement(Votes, null), document.getElementById('root'));
+render( /*#__PURE__*/React.createElement(App, null), document.getElementById('root'));
 
 /***/ }),
 
-/***/ "./assets/scripts/modules/app.js":
-/*!***************************************!*\
-  !*** ./assets/scripts/modules/app.js ***!
-  \***************************************/
+/***/ "./assets/js/modules/Theme.js":
+/*!************************************!*\
+  !*** ./assets/js/modules/Theme.js ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -165,12 +135,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var App = /*#__PURE__*/function () {
-  function App() {
-    _classCallCheck(this, App);
+var Theme = /*#__PURE__*/function () {
+  function Theme() {
+    _classCallCheck(this, Theme);
   }
 
-  _createClass(App, null, [{
+  _createClass(Theme, null, [{
     key: "hamburger",
     value: function hamburger(element) {
       this.element = element; // Look for .hamburger
@@ -190,17 +160,17 @@ var App = /*#__PURE__*/function () {
     }
   }]);
 
-  return App;
+  return Theme;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (App);
+/* harmony default export */ __webpack_exports__["default"] = (Theme);
 
 /***/ }),
 
-/***/ "./assets/styles/main.scss":
-/*!*********************************!*\
-  !*** ./assets/styles/main.scss ***!
-  \*********************************/
+/***/ "./assets/scss/main.scss":
+/*!*******************************!*\
+  !*** ./assets/scss/main.scss ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18711,14 +18681,14 @@ module.exports = g;
 /***/ }),
 
 /***/ 0:
-/*!****************************************************************!*\
-  !*** multi ./assets/scripts/main.js ./assets/styles/main.scss ***!
-  \****************************************************************/
+/*!*********************************************************!*\
+  !*** multi ./assets/js/main.js ./assets/scss/main.scss ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/jonwaldstein/Sites/wpwa/wp-content/themes/wpwa/assets/scripts/main.js */"./assets/scripts/main.js");
-module.exports = __webpack_require__(/*! /Users/jonwaldstein/Sites/wpwa/wp-content/themes/wpwa/assets/styles/main.scss */"./assets/styles/main.scss");
+__webpack_require__(/*! /Users/jonwaldstein/Sites/wpwa/wp-content/themes/wpwa/assets/js/main.js */"./assets/js/main.js");
+module.exports = __webpack_require__(/*! /Users/jonwaldstein/Sites/wpwa/wp-content/themes/wpwa/assets/scss/main.scss */"./assets/scss/main.scss");
 
 
 /***/ })

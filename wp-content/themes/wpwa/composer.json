@@ -1,27 +1,21 @@
 {
-  "name": "roots/sage",
+  "name": "wpwa/website",
   "type": "wordpress-theme",
   "license": "MIT",
-  "description": "The best WordPress starter theme with a modern front-end development workflow. Based on HTML5 Boilerplate, gulp, Bower, and Bootstrap.",
-  "homepage": "https://roots.io/sage/",
+  "description": "Wood-Pawcatuck watershed association public website",
+  "homepage": "https://wpwa.org",
   "authors": [
     {
-      "name": "Ben Word",
-      "email": "ben@benword.com",
-      "homepage": "https://github.com/retlehs"
-    },
-    {
-      "name": "Scott Walkinshaw",
-      "email": "scott.walkinshaw@gmail.com",
-      "homepage": "https://github.com/swalkinshaw"
+      "name": "Jon Waldstein",
+      "email": "jpwaldstein@gmail.com",
+      "homepage": "https://github.com/jonwaldstein"
     }
   ],
   "keywords": [
     "wordpress"
   ],
   "support": {
-    "issues": "https://github.com/roots/sage/issues",
-    "forum": "https://discourse.roots.io/"
+    "issues": "https://github.com/Wood-Pawcatuck-Watershed-Association/website/issuess"
   },
   "require": {
     "php": ">=5.4.0",
@@ -33,10 +27,10 @@
   },
   "autoload": {
     "psr-4": {
-        "Roots\\Sage\\": "lib/"
+      "Roots\\Sage\\": "lib/"
     },
     "classmap": [
-        "lib/"
+      "lib/"
     ]
   }
 }

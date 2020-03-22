@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 mix.setPublicPath('./');
 mix.setResourceRoot('../');
 
@@ -13,8 +13,8 @@ mix.setResourceRoot('../');
  |
  */
 
-mix.js('assets/scripts/main.js', 'dist/scripts/')
-    .sass('assets/styles/main.scss', 'dist/styles/')
+mix.react('assets/js/main.js', 'dist/js/')
+    .sass('assets/scss/main.scss', 'dist/css/')
     .copy('assets/fonts/', 'dist/fonts/')
     .copy('assets/images/', 'dist/images/');
 
