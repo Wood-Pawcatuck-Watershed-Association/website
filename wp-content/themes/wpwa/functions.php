@@ -16,8 +16,6 @@ if ( class_exists( 'Roots\\Sage\\Classes\\Theme' ) ) {
   $Theme->add_actions();
   $Theme->register_custom_taxonomies();
   $Theme->register_custom_post_types();
-  $Theme->add_shortcodes();
-  $Theme->register_widgets();
 }
 
 

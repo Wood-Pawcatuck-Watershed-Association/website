@@ -25,11 +25,6 @@ final class Theme
         }
     }
 
-    public function add_shortcodes()
-    {
-        //add_shortcode( 'custom_shortcode', array($this, 'custom_shortcode'));
-    }
-
     public function register_custom_taxonomies()
     {
         add_action('init', function () {
@@ -51,16 +46,6 @@ final class Theme
             get_template_part('lib/callbacks/cpt/cpt-alerts');
             get_template_part('lib/callbacks/cpt/cpt-featuredEvents');
         }, 0);
-    }
-
-    public function register_widgets()
-    {
-        // $this->widget_recent_posts();
-
-        // add_action( 'widgets_init', function(){
-        // 	register_widget( 'widget_recent_posts' );
-        // });
-
     }
 
     public static function asset_path($filename)

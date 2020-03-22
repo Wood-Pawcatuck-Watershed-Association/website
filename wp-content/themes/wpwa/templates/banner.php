@@ -25,7 +25,7 @@ $post_type = get_queried_object()->post_type;
   </div>
 </div>
 <?php elseif (is_single() && $post_type === 'tribe_events' ): ?>
-    
+
     <?php return; ?>
 
 <?php else: ?>
