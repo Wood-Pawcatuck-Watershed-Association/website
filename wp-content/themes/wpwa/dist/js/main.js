@@ -95,16 +95,19 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/dom-ready */ "./node_modules/@wordpress/dom-ready/build-module/index.js");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _modules_Theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Theme */ "./assets/js/modules/Theme.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lity */ "./node_modules/lity/dist/lity.js");
+/* harmony import */ var lity__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lity__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/dom-ready */ "./node_modules/@wordpress/dom-ready/build-module/index.js");
+/* harmony import */ var _modules_Theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/Theme */ "./assets/js/modules/Theme.js");
+
 
 
  //const { render } = wp.element;
 
-Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
-  _modules_Theme__WEBPACK_IMPORTED_MODULE_2__["default"].hamburger(".hamburger");
+Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_2__["default"])(function () {
+  _modules_Theme__WEBPACK_IMPORTED_MODULE_3__["default"].hamburger(".hamburger");
 }); // const App = () => {};
 // render(<App />, document.getElementById('root'));
 
@@ -119,18 +122,11 @@ Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__["default"])(function ()
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lity */ "./node_modules/lity/dist/lity.js");
-/* harmony import */ var lity__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lity__WEBPACK_IMPORTED_MODULE_1__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
 
 var Theme = /*#__PURE__*/function () {
   function Theme() {

@@ -1,6 +1,3 @@
-import $ from "jquery";
-import "lity";
-
 class Theme {
   static hamburger(element) {
     this.element = element;

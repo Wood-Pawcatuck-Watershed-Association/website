@@ -1,5 +1,6 @@
-import domReady from "@wordpress/dom-ready";
 import "bootstrap";
+import "lity";
+import domReady from "@wordpress/dom-ready";
 import Theme from "./modules/Theme";
 
 //const { render } = wp.element;
