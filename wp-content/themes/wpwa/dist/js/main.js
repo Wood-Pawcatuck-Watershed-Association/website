@@ -101,15 +101,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_Theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Theme */ "./assets/js/modules/Theme.js");
 
 
+ //const { render } = wp.element;
 
-var render = wp.element.render;
 Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
   _modules_Theme__WEBPACK_IMPORTED_MODULE_2__["default"].hamburger(".hamburger");
-});
-
-var App = function App() {};
-
-render( /*#__PURE__*/React.createElement(App, null), document.getElementById('root'));
+}); // const App = () => {};
+// render(<App />, document.getElementById('root'));
 
 /***/ }),
 
