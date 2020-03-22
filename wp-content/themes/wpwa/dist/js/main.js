@@ -104,10 +104,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- //const { render } = wp.element;
+ // const { render } = wp.element;
 
 Object(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_2__["default"])(function () {
-  _modules_Theme__WEBPACK_IMPORTED_MODULE_3__["default"].hamburger(".hamburger");
+  _modules_Theme__WEBPACK_IMPORTED_MODULE_3__["default"].hamburger('.hamburger');
 }); // const App = () => {};
 // render(<App />, document.getElementById('root'));
 
