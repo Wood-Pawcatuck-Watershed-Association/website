@@ -5,7 +5,7 @@
  */
 /*
 Plugin Name: Eventbritify
-Plugin URI: https://zerogravitymarketing.com
+Plugin URI: https://github.com/Wood-Pawcatuck-Watershed-Association/website
 Description: This is a plugin for adding eventbrite events
 Author: Jon Waldstein
 Version: 1.0

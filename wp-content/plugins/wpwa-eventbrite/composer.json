@@ -1,13 +1,13 @@
 {
-  "name": "zgm/vibrato",
+  "name": "wpwa/eventbrite",
   "type": "wordpress-plugin",
   "license": "MIT",
-  "description": "A Wordpress Plugin Boilerplate",
-  "homepage": "https://github.com/zero-gravity-marketing",
+  "description": "A WordPress plugin to integrate Eventbrite",
+  "homepage": "https://github.com/Wood-Pawcatuck-Watershed-Association/website",
   "authors": [
     {
       "name": "Jon Waldstein",
-      "email": "jon@zerogravitymarketing.com",
+      "email": "jpwaldstein@gmail.com",
       "homepage": "https://github.com/zero-gravity-marketing"
     }
   ],
@@ -15,7 +15,7 @@
     "wordpress"
   ],
   "support": {
-    "issues": "https://github.com/zero-gravity-marketing"
+    "issues": "https://github.com/Wood-Pawcatuck-Watershed-Association/website/issues"
   },
   "require": {
     "php": ">=7.2.0",
@@ -28,10 +28,10 @@
   },
   "autoload": {
     "psr-4": {
-        "ZGM\\Plugin\\": "app/"
+      "ZGM\\Plugin\\": "app/"
     },
     "classmap": [
-        "app/"
+      "app/"
     ]
   }
 }

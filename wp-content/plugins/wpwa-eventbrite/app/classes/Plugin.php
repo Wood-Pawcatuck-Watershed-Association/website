@@ -145,7 +145,7 @@ final class Plugin
 
         add_action('wp_enqueue_scripts', function () {
 
-            wp_enqueue_script($this->plugin_name, Plugin::asset_path('main.js'), array('jquery'), $this->version, true);
+            wp_enqueue_script($this->plugin_name, Plugin::asset_path('main.js'), [], $this->version, true);
             wp_localize_script($this->plugin_name, 'WPEVENTBRITE', array(
                 'token' => get_option('_eventbrite_oauth_token') ? get_option('_eventbrite_oauth_token') : 'I6HEXNTVQFQWEK2BR7AB',
                 'organization_id' => get_option('_eventbrite_organization_id') ? get_option('_eventbrite_organization_id') : '277195183135',
@@ -176,7 +176,6 @@ final class Plugin
      */
     public function crons()
     {
-        //wp_clear_scheduled_hook('instagram_hook');
         if (get_option('_eventbrite_schedule_cron')) {
             if (!wp_next_scheduled('fetch_eventbrite')) {
                 wp_schedule_event(time(), 'hourly', 'fetch_eventbrite');
