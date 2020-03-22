@@ -1,10 +1,20 @@
-<?php $Query = new WP_Query([
+<?php
+
+/**
+ * Template Name: Newsletters
+ */
+
+use Roots\Sage\Classes\Theme;
+
+
+$Query = new WP_Query([
     'post_type' => 'cpt_newsletters',
     'orderby' => 'date',
     'order' => 'DESC',
     'posts_per_page' => '99'
 ]);
 ?>
+
 <div class="container pb-5">
     <div class="row justify-content-around">
         <div class="col-md-4 d-none d-md-block">
@@ -43,7 +53,8 @@
                         <div class="list-group mb-2" role="tablist">
                             <?php get_template_part('templates/newsletter'); ?>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endwhile;
+                    wp_reset_postdata(); ?>
                 </div>
             </div>
         </div>
