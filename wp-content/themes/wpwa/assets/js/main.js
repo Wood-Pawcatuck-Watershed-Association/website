@@ -1,12 +1,12 @@
-import "bootstrap";
-import "lity";
-import domReady from "@wordpress/dom-ready";
-import Theme from "./modules/Theme";
+import 'bootstrap';
+import 'lity';
+import domReady from '@wordpress/dom-ready';
+import Theme from './modules/Theme';
 
-//const { render } = wp.element;
+// const { render } = wp.element;
 
 domReady(() => {
-    Theme.hamburger(".hamburger");
+  Theme.hamburger('.hamburger');
 });
 
 // const App = () => {};
