@@ -20,7 +20,7 @@ Block::make(__('Feature Cards'))
                     ->set_default_value('Learn More')
             ))
     ))
-    ->set_category('WPWA')
+    ->set_category('wpwa', __('WPWA'), 'smiley')
     ->set_render_callback(function ($block) {
 ?>
     <section class="section feature-cards bg-light-green pt-5">
@@ -61,7 +61,7 @@ Block::make(__('Bloomerang Form'))
         Field::make('text', 'bloomerang_loading_text')->set_default_value('Loading Form...'),
         Field::make('text', 'bloomerang_fallback_link')
     ))
-    ->set_category('WPWA')
+    ->set_category('wpwa', __('WPWA'), 'smiley')
     ->set_render_callback(function ($block) {
 ?>
     <?php if (!empty($block['bloomerang_form_html'])) : ?>
@@ -105,7 +105,7 @@ Block::make(__('Alert'))
         Field::make('text', 'alert_heading'),
         Field::make('rich_text', 'alert_text'),
     ))
-    ->set_category('WPWA')
+    ->set_category('wpwa', __('WPWA'), 'smiley')
     ->set_render_callback(function ($block) {
 ?>
     <?php if (!empty($block['alert_text'] || $block['alert_heading'])) : ?>
@@ -125,7 +125,7 @@ Block::make(__('Alerts'))
         Field::make('html', 'crb_html', __('Alerts'))
             ->set_html('This will display all your alerts')
     ))
-    ->set_category('WPWA')
+    ->set_category('wpwa', __('WPWA'), 'smiley')
     ->set_render_callback(function ($block) {
 ?>
     <?php
