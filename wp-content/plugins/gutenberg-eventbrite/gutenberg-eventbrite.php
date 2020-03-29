@@ -58,7 +58,7 @@ function gutenberg_eventbrite_block($attributes)
 {
     if (is_admin()) return;
 
-    $TRANSIENT_KEY = 'gutenberg_eventbrite_block';
+    $TRANSIENT_KEY = "gutenberg_eventbrite_block_{$attributes['id']}";
 
     $transient = get_transient($TRANSIENT_KEY);
 
@@ -77,7 +77,9 @@ function gutenberg_eventbrite_block($attributes)
 
     ob_start();
 
-    echo '<script>window.eventbrite =' . wp_json_encode($transient) . '</script>';
+    $transient_json = wp_json_encode($transient);
+
+    echo "<script>window.eventbrite = {$transient_json};</script>";
 
     echo '<div id="root-eventbrite"></div>';
 

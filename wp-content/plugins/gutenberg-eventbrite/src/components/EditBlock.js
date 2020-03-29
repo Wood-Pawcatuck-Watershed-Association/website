@@ -2,20 +2,20 @@ import { Fragment } from '@wordpress/element';
 import { TextControl, PanelBody } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 
-export default function EditBlock( { attributes, setAttributes } ) {
-	const { apiKey, heading } = attributes;
+export default function EditBlock({ attributes, setAttributes }) {
+	const { id, apiKey, heading } = attributes;
 
 	return (
 		<Fragment>
 			<Fragment>
 				<InspectorControls>
-					<PanelBody title="Eventbrite Settings" initialOpen={ true }>
+					<PanelBody title="Eventbrite Settings" initialOpen={true}>
 						<TextControl
 							label="Api Key"
-							value={ apiKey }
+							value={apiKey}
 							help={
 								<p>
-									Get api key{ ' ' }
+									Get api key{' '}
 									<a
 										href="https://www.eventbrite.com/platform/api-keys"
 										target="_blank"
@@ -25,9 +25,14 @@ export default function EditBlock( { attributes, setAttributes } ) {
 									</a>
 								</p>
 							}
-							onChange={ ( newApiKey ) =>
-								setAttributes( { apiKey: newApiKey } )
-							}
+							onChange={(newApiKey) => {
+								setAttributes({
+									apiKey: newApiKey,
+								});
+								setAttributes({
+									id: Date.now(),
+								});
+							}}
 						/>
 					</PanelBody>
 				</InspectorControls>
@@ -35,9 +40,9 @@ export default function EditBlock( { attributes, setAttributes } ) {
 
 			<TextControl
 				label="Heading"
-				value={ heading }
-				onChange={ ( newHeading ) =>
-					setAttributes( { heading: newHeading } )
+				value={heading}
+				onChange={(newHeading) =>
+					setAttributes({ heading: newHeading })
 				}
 			/>
 		</Fragment>

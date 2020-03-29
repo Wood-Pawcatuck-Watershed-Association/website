@@ -18,12 +18,12 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'sandtrail-studios/gutenberg-eventbrite', {
+registerBlockType('sandtrail-studios/gutenberg-eventbrite', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Eventbrite Block', 'sandtrail-studios' ),
+	title: __('Eventbrite Block', 'sandtrail-studios'),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
@@ -54,7 +54,16 @@ registerBlockType( 'sandtrail-studios/gutenberg-eventbrite', {
 		html: false,
 	},
 
+	// Use the block just once per post
+	multiple: false,
+
+	// Don't allow the block to be converted into a reusable block.
+	reusable: false,
+
 	attributes: {
+		id: {
+			type: 'number',
+		},
 		apiKey: {
 			type: 'string',
 		},
@@ -73,8 +82,8 @@ registerBlockType( 'sandtrail-studios/gutenberg-eventbrite', {
 	 *
 	 * @return {WPElement} Element to render.
 	 */
-	edit( props ) {
-		return <EditBlock { ...props } />;
+	edit(props) {
+		return <EditBlock {...props} />;
 	},
 
 	/**
@@ -88,4 +97,4 @@ registerBlockType( 'sandtrail-studios/gutenberg-eventbrite', {
 	save() {
 		return null;
 	},
-} );
+});

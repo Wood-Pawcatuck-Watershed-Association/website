@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/blocks/index.js":
-/*!*****************************!*\
-  !*** ./src/blocks/index.js ***!
-  \*****************************/
+/***/ "./src/block/index.js":
+/*!****************************!*\
+  !*** ./src/block/index.js ***!
+  \****************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -156,7 +156,14 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('san
     // Removes support for an HTML mode.
     html: false
   },
+  // Use the block just once per post
+  multiple: false,
+  // Don't allow the block to be converted into a reusable block.
+  reusable: false,
   attributes: {
+    id: {
+      type: 'number'
+    },
     apiKey: {
       type: 'string'
     },
@@ -217,7 +224,8 @@ __webpack_require__.r(__webpack_exports__);
 function EditBlock(_ref) {
   var attributes = _ref.attributes,
       setAttributes = _ref.setAttributes;
-  var apiKey = attributes.apiKey,
+  var id = attributes.id,
+      apiKey = attributes.apiKey,
       heading = attributes.heading;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
     title: "Eventbrite Settings",
@@ -231,8 +239,11 @@ function EditBlock(_ref) {
       rel: "noopener noreferrer"
     }, "here")),
     onChange: function onChange(newApiKey) {
-      return setAttributes({
+      setAttributes({
         apiKey: newApiKey
+      });
+      setAttributes({
+        id: Date.now()
       });
     }
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["TextControl"], {
@@ -372,7 +383,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/dom-ready */ "@wordpress/dom-ready");
 /* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_EventList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/EventList */ "./src/components/EventList.js");
-/* harmony import */ var _blocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blocks */ "./src/blocks/index.js");
+/* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block */ "./src/block/index.js");
 
 
 
