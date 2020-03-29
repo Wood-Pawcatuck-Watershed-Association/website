@@ -27,12 +27,12 @@ export default function Event({
 	const { firstButtonBackgroundColor, secondButtonBackgroundColor } = colors;
 
 	return (
-		<article className="jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full">
+		<article className="jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full jw-font-sans">
 			<div className="event__single">
 				{image ? (
 					<img
 						src={image}
-						className="jw-block jw-h-32 jw-flex-none jw-object-cover jw-object-center jw-rounded-t jw-text-center jw-w-full jw-overflow-hidden"
+						className="jw-block jw-h-32 jw-flex-none jw-object-cover jw-object-center jw-rounded-t jw-text-center jw-w-full jw-overflow-hidden jw-border-none"
 						alt={title}
 					/>
 				) : null}
@@ -58,7 +58,7 @@ export default function Event({
 										{format('D, M d Y, ha', startDate)}
 									</time>
 								</div>
-								<p className="jw-text-sm jw-text-grey-dark jw-flex jw-items-center jw-font-sans jw-mb-2">
+								<p className="jw-text-sm jw-text-grey-dark jw-flex jw-items-center jw-font-sans jw-mb-2 jw-mt-0">
 									<span>{cost}</span>
 								</p>
 							</div>
@@ -76,9 +76,10 @@ export default function Event({
 											animation="shift-away"
 										>
 											<button
-												className="jw-bg-blue-500 hover:jw-bg-blue-700 jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out"
+												className={`jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${!firstButtonBackgroundColor &&
+													'jw-bg-blue-500 hover:jw-bg-blue-700'}`}
 												style={{
-													backgroundColor: firstButtonBackgroundColor,
+													background: firstButtonBackgroundColor,
 												}}
 											>
 												info
@@ -89,7 +90,8 @@ export default function Event({
 										<button
 											id={`eventbrite-widget-modal-trigger-${id}`}
 											type="button"
-											className="jw-bg-orange-500 hover:jw-bg-orange-700 jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-rounded jw-transition jw-duration-200 jw-ease-in-out"
+											className={`jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${!secondButtonBackgroundColor &&
+												'jw-bg-orange-500 hover:jw-bg-orange-700'}`}
 											style={{
 												backgroundColor: secondButtonBackgroundColor,
 											}}

@@ -8,6 +8,7 @@ import {
 	ColorPalette,
 } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
+import Event from '../components/Event';
 
 export default function EditBlock({ attributes, setAttributes }) {
 	const {
@@ -109,13 +110,38 @@ export default function EditBlock({ attributes, setAttributes }) {
 				</InspectorControls>
 			</Fragment>
 
-			<TextControl
+			{/* <TextControl
 				label="Heading"
 				value={heading}
 				onChange={(newHeading) =>
 					setAttributes({ heading: newHeading })
 				}
-			/>
+			/> */}
+			{!apiKey ? (
+				<p>
+					An Api Key is required. Please enter your Eventbrite Api Key
+					in the panel settings.{' '}
+				</p>
+			) : (
+				<Fragment>
+					<p className="jw-font-sans">
+						This is a static preview of an Eventbrite event card.
+					</p>
+					<Event
+						id={52766401728}
+						title={'Event Title'}
+						description={'Event description'}
+						cost={'$25'}
+						startDate={new Date()}
+						image={'https://placekitten.com/500/500'}
+						status={'live'}
+						colors={{
+							firstButtonBackgroundColor,
+							secondButtonBackgroundColor,
+						}}
+					/>
+				</Fragment>
+			)}
 		</Fragment>
 	);
 }

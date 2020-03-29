@@ -86,12 +86,12 @@ function gutenberg_eventbrite_block($attributes)
     }
 
     $transient_events_json = wp_json_encode($transient['events']);
-    $attributes_json = wp_json_encode($attributes);
+    $transient_attributes_json = wp_json_encode($transient['attributes']);
 
     echo "<script>
         window.eventbrite = {
             events: {$transient_events_json},
-            attributes: {$attributes_json},
+            attributes: {$transient_attributes_json},
         }
     </script>";
 
