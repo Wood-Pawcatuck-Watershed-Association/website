@@ -11,6 +11,7 @@ export default function EventList({ events }) {
 
 		return (
 			<Event
+				key={title}
 				title={title}
 				description={description}
 				cost={cost}

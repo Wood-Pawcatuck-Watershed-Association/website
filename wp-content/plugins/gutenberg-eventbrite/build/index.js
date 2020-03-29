@@ -124,30 +124,30 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("create-block/gutenberg-eventbrite", {
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('sandtrail-studios/gutenberg-eventbrite', {
   /**
    * This is the display title for your block, which can be translated with `i18n` functions.
    * The block inserter will show this name.
    */
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Gutenberg Eventbrite", "create-block"),
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Eventbrite Block', 'sandtrail-studios'),
 
   /**
    * This is a short description for your block, can be translated with `i18n` functions.
    * It will be shown in the Block Tab in the Settings Sidebar.
    */
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("A gutenberg block that fetches eventbrite events", "create-block"),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('A gutenberg block that fetches eventbrite events', 'sandtrail-studios'),
 
   /**
    * Blocks are grouped into categories to help users browse and discover them.
    * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
    */
-  category: "widgets",
+  category: 'widgets',
 
   /**
    * An icon property should be specified to make it easier to identify a block.
    * These can be any of WordPress’ Dashicons, or a custom svg element.
    */
-  icon: "smiley",
+  icon: 'smiley',
 
   /**
    * Optional block extended support features.
@@ -158,10 +158,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("cre
   },
   attributes: {
     apiKey: {
-      type: "string"
+      type: 'string'
     },
     heading: {
-      type: "string"
+      type: 'string'
     }
   },
 
@@ -225,7 +225,7 @@ function EditBlock(_ref) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["TextControl"], {
     label: "Api Key",
     value: apiKey,
-    help: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Get api key", " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+    help: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Get api key", ' ', Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
       href: "https://www.eventbrite.com/platform/api-keys",
       target: "_blank",
       rel: "noopener noreferrer"
@@ -236,7 +236,7 @@ function EditBlock(_ref) {
       });
     }
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["TextControl"], {
-    label: "heading",
+    label: "Heading",
     value: heading,
     onChange: function onChange(newHeading) {
       return setAttributes({
@@ -290,9 +290,9 @@ function Event(_ref) {
     className: "event__details--dateWrapper text-center"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: "event__details--dateMonth text-sm text-red uppercase my-0 font-sans"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])("M", startDate))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('M', startDate))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: "event__details--dateDay text-xl text-grey-dark my-0 font-sans"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])("d", startDate))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('d', startDate))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "event__details--right ml-2"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "event__details--rightInnerTop"
@@ -302,7 +302,7 @@ function Event(_ref) {
     className: "event__details--dateWrapper"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", {
     className: "event__details--date font-sans text-grey-dark text-xs"
-  }, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])("D, M d Y, ha", startDate))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+  }, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('D, M d Y, ha', startDate))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: "text-sm text-grey-dark flex items-center font-sans mb-2"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, cost))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "event__details--rightInnerBottom"
@@ -311,7 +311,7 @@ function Event(_ref) {
   }, description ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
     "data-tippy-content": "<?= $description; ?>",
     className: "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 mr-2 rounded"
-  }, "info") : null, status === "live" ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
+  }, "info") : null, status === 'live' ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
     id: "eventBriteModalId(event.id)",
     type: "button",
     className: "bg-orange hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
@@ -345,6 +345,7 @@ function EventList(_ref) {
     var description = event.description.html;
     var status = event.status;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_Event__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: title,
       title: title,
       description: description,
       cost: cost,
@@ -385,7 +386,9 @@ function App() {
 }
 
 _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1___default()(function () {
-  Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["render"])(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(App, null), document.getElementById("root-eventbrite"));
+  if (document.getElementById('root-eventbrite')) {
+    Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["render"])(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(App, null), document.getElementById('root-eventbrite'));
+  }
 });
 
 /***/ }),

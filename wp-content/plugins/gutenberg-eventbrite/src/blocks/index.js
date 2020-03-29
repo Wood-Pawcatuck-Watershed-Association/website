@@ -3,64 +3,64 @@
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-import { registerBlockType } from "@wordpress/blocks";
-import EditBlock from "../components/EditBlock";
+import { registerBlockType } from '@wordpress/blocks';
+import EditBlock from '../components/EditBlock';
 
 /**
  * Retrieves the translation of text.
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 
 /**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType("create-block/gutenberg-eventbrite", {
+registerBlockType( 'sandtrail-studios/gutenberg-eventbrite', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __("Gutenberg Eventbrite", "create-block"),
+	title: __( 'Eventbrite Block', 'sandtrail-studios' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		"A gutenberg block that fetches eventbrite events",
-		"create-block"
+		'A gutenberg block that fetches eventbrite events',
+		'sandtrail-studios'
 	),
 
 	/**
 	 * Blocks are grouped into categories to help users browse and discover them.
 	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
 	 */
-	category: "widgets",
+	category: 'widgets',
 
 	/**
 	 * An icon property should be specified to make it easier to identify a block.
 	 * These can be any of WordPress’ Dashicons, or a custom svg element.
 	 */
-	icon: "smiley",
+	icon: 'smiley',
 
 	/**
 	 * Optional block extended support features.
 	 */
 	supports: {
 		// Removes support for an HTML mode.
-		html: false
+		html: false,
 	},
 
 	attributes: {
 		apiKey: {
-			type: "string"
+			type: 'string',
 		},
 		heading: {
-			type: "string"
-		}
+			type: 'string',
+		},
 	},
 
 	/**
@@ -73,8 +73,8 @@ registerBlockType("create-block/gutenberg-eventbrite", {
 	 *
 	 * @return {WPElement} Element to render.
 	 */
-	edit(props) {
-		return <EditBlock {...props} />;
+	edit( props ) {
+		return <EditBlock { ...props } />;
 	},
 
 	/**
@@ -87,5 +87,5 @@ registerBlockType("create-block/gutenberg-eventbrite", {
 	 */
 	save() {
 		return null;
-	}
-});
+	},
+} );
