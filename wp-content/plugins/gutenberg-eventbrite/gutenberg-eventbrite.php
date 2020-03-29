@@ -77,9 +77,17 @@ function gutenberg_eventbrite_block($attributes)
 
     ob_start();
 
-    $transient_json = wp_json_encode($transient);
+    if (!empty($attributes['apiKey'])){
+        unset($attributes['apiKey']);
+    }
 
-    echo "<script>window.eventbrite = {$transient_json};</script>";
+    $transient_json = wp_json_encode($transient);
+    $attributes_json = wp_json_encode($attributes);
+
+    echo "<script>
+        window.eventbrite = {$transient_json};
+        window.eventbrite.attributes = {$attributes_json};
+    </script>";
 
     echo '<div id="root-eventbrite"></div>';
 

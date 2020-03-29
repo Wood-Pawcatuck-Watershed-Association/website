@@ -6,7 +6,12 @@ import './style.css';
 import './block';
 
 function App() {
-	return <EventList events={window.eventbrite} />;
+	return (
+		<EventList
+			events={window.eventbrite}
+			attributes={window.eventbrite.attributes}
+		/>
+	);
 }
 
 domReady(function() {

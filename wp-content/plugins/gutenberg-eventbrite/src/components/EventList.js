@@ -1,6 +1,11 @@
 import Event from './Event';
 
-export default function EventList({ events }) {
+export default function EventList({ events, attributes }) {
+	const {
+		firstButtonBackgroundColor,
+		secondButtonBackgroundColor,
+	} = attributes;
+
 	return events.map((event) => {
 		const id = event.id;
 		const title = event.name.text;
@@ -20,6 +25,10 @@ export default function EventList({ events }) {
 				startDate={startDate}
 				image={image}
 				status={status}
+				colors={{
+					firstButtonBackgroundColor,
+					secondButtonBackgroundColor,
+				}}
 			/>
 		);
 	});

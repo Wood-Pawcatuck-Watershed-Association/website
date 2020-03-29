@@ -13,6 +13,7 @@ export default function Event({
 	startDate,
 	image,
 	status,
+	colors,
 }) {
 	useEffect(() => {
 		EBWidgets.createWidget({
@@ -22,6 +23,8 @@ export default function Event({
 			modalTriggerElementId: `eventbrite-widget-modal-trigger-${id}`,
 		});
 	}, [id]);
+
+	const { firstButtonBackgroundColor, secondButtonBackgroundColor } = colors;
 
 	return (
 		<article className="jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full">
@@ -71,7 +74,12 @@ export default function Event({
 											theme="light"
 											animation="shift-away"
 										>
-											<button className="jw-bg-blue-500 hover:jw-bg-blue-700 jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out">
+											<button
+												className="jw-bg-blue-500 hover:jw-bg-blue-700 jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out"
+												style={{
+													backgroundColor: firstButtonBackgroundColor,
+												}}
+											>
 												info
 											</button>
 										</Tippy>
@@ -81,6 +89,9 @@ export default function Event({
 											id={`eventbrite-widget-modal-trigger-${id}`}
 											type="button"
 											className="jw-bg-orange-500 hover:jw-bg-orange-700 jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-rounded jw-transition jw-duration-200 jw-ease-in-out"
+											style={{
+												backgroundColor: secondButtonBackgroundColor,
+											}}
 										>
 											Sign up
 										</button>
