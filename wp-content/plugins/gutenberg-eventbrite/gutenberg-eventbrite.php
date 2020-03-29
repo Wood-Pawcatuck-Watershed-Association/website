@@ -38,14 +38,6 @@ function gutenberg_eventbrite_block_init()
         $script_asset['version']
     );
 
-    $style_css = 'style.css';
-    wp_register_style(
-        'sandtrail-studios-eventbrite-cards-block-style',
-        plugins_url($style_css, __FILE__),
-        array(),
-        filemtime("$dir/$style_css")
-    );
-
     register_block_type('sandtrail-studios/gutenberg-eventbrite', array(
         'script' => 'sandtrail-studios-eventbrite-cards-block-script',
         'style'  => 'sandtrail-studios-eventbrite-cards-block-style',
