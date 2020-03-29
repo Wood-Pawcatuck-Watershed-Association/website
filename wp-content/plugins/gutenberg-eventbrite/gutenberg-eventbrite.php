@@ -55,18 +55,22 @@ add_action('init', 'create_block_gutenberg_eventbrite_block_init');
 
 function gutenberg_eventbrite_block($attributes)
 {
-    $apiKey = $attributes['apiKey'];
+    $TRANSIENT_KEY = 'gutenberg_eventbrite_block';
 
-    $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$apiKey}&expand=ticket_classes&status=live&order_by=start_asc");
+    $transient = get_transient($TRANSIENT_KEY);
 
-    $data = json_decode($response['body'], true);
+    if (empty($transient)) {
 
-    ob_start();
-?>
-    <script>
-        window.eventbrite = <?php echo wp_json_encode($data['events']); ?>
-    </script>
-    <div id="root-eventbrite"></div>
-<?php
-    return ob_get_clean();
+        $apiKey = $attributes['apiKey'];
+
+        $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$apiKey}&expand=ticket_classes&status=live&order_by=start_asc");
+
+        $data = json_decode($response['body'], true);
+
+        set_transient($TRANSIENT_KEY, $data['events'], 60);
+    }
+
+
+    echo '<script>window.eventbrite =' . wp_json_encode($transient) . '</script>';
+    echo '<div id="root-eventbrite"></div>';
 }
