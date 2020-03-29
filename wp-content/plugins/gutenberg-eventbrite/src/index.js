@@ -1,6 +1,7 @@
 import { render } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
 import EventList from './components/EventList';
+import './style.css';
 
 import './block';
 

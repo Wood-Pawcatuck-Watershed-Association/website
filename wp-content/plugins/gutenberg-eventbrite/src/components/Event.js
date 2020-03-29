@@ -24,46 +24,46 @@ export default function Event({
 	}, [id]);
 
 	return (
-		<article className="max-w-xs w-full px-2 mb-4 h-full">
+		<article className="jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full">
 			<div className="event__single">
 				{image ? (
 					<div
-						className="h-32 flex-none bg-cover bg-center rounded-t text-center overflow-hidden"
+						className="jw-h-32 jw-flex-none jw-bg-cover jw-bg-center jw-rounded-t jw-text-center jw-overflow-hidden"
 						style={{ backgroundImage: `url(${image})` }}
 					></div>
 				) : null}
-				<div className="border-r border-b border-l border-grey-light bg-white rounded-b py-4 px-2 flex flex-col justify-between leading-normal shadow-md">
-					<div className="event__details flex">
+				<div className="jw-border-r jw-border-b jw-border-l jw-border-grey-light jw-bg-white jw-rounded-b jw-py-4 jw-px-2 jw-flex jw-flex-col jw-justify-between jw-leading-normal jw-shadow-md">
+					<div className="event__details jw-flex">
 						<div className="event__details--left">
 							<div className="event__details--dateWrapper text-center">
-								<p className="event__details--dateMonth text-sm text-red uppercase my-0 font-sans">
+								<p className="event__details--dateMonth jw-text-sm jw-text-red-600 jw-uppercase jw-my-0 jw-font-sans">
 									<time>{format('M', startDate)}</time>
 								</p>
-								<p className="event__details--dateDay text-xl text-grey-dark my-0 font-sans">
+								<p className="event__details--dateDay jw-text-xl jw-text-grey-800 jw-my-0 jw-font-sans">
 									<time>{format('d', startDate)}</time>
 								</p>
 							</div>
 						</div>
-						<div className="event__details--right ml-2">
+						<div className="event__details--right jw-ml-2">
 							<div className="event__details--rightInnerTop">
-								<h3 className="my-0 text-black font-semibold text-sm">
+								<h3 className="jw-my-0 jw-text-black jw-font-semibold jw-text-sm">
 									{title}
 								</h3>
 								<div className="event__details--dateWrapper">
-									<time className="event__details--date font-sans text-grey-dark text-xs">
+									<time className="event__details--date jw-font-sans jw-text-grey-dark jw-text-xs">
 										{format('D, M d Y, ha', startDate)}
 									</time>
 								</div>
-								<p className="text-sm text-grey-dark flex items-center font-sans mb-2">
+								<p className="jw-text-sm jw-text-grey-dark jw-flex jw-items-center jw-font-sans jw-mb-2">
 									<span>{cost}</span>
 								</p>
 							</div>
 							<div className="event__details--rightInnerBottom">
-								<div className="event__details--buttonWrapper flex justify-between">
+								<div className="event__details--buttonWrapper jw-flex jw-justify-between">
 									{description ? (
 										<Tippy
 											content={
-												<p className="p-2">
+												<p className="jw-p-2">
 													{description}
 												</p>
 											}
@@ -71,7 +71,7 @@ export default function Event({
 											theme="light"
 											animation="shift-away"
 										>
-											<button className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 mr-2 rounded">
+											<button className="jw-bg-blue-500 hover:jw-bg-blue-700 jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out">
 												info
 											</button>
 										</Tippy>
@@ -80,7 +80,7 @@ export default function Event({
 										<button
 											id={`eventbrite-widget-modal-trigger-${id}`}
 											type="button"
-											className="bg-orange hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
+											className="jw-bg-orange-500 hover:jw-bg-orange-700 jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-rounded jw-transition jw-duration-200 jw-ease-in-out"
 										>
 											Sign up
 										</button>
