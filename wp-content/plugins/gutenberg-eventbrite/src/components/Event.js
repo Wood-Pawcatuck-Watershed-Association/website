@@ -1,6 +1,9 @@
+import { useEffect } from '@wordpress/element';
 import { format } from '@wordpress/date';
+import '../vendor/eventbrite';
 
 export default function Event({
+	id,
 	title,
 	description,
 	cost,
@@ -8,6 +11,15 @@ export default function Event({
 	image,
 	status,
 }) {
+	useEffect(() => {
+		EBWidgets.createWidget({
+			widgetType: 'checkout',
+			eventId: id,
+			modal: true,
+			modalTriggerElementId: `eventbrite-widget-modal-trigger-${id}`,
+		});
+	}, [id]);
+
 	return (
 		<article className="max-w-xs w-full px-2 mb-4 h-full">
 			<div className="event__single">
@@ -55,7 +67,7 @@ export default function Event({
 									) : null}
 									{status === 'live' ? (
 										<button
-											id="eventBriteModalId(event.id)"
+											id={`eventbrite-widget-modal-trigger-${id}`}
 											type="button"
 											className="bg-orange hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
 										>
