@@ -30,10 +30,11 @@ export default function Event({
 		<article className="jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full">
 			<div className="event__single">
 				{image ? (
-					<div
-						className="jw-h-32 jw-flex-none jw-bg-cover jw-bg-center jw-rounded-t jw-text-center jw-overflow-hidden"
-						style={{ backgroundImage: `url(${image})` }}
-					></div>
+					<img
+						src={image}
+						className="jw-block jw-h-32 jw-flex-none jw-object-cover jw-object-center jw-rounded-t jw-text-center jw-w-full jw-overflow-hidden"
+						alt={title}
+					/>
 				) : null}
 				<div className="jw-border-r jw-border-b jw-border-l jw-border-grey-light jw-bg-white jw-rounded-b jw-py-4 jw-px-2 jw-flex jw-flex-col jw-justify-between jw-leading-normal jw-shadow-md">
 					<div className="event__details jw-flex">

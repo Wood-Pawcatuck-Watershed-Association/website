@@ -8,7 +8,7 @@ import './block';
 function App() {
 	return (
 		<EventList
-			events={window.eventbrite}
+			events={window.eventbrite.events}
 			attributes={window.eventbrite.attributes}
 		/>
 	);
