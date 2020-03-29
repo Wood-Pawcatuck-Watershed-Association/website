@@ -1,17 +1,15 @@
 import { render } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
-import EventList from './components/EventList';
-import './style.css';
 
+import EventList from './components/EventList';
+import { getWindowData } from './utilities';
+import './style.css';
 import './block';
 
 function App() {
-	return (
-		<EventList
-			events={window.eventbrite.events}
-			attributes={window.eventbrite.attributes}
-		/>
-	);
+	const [events, attributes] = getWindowData('events', 'attributes');
+
+	return <EventList events={events} attributes={attributes} />;
 }
 
 domReady(function() {
