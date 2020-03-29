@@ -3276,10 +3276,10 @@ var index = /*#__PURE__*/forwardRef( /*#__PURE__*/TippyGenerator(tippy_js__WEBPA
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/tippy.js/animations/shift-away.css":
-/*!***********************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/tippy.js/animations/shift-away.css ***!
-  \***********************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src/index.js?!./node_modules/tippy.js/animations/shift-away.css":
+/*!******************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src??postcss!./node_modules/tippy.js/animations/shift-away.css ***!
+  \******************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3287,17 +3287,17 @@ var index = /*#__PURE__*/forwardRef( /*#__PURE__*/TippyGenerator(tippy_js__WEBPA
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".tippy-box[data-animation=shift-away][data-state=hidden]{opacity:0}.tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=top]{transform:translateY(10px)}.tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=bottom]{transform:translateY(-10px)}.tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=left]{transform:translateX(10px)}.tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=right]{transform:translateX(-10px)}", ""]);
+exports.push([module.i, ".tippy-box[data-animation=shift-away][data-state=hidden]{\n  opacity:0\n}\n\n.tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=top]{\n  transform:translateY(10px)\n}\n\n.tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=bottom]{\n  transform:translateY(-10px)\n}\n\n.tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=left]{\n  transform:translateX(10px)\n}\n\n.tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=right]{\n  transform:translateX(-10px)\n}", ""]);
 // Exports
 module.exports = exports;
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/tippy.js/themes/light.css":
-/*!**************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/tippy.js/themes/light.css ***!
-  \**************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src/index.js?!./node_modules/tippy.js/themes/light.css":
+/*!*********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src??postcss!./node_modules/tippy.js/themes/light.css ***!
+  \*********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3305,7 +3305,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".tippy-box[data-theme~=light]{color:#26323d;box-shadow:0 0 20px 4px rgba(154,161,177,.15),0 4px 80px -8px rgba(36,40,47,.25),0 4px 4px -2px rgba(91,94,105,.15);background-color:#fff}.tippy-box[data-theme~=light][data-placement^=top]>.tippy-arrow:before{border-top-color:#fff}.tippy-box[data-theme~=light][data-placement^=bottom]>.tippy-arrow:before{border-bottom-color:#fff}.tippy-box[data-theme~=light][data-placement^=left]>.tippy-arrow:before{border-left-color:#fff}.tippy-box[data-theme~=light][data-placement^=right]>.tippy-arrow:before{border-right-color:#fff}.tippy-box[data-theme~=light]>.tippy-backdrop{background-color:#fff}.tippy-box[data-theme~=light]>.tippy-svg-arrow{fill:#fff}", ""]);
+exports.push([module.i, ".tippy-box[data-theme~=light]{\n  color:#26323d;\n  box-shadow:0 0 20px 4px rgba(154,161,177,.15),0 4px 80px -8px rgba(36,40,47,.25),0 4px 4px -2px rgba(91,94,105,.15);\n  background-color:#fff\n}\n\n.tippy-box[data-theme~=light][data-placement^=top]>.tippy-arrow:before{\n  border-top-color:#fff\n}\n\n.tippy-box[data-theme~=light][data-placement^=bottom]>.tippy-arrow:before{\n  border-bottom-color:#fff\n}\n\n.tippy-box[data-theme~=light][data-placement^=left]>.tippy-arrow:before{\n  border-left-color:#fff\n}\n\n.tippy-box[data-theme~=light][data-placement^=right]>.tippy-arrow:before{\n  border-right-color:#fff\n}\n\n.tippy-box[data-theme~=light]>.tippy-backdrop{\n  background-color:#fff\n}\n\n.tippy-box[data-theme~=light]>.tippy-svg-arrow{\n  fill:#fff\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -4784,7 +4784,7 @@ module.exports = function (list, options) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(/*! ../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../css-loader/dist/cjs.js!./shift-away.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/tippy.js/animations/shift-away.css");
+            var content = __webpack_require__(/*! !../../css-loader/dist/cjs.js!../../postcss-loader/src??postcss!./shift-away.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src/index.js?!./node_modules/tippy.js/animations/shift-away.css");
 
             content = content.__esModule ? content.default : content;
 
@@ -6964,7 +6964,7 @@ tippy.setDefaultProps({
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(/*! ../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../css-loader/dist/cjs.js!./light.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/tippy.js/themes/light.css");
+            var content = __webpack_require__(/*! !../../css-loader/dist/cjs.js!../../postcss-loader/src??postcss!./light.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src/index.js?!./node_modules/tippy.js/themes/light.css");
 
             content = content.__esModule ? content.default : content;
 
