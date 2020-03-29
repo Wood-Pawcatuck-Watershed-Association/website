@@ -70,6 +70,9 @@ registerBlockType('sandtrail-studios/gutenberg-eventbrite', {
 		heading: {
 			type: 'string',
 		},
+		status: {
+			type: 'string',
+		},
 		firstButtonBackgroundColor: {
 			type: 'string',
 		},

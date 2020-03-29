@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Plugin Name:     Gutenberg Eventbrite
- * Description:     A gutenberg block that fetches eventbrite events
+ * Plugin Name:     Eventbrite Cards Block
+ * Description:     A gutenberg block that fetches eventbrite events and displays them as cards
  * Version:         1.0.0
  * Author:          Jon Waldstein
  * License:         GPL-2.0-or-later
@@ -32,7 +32,7 @@ function gutenberg_eventbrite_block_init()
     $index_js     = 'build/index.js';
     $script_asset = require($script_asset_path);
     wp_register_script(
-        'sandtrail-studios-gutenberg-eventbrite-block-script',
+        'sandtrail-studios-eventbrite-cards-block-script',
         plugins_url($index_js, __FILE__),
         $script_asset['dependencies'],
         $script_asset['version']
@@ -40,15 +40,15 @@ function gutenberg_eventbrite_block_init()
 
     $style_css = 'style.css';
     wp_register_style(
-        'sandtrail-studios-gutenberg-eventbrite-block-style',
+        'sandtrail-studios-eventbrite-cards-block-style',
         plugins_url($style_css, __FILE__),
         array(),
         filemtime("$dir/$style_css")
     );
 
     register_block_type('sandtrail-studios/gutenberg-eventbrite', array(
-        'script' => 'sandtrail-studios-gutenberg-eventbrite-block-script',
-        'style'  => 'sandtrail-studios-gutenberg-eventbrite-block-style',
+        'script' => 'sandtrail-studios-eventbrite-cards-block-script',
+        'style'  => 'sandtrail-studios-eventbrite-cards-block-style',
         'render_callback' => 'gutenberg_eventbrite_block',
     ));
 }
@@ -63,14 +63,18 @@ function gutenberg_eventbrite_block($attributes)
     $transient = get_transient($TRANSIENT_KEY);
 
     $apiKey = $attributes['apiKey'];
+    $status = $attributes['status'];
 
-    if (empty($transient)) {
+    if (empty($transient) || $transient['attributes'] !== $attributes) {
 
-        $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$apiKey}&expand=ticket_classes&status=live&order_by=start_asc");
+        $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$apiKey}&expand=ticket_classes&status={$status}&order_by=start_asc&time_filter=current_future");
 
         $data = json_decode($response['body'], true);
 
-        set_transient($TRANSIENT_KEY, $data['events'], 60);
+        set_transient($TRANSIENT_KEY, [
+            'events' => $data['events'],
+            'attributes' => $attributes,
+        ], 60);
 
         $transient = get_transient($TRANSIENT_KEY);
     }
@@ -81,12 +85,12 @@ function gutenberg_eventbrite_block($attributes)
         unset($attributes['apiKey']);
     }
 
-    $transient_json = wp_json_encode($transient);
+    $transient_events_json = wp_json_encode($transient['events']);
     $attributes_json = wp_json_encode($attributes);
 
     echo "<script>
         window.eventbrite = {
-            events: {$transient_json},
+            events: {$transient_events_json},
             attributes: {$attributes_json},
         }
     </script>";

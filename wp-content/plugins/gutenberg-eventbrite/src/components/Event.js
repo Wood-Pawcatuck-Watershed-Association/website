@@ -40,7 +40,7 @@ export default function Event({
 					<div className="event__details jw-flex">
 						<div className="event__details--left">
 							<div className="event__details--dateWrapper text-center">
-								<p className="event__details--dateMonth jw-text-sm jw-text-red-600 jw-uppercase jw-my-0 jw-font-sans">
+								<p className="event__details--dateMonth jw-text-sm jw-text-red-600 jw-uppercase jw-my-0 jw-font-sans jw-leading-tight">
 									<time>{format('M', startDate)}</time>
 								</p>
 								<p className="event__details--dateDay jw-text-xl jw-text-grey-800 jw-my-0 jw-font-sans">

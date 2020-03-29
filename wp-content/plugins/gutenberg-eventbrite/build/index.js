@@ -7089,6 +7089,9 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('san
     heading: {
       type: 'string'
     },
+    status: {
+      type: 'string'
+    },
     firstButtonBackgroundColor: {
       type: 'string'
     },
@@ -7152,7 +7155,8 @@ function EditBlock(_ref) {
   var firstButtonBackgroundColor = attributes.firstButtonBackgroundColor,
       secondButtonBackgroundColor = attributes.secondButtonBackgroundColor,
       apiKey = attributes.apiKey,
-      heading = attributes.heading;
+      heading = attributes.heading,
+      status = attributes.status;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
     title: "Eventbrite Settings",
     initialOpen: true
@@ -7172,8 +7176,26 @@ function EditBlock(_ref) {
         id: Date.now()
       });
     }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["SelectControl"], {
+    label: "Status",
+    value: status,
+    options: [{
+      label: 'Live',
+      value: 'live'
+    }, {
+      label: 'Draft',
+      value: 'draft'
+    }, {
+      label: 'All',
+      value: 'all'
+    }],
+    onChange: function onChange(newStatus) {
+      setAttributes({
+        status: newStatus
+      });
+    }
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
-    title: "Design settings"
+    title: "Design Settings"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
     htmlFor: "firstButtonBackgroundColor"
   }, "First button background color")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["ColorPalette"], {
@@ -7285,7 +7307,7 @@ function Event(_ref) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "event__details--dateWrapper text-center"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
-    className: "event__details--dateMonth jw-text-sm jw-text-red-600 jw-uppercase jw-my-0 jw-font-sans"
+    className: "event__details--dateMonth jw-text-sm jw-text-red-600 jw-uppercase jw-my-0 jw-font-sans jw-leading-tight"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('M', startDate))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: "event__details--dateDay jw-text-xl jw-text-grey-800 jw-my-0 jw-font-sans"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('d', startDate))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
@@ -7348,29 +7370,26 @@ function EventList(_ref) {
       attributes = _ref.attributes;
   var firstButtonBackgroundColor = attributes.firstButtonBackgroundColor,
       secondButtonBackgroundColor = attributes.secondButtonBackgroundColor;
-  return events.map(function (event) {
-    var id = event.id;
-    var title = event.name.text;
-    var image = event.logo.original.url;
-    var startDate = new Date(event.start.utc);
-    var cost = event.ticket_classes[0].cost.display;
-    var description = event.description.html;
-    var status = event.status;
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "jw-flex jw-flex-wrap jw-justify-center"
+  }, events.map(function (event) {
+    var _event$ticket_classes, _event$logo;
+
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_Event__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      key: title,
-      id: id,
-      title: title,
-      description: description,
-      cost: cost,
-      startDate: startDate,
-      image: image,
-      status: status,
+      key: event.id,
+      id: event.id,
+      title: event.name.text,
+      description: event.description.text,
+      cost: (_event$ticket_classes = event.ticket_classes[0].cost) === null || _event$ticket_classes === void 0 ? void 0 : _event$ticket_classes.display,
+      startDate: new Date(event.start.utc),
+      image: (_event$logo = event.logo) === null || _event$logo === void 0 ? void 0 : _event$logo.original.url,
+      status: event.status,
       colors: {
         firstButtonBackgroundColor: firstButtonBackgroundColor,
         secondButtonBackgroundColor: secondButtonBackgroundColor
       }
     });
-  });
+  }));
 }
 
 /***/ }),

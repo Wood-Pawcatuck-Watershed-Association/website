@@ -1,6 +1,6 @@
 import { Fragment } from '@wordpress/element';
 import {
-	ColorIndicator,
+	SelectControl,
 	TextControl,
 	Panel,
 	PanelBody,
@@ -15,6 +15,7 @@ export default function EditBlock({ attributes, setAttributes }) {
 		secondButtonBackgroundColor,
 		apiKey,
 		heading,
+		status,
 	} = attributes;
 
 	return (
@@ -48,8 +49,22 @@ export default function EditBlock({ attributes, setAttributes }) {
 								}}
 							/>
 						</PanelRow>
+						<PanelRow>
+							<SelectControl
+								label="Status"
+								value={status}
+								options={[
+									{ label: 'Live', value: 'live' },
+									{ label: 'Draft', value: 'draft' },
+									{ label: 'All', value: 'all' },
+								]}
+								onChange={(newStatus) => {
+									setAttributes({ status: newStatus });
+								}}
+							/>
+						</PanelRow>
 					</PanelBody>
-					<PanelBody title="Design settings">
+					<PanelBody title="Design Settings">
 						<PanelRow>
 							<label htmlFor="firstButtonBackgroundColor">
 								First button background color
