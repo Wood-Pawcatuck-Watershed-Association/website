@@ -1,6 +1,9 @@
 import { useEffect } from '@wordpress/element';
 import { format } from '@wordpress/date';
+import Tippy from '@tippyjs/react';
 import '../vendor/eventbrite';
+import 'tippy.js/themes/light.css';
+import 'tippy.js/animations/shift-away.css';
 
 export default function Event({
 	id,
@@ -58,12 +61,20 @@ export default function Event({
 							<div className="event__details--rightInnerBottom">
 								<div className="event__details--buttonWrapper flex justify-between">
 									{description ? (
-										<button
-											data-tippy-content="<?= $description; ?>"
-											className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 mr-2 rounded"
+										<Tippy
+											content={
+												<p className="p-2">
+													{description}
+												</p>
+											}
+											trigger="click"
+											theme="light"
+											animation="shift-away"
 										>
-											info
-										</button>
+											<button className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 mr-2 rounded">
+												info
+											</button>
+										</Tippy>
 									) : null}
 									{status === 'live' ? (
 										<button
