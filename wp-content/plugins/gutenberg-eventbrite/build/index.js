@@ -7490,7 +7490,7 @@ function Event(_ref) {
     style: {
       background: firstButtonBackgroundColor
     }
-  }, "info")) : null, status === 'live' ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
+  }, "Info")) : null, status === 'live' ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
     id: "eventbrite-widget-modal-trigger-".concat(id),
     type: "button",
     className: "jw-text-white jw-font-semibold jw-tracking-wide jw-py-1 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ".concat(!secondButtonBackgroundColor && 'jw-bg-orange-500 hover:jw-bg-orange-700'),

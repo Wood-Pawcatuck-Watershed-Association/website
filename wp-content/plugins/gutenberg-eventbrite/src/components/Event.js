@@ -93,7 +93,7 @@ export default function Event({
 													background: firstButtonBackgroundColor,
 												}}
 											>
-												info
+												Info
 											</button>
 										</Tippy>
 									) : null}
