@@ -139,6 +139,10 @@ export default function EditBlock({ attributes, setAttributes }) {
 							firstButtonBackgroundColor,
 							secondButtonBackgroundColor,
 						}}
+						venue={{
+							name: 'Venue name',
+							address: { city: 'Providence', region: 'RI' },
+						}}
 					/>
 				</Fragment>
 			)}

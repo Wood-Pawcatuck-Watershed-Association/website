@@ -1,5 +1,5 @@
 {
-	"name": "gutenberg-eventbrite",
+	"name": "eventbrite-blocks",
 	"version": "1.0.0",
 	"description": "A gutenberg block that fetches eventbrite events",
 	"author": "Jon Waldstein",
