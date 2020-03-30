@@ -7457,7 +7457,7 @@ function Event(_ref) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('M', startDate))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: "event__details--dateDay jw-text-xl jw-text-grey-800 jw-my-0 jw-font-sans"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('d', startDate))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "event__details--right jw-ml-2 jw-truncate"
+    className: "event__details--right event__details--right jw-pl-2 jw-truncate jw-pb-2 jw-pr-2"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "event__details--rightInnerTop"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", {
@@ -7486,7 +7486,7 @@ function Event(_ref) {
     theme: "light",
     animation: "shift-away"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
-    className: "jw-text-white jw-font-semibold jw-tracking-wider jw-py-1 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ".concat(!firstButtonBackgroundColor && 'jw-bg-blue-500 hover:jw-bg-blue-700'),
+    className: "jw-text-white jw-font-semibold jw-tracking-wider jw-py-1 jw-px-4 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ".concat(!firstButtonBackgroundColor && 'jw-bg-blue-500 hover:jw-bg-blue-700'),
     style: {
       background: firstButtonBackgroundColor
     }

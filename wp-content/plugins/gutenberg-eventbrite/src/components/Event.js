@@ -51,7 +51,7 @@ export default function Event({
 								</p>
 							</div>
 						</div>
-						<div className="event__details--right jw-ml-2 jw-truncate">
+						<div className="event__details--right event__details--right jw-pl-2 jw-truncate jw-pb-2 jw-pr-2">
 							<div className="event__details--rightInnerTop">
 								<h3 className="jw-my-0 jw-text-black jw-font-semibold jw-text-sm jw-truncate">
 									{title}
@@ -87,7 +87,7 @@ export default function Event({
 											animation="shift-away"
 										>
 											<button
-												className={`jw-text-white jw-font-semibold jw-tracking-wider jw-py-1 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${!firstButtonBackgroundColor &&
+												className={`jw-text-white jw-font-semibold jw-tracking-wider jw-py-1 jw-px-4 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${!firstButtonBackgroundColor &&
 													'jw-bg-blue-500 hover:jw-bg-blue-700'}`}
 												style={{
 													background: firstButtonBackgroundColor,
