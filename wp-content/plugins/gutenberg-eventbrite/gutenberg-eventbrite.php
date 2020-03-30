@@ -59,9 +59,13 @@ function gutenberg_eventbrite_block($attributes)
 
     if (empty($transient) || $transient['attributes'] !== $attributes) {
 
-        $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$apiKey}&expand=ticket_classes&status={$status}&order_by=start_asc&time_filter=current_future");
+        $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$apiKey}&expand=ticket_classes,venue&status={$status}&order_by=start_asc&time_filter=current_future");
 
         $data = json_decode($response['body'], true);
+
+        if (!empty($attributes['apiKey'])){
+            unset($attributes['apiKey']);
+        }
 
         set_transient($TRANSIENT_KEY, [
             'events' => $data['events'],
@@ -72,10 +76,6 @@ function gutenberg_eventbrite_block($attributes)
     }
 
     ob_start();
-
-    if (!empty($attributes['apiKey'])){
-        unset($attributes['apiKey']);
-    }
 
     $transient_events_json = wp_json_encode($transient['events']);
     $transient_attributes_json = wp_json_encode($transient['attributes']);

@@ -9,11 +9,13 @@ export default function Event({
 	id,
 	title,
 	description,
+	summary,
 	cost,
 	startDate,
 	image,
 	status,
 	colors,
+	venue,
 }) {
 	useEffect(() => {
 		EBWidgets.createWidget({
@@ -25,6 +27,7 @@ export default function Event({
 	}, [id]);
 
 	const { firstButtonBackgroundColor, secondButtonBackgroundColor } = colors;
+	const { name: venueName, address } = venue;
 
 	return (
 		<article className="jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full jw-font-sans">
@@ -48,15 +51,23 @@ export default function Event({
 								</p>
 							</div>
 						</div>
-						<div className="event__details--right jw-ml-2">
+						<div className="event__details--right jw-ml-2 jw-truncate">
 							<div className="event__details--rightInnerTop">
-								<h3 className="jw-my-0 jw-text-black jw-font-semibold jw-text-sm">
+								<h3 className="jw-my-0 jw-text-black jw-font-semibold jw-text-sm jw-truncate">
 									{title}
 								</h3>
 								<div className="event__details--dateWrapper">
-									<time className="event__details--date jw-font-sans jw-text-grey-dark jw-text-xs">
-										{format('D, M d Y, ha', startDate)}
+									<time className="event__details--date jw-font-sans jw-text-grey-dark jw-text-xs jw-font-medium">
+										{format('D, M d Y, g:ia', startDate)}
 									</time>
+								</div>
+								<div className="event__details--venue">
+									<p className="jw-font-sans jw-text-grey-dark jw-text-xs jw-truncate">
+										{venueName}
+									</p>
+									<p className="jw-font-sans jw-text-grey-dark jw-text-xs jw-truncate">
+										{address.city}, {address.region}
+									</p>
 								</div>
 								<p className="jw-text-sm jw-text-grey-dark jw-flex jw-items-center jw-font-sans jw-mb-2 jw-mt-0">
 									<span>{cost}</span>
@@ -68,7 +79,7 @@ export default function Event({
 										<Tippy
 											content={
 												<p className="jw-p-2">
-													{description}
+													{summary}
 												</p>
 											}
 											trigger="click"
@@ -76,7 +87,7 @@ export default function Event({
 											animation="shift-away"
 										>
 											<button
-												className={`jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${!firstButtonBackgroundColor &&
+												className={`jw-text-white jw-font-semibold jw-tracking-wider jw-py-1 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${!firstButtonBackgroundColor &&
 													'jw-bg-blue-500 hover:jw-bg-blue-700'}`}
 												style={{
 													background: firstButtonBackgroundColor,
@@ -90,7 +101,7 @@ export default function Event({
 										<button
 											id={`eventbrite-widget-modal-trigger-${id}`}
 											type="button"
-											className={`jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${!secondButtonBackgroundColor &&
+											className={`jw-text-white jw-font-semibold jw-tracking-wide jw-py-1 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${!secondButtonBackgroundColor &&
 												'jw-bg-orange-500 hover:jw-bg-orange-700'}`}
 											style={{
 												backgroundColor: secondButtonBackgroundColor,

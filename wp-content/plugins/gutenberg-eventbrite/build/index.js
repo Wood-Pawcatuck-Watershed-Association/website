@@ -7417,11 +7417,13 @@ function Event(_ref) {
   var id = _ref.id,
       title = _ref.title,
       description = _ref.description,
+      summary = _ref.summary,
       cost = _ref.cost,
       startDate = _ref.startDate,
       image = _ref.image,
       status = _ref.status,
-      colors = _ref.colors;
+      colors = _ref.colors,
+      venue = _ref.venue;
   Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     EBWidgets.createWidget({
       widgetType: 'checkout',
@@ -7432,6 +7434,8 @@ function Event(_ref) {
   }, [id]);
   var firstButtonBackgroundColor = colors.firstButtonBackgroundColor,
       secondButtonBackgroundColor = colors.secondButtonBackgroundColor;
+  var venueName = venue.name,
+      address = venue.address;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("article", {
     className: "jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full jw-font-sans"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
@@ -7453,16 +7457,22 @@ function Event(_ref) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('M', startDate))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: "event__details--dateDay jw-text-xl jw-text-grey-800 jw-my-0 jw-font-sans"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", null, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('d', startDate))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "event__details--right jw-ml-2"
+    className: "event__details--right jw-ml-2 jw-truncate"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "event__details--rightInnerTop"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", {
-    className: "jw-my-0 jw-text-black jw-font-semibold jw-text-sm"
+    className: "jw-my-0 jw-text-black jw-font-semibold jw-text-sm jw-truncate"
   }, title), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "event__details--dateWrapper"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", {
-    className: "event__details--date jw-font-sans jw-text-grey-dark jw-text-xs"
-  }, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('D, M d Y, ha', startDate))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+    className: "event__details--date jw-font-sans jw-text-grey-dark jw-text-xs jw-font-medium"
+  }, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__["format"])('D, M d Y, g:ia', startDate))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "event__details--venue"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+    className: "jw-font-sans jw-text-grey-dark jw-text-xs jw-truncate"
+  }, venueName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+    className: "jw-font-sans jw-text-grey-dark jw-text-xs jw-truncate"
+  }, address.city, ", ", address.region)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: "jw-text-sm jw-text-grey-dark jw-flex jw-items-center jw-font-sans jw-mb-2 jw-mt-0"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, cost))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "event__details--rightInnerBottom"
@@ -7471,19 +7481,19 @@ function Event(_ref) {
   }, description ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_tippyjs_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
     content: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
       className: "jw-p-2"
-    }, description),
+    }, summary),
     trigger: "click",
     theme: "light",
     animation: "shift-away"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
-    className: "jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ".concat(!firstButtonBackgroundColor && 'jw-bg-blue-500 hover:jw-bg-blue-700'),
+    className: "jw-text-white jw-font-semibold jw-tracking-wider jw-py-1 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ".concat(!firstButtonBackgroundColor && 'jw-bg-blue-500 hover:jw-bg-blue-700'),
     style: {
       background: firstButtonBackgroundColor
     }
   }, "info")) : null, status === 'live' ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
     id: "eventbrite-widget-modal-trigger-".concat(id),
     type: "button",
-    className: "jw-text-white jw-font-bold jw-py-2 jw-px-4 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ".concat(!secondButtonBackgroundColor && 'jw-bg-orange-500 hover:jw-bg-orange-700'),
+    className: "jw-text-white jw-font-semibold jw-tracking-wide jw-py-1 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ".concat(!secondButtonBackgroundColor && 'jw-bg-orange-500 hover:jw-bg-orange-700'),
     style: {
       backgroundColor: secondButtonBackgroundColor
     }
@@ -7522,10 +7532,12 @@ function EventList(_ref) {
       id: event.id,
       title: event.name.text,
       description: event.description.text,
+      summary: event.summary,
       cost: (_event$ticket_classes = event.ticket_classes[0].cost) === null || _event$ticket_classes === void 0 ? void 0 : _event$ticket_classes.display,
       startDate: new Date(event.start.utc),
       image: (_event$logo = event.logo) === null || _event$logo === void 0 ? void 0 : _event$logo.original.url,
       status: event.status,
+      venue: event.venue,
       colors: {
         firstButtonBackgroundColor: firstButtonBackgroundColor,
         secondButtonBackgroundColor: secondButtonBackgroundColor
