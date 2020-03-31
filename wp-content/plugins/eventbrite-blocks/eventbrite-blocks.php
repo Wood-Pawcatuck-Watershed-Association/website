@@ -28,12 +28,19 @@ define('INDEX_JS', 'build/index.js');
  *
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
  */
-function eventbrite_blocks_init()
+
+add_action('init', function()
 {
+
     if (!file_exists(SCRIPT_ASSET_PATH)) {
         throw new Error(
             'You need to run `npm start` or `npm run build` for the "sandtrail-studios/eventbrite-blocks-card" block first.'
         );
+    }
+
+    if ( ! function_exists( 'register_block_type' ) ) {
+        // Gutenberg is not active.
+        return;
     }
 
     wp_register_script(
@@ -45,13 +52,13 @@ function eventbrite_blocks_init()
 
     register_block_type('sandtrail-studios/eventbrite-blocks-card', array(
         'editor_script' => 'sandtrail-studios-eventbrite-blocks-script',
-        'style'  => 'sandtrail-studios-eventbrite-blocks-style',
-        'render_callback' => 'gutenberg_eventbrite_block',
+        'render_callback' => 'render_eventbrite_blocks_card',
     ));
-}
-add_action('init', 'eventbrite_blocks_init');
 
-function gutenberg_eventbrite_block($attributes)
+});
+
+
+function render_eventbrite_blocks_card($attributes)
 {
     // do not render in the backend
     if (is_admin()) return;
