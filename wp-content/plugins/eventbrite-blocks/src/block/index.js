@@ -30,7 +30,7 @@ registerBlockType('sandtrail-studios/eventbrite-blocks-card', {
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'A gutenberg block that fetches eventbrite events',
+		'Fetch your events from Eventbrite and dislay them on your website.',
 		'sandtrail-studios'
 	),
 
@@ -52,13 +52,11 @@ registerBlockType('sandtrail-studios/eventbrite-blocks-card', {
 	supports: {
 		// Removes support for an HTML mode.
 		html: false,
+		// Use the block just once per post
+		multiple: false,
+		// Don't allow the block to be converted into a reusable block.
+		reusable: false,
 	},
-
-	// Use the block just once per post
-	multiple: false,
-
-	// Don't allow the block to be converted into a reusable block.
-	reusable: false,
 
 	attributes: {
 		id: {

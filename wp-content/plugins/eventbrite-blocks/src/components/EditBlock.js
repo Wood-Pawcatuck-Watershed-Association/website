@@ -24,6 +24,11 @@ export default function EditBlock({ attributes, setAttributes }) {
 	const [apiKeyLoading, setApiKeyLoading] = useState(false);
 	const [apiKeyError, setApiKeyError] = useState(false);
 
+	const defaultColors = [
+		{ name: 'blue', color: '#495EB1' },
+		{ name: 'orange', color: '#FF9F00' },
+	];
+
 	const testApiKey = (apiKeyState) => {
 		setApiKeyLoading(true);
 		axios
@@ -47,109 +52,101 @@ export default function EditBlock({ attributes, setAttributes }) {
 
 	return (
 		<Fragment>
-			<Fragment>
-				<InspectorControls>
-					<PanelBody title="Eventbrite Settings" initialOpen={true}>
+			<InspectorControls>
+				<PanelBody title="Eventbrite Api Settings" initialOpen={true}>
+					<PanelRow>
+						<TextControl
+							label="Api Key"
+							value={apiKeyState}
+							help={
+								<p>
+									Get api key{' '}
+									<a
+										href="https://www.eventbrite.com/platform/api-keys"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="jw-text-blue-500"
+									>
+										here
+									</a>
+								</p>
+							}
+							onChange={(newApiKey) => {
+								setApiKeyState(newApiKey);
+							}}
+						/>
+					</PanelRow>
+					{apiKeyError && (
 						<PanelRow>
-							<TextControl
-								label="Api Key"
-								value={apiKeyState}
-								help={
-									<p>
-										Get api key{' '}
-										<a
-											href="https://www.eventbrite.com/platform/api-keys"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="jw-text-blue-500"
-										>
-											here
-										</a>
-									</p>
-								}
-								onChange={(newApiKey) => {
-									setApiKeyState(newApiKey);
-								}}
-							/>
+							<p className="jw-text-red-700">{apiKeyError}</p>
 						</PanelRow>
-						{apiKeyError && (
-							<PanelRow>
-								<p className="jw-text-red-700">{apiKeyError}</p>
-							</PanelRow>
-						)}
-						{apiKeyLoading && (
-							<PanelRow>
-								<Spinner />
-							</PanelRow>
-						)}
-						<PanelRow>
-							<Button
-								isDefault
-								isBusy={apiKeyLoading}
-								onClick={() => testApiKey(apiKeyState)}
-							>
-								Save Api Key
-							</Button>
-						</PanelRow>
-						<PanelRow>
-							<SelectControl
-								label="Status"
-								value={status}
-								options={[
-									{ label: 'Live', value: 'live' },
-									{ label: 'Draft', value: 'draft' },
-									{ label: 'All', value: 'all' },
-								]}
-								onChange={(newStatus) => {
-									setAttributes({ status: newStatus });
-								}}
-							/>
-						</PanelRow>
-					</PanelBody>
-					<PanelBody title="Design Settings">
-						<PanelRow>
-							<label htmlFor="firstButtonBackgroundColor">
-								First button background color
-							</label>
-						</PanelRow>
-						<PanelRow>
-							<ColorPalette
-								id="firstButtonBackgroundColor"
-								value={firstButtonBackgroundColor}
-								onChange={(newColor) =>
-									setAttributes({
-										firstButtonBackgroundColor: newColor,
-									})
-								}
-								colors={[
-									{ name: 'blue', color: '#495EB1' },
-									{ name: 'orange', color: '#FF9F00' },
-								]}
-							/>
-						</PanelRow>
-						<PanelRow>
-							<label htmlFor="secondButtonBackgroundColor">
-								Second button background color
-							</label>
-						</PanelRow>
-						<PanelRow>
-							<ColorPalette
-								id="secondButtonBackgroundColor"
-								value={secondButtonBackgroundColor}
-								onChange={(newColor) =>
-									setAttributes({
-										secondButtonBackgroundColor: newColor,
-									})
-								}
-								colors={[
-									{ name: 'blue', color: '#495EB1' },
-									{ name: 'orange', color: '#FF9F00' },
-								]}
-							/>
-						</PanelRow>
-					</PanelBody>
-				</InspectorControls>
-			</Fragment>
+					)}
+					<PanelRow>
+						<Button
+							isDefault
+							isBusy={apiKeyLoading}
+							onClick={() => testApiKey(apiKeyState)}
+						>
+							Save Api Key
+						</Button>
+						<div className="jw-text-center">
+							{apiKeyLoading && <Spinner />}
+						</div>
+					</PanelRow>
+				</PanelBody>
+				<PanelBody title="Eventbrite Event Setttings">
+					<PanelRow>
+						<SelectControl
+							label="Status"
+							value={status}
+							options={[
+								{ label: 'Live', value: 'live' },
+								{ label: 'Draft', value: 'draft' },
+								{ label: 'All', value: 'all' },
+							]}
+							onChange={(newStatus) => {
+								setAttributes({ status: newStatus });
+							}}
+						/>
+					</PanelRow>
+				</PanelBody>
+				<PanelBody title="Eventbrite Design Settings">
+					<PanelRow>
+						<label htmlFor="firstButtonBackgroundColor">
+							First button background color
+						</label>
+					</PanelRow>
+					<PanelRow>
+						<ColorPalette
+							id="firstButtonBackgroundColor"
+							value={firstButtonBackgroundColor}
+							onChange={(newColor) =>
+								setAttributes({
+									firstButtonBackgroundColor: newColor,
+								})
+							}
+							colors={defaultColors}
+						/>
+					</PanelRow>
+					<PanelRow>
+						<label htmlFor="secondButtonBackgroundColor">
+							Second button background color
+						</label>
+					</PanelRow>
+					<PanelRow>
+						<ColorPalette
+							id="secondButtonBackgroundColor"
+							value={secondButtonBackgroundColor}
+							onChange={(newColor) =>
+								setAttributes({
+									secondButtonBackgroundColor: newColor,
+								})
+							}
+							colors={defaultColors}
+						/>
+					</PanelRow>
+				</PanelBody>
+			</InspectorControls>
 
 			<Fragment>
 				{!apiKey ? (
@@ -160,14 +157,13 @@ export default function EditBlock({ attributes, setAttributes }) {
 				) : (
 					<div>
 						<p className="jw-font-sans jw-text-center">
-							This is a static preview of an Eventbrite event
-							card.
+							This is a static preview of an Eventbrite event.
 						</p>
 						<Event
-							id={52766401728}
 							className="jw-mx-auto"
 							title={'Event Title'}
 							description={'Event description'}
+							summary={'Event description summary'}
 							cost={'$25'}
 							startDate={new Date()}
 							image={'https://placekitten.com/500/500'}

@@ -9,6 +9,7 @@ export default function Event({
 	id,
 	title,
 	description,
+	url,
 	summary,
 	cost,
 	startDate,
@@ -19,6 +20,7 @@ export default function Event({
 	className,
 }) {
 	useEffect(() => {
+		if (!id) return;
 		EBWidgets.createWidget({
 			widgetType: 'checkout',
 			eventId: id,
@@ -54,7 +56,7 @@ export default function Event({
 								</p>
 							</div>
 						</div>
-						<div className="event__details--right event__details--right jw-pl-2 jw-truncate jw-pb-2 jw-pr-2">
+						<div className="event__details--right event__details--right jw-pl-2 jw-truncate jw-pb-2 jw-pr-2 jw-w-full">
 							<div className="event__details--rightInnerTop">
 								<h3 className="jw-my-0 jw-text-black jw-font-semibold jw-text-sm jw-m-0 jw-truncate">
 									{title}
@@ -78,7 +80,7 @@ export default function Event({
 							</div>
 							<div className="event__details--rightInnerBottom">
 								<div className="event__details--buttonWrapper jw-flex jw-justify-between">
-									{description ? (
+									{summary ? (
 										<Tippy
 											content={
 												<p className="jw-p-2">

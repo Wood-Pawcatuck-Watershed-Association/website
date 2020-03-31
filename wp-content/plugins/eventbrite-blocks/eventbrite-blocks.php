@@ -111,7 +111,7 @@ function render_eventbrite_blocks_card($attributes)
 
     // add inline script that assigns our window data to be accessed in our js
     wp_add_inline_script('sandtrail-studios-eventbrite-blocks-script',"
-        window.eventbriteCardsBlockExports = {
+        window.eventbriteBlocksExports = {
             events: {$transient_events_json},
             attributes: {$transient_attributes_json},
         }" );

@@ -1,6 +1,6 @@
 function getWindowData(...props) {
 	return props.map((prop) => {
-		return window.eventbriteCardsBlockExports[prop];
+		return window.eventbriteBlocksExports[prop];
 	});
 }
 export { getWindowData };
