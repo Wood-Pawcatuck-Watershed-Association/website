@@ -9354,9 +9354,9 @@ function EditBlock(_ref) {
     title: "Eventbrite Api Settings",
     initialOpen: true
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["TextControl"], {
-    label: "Api Key",
+    label: "Api Token Key",
     value: apiKeyState,
-    help: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, "Get api key", ' ', Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
+    help: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, "Get api token", ' ', Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
       href: "https://www.eventbrite.com/platform/api-keys",
       target: "_blank",
       rel: "noopener noreferrer",
@@ -9421,7 +9421,7 @@ function EditBlock(_ref) {
     colors: defaultColors
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, !apiKey ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
     className: "jw-font-sans"
-  }, "An Api Key is required. Please enter your Eventbrite Api Key in the block settings.") : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
+  }, "An Api Token Key is required. Please enter your Eventbrite Api Token Key in the block settings.") : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
     className: "jw-font-sans jw-text-center"
   }, "This is a static preview of an Eventbrite event."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_Event__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "jw-mx-auto",

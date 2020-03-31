@@ -56,11 +56,11 @@ export default function EditBlock( { attributes, setAttributes } ) {
 				<PanelBody title="Eventbrite Api Settings" initialOpen={ true }>
 					<PanelRow>
 						<TextControl
-							label="Api Key"
+							label="Api Token Key"
 							value={ apiKeyState }
 							help={
 								<p>
-									Get api key{ ' ' }
+									Get api token{ ' ' }
 									<a
 										href="https://www.eventbrite.com/platform/api-keys"
 										target="_blank"
@@ -151,8 +151,8 @@ export default function EditBlock( { attributes, setAttributes } ) {
 			<Fragment>
 				{ ! apiKey ? (
 					<p className="jw-font-sans">
-						An Api Key is required. Please enter your Eventbrite Api
-						Key in the block settings.
+						An Api Token Key is required. Please enter your
+						Eventbrite Api Token Key in the block settings.
 					</p>
 				) : (
 					<div>
