@@ -1,13 +1,15 @@
-import { Fragment } from '@wordpress/element';
+import { Fragment, useState } from '@wordpress/element';
 import {
 	SelectControl,
 	TextControl,
-	Panel,
 	PanelBody,
 	PanelRow,
 	ColorPalette,
+	Button,
+	Spinner,
 } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
+import axios from 'axios';
 import Event from '../components/Event';
 
 export default function EditBlock({ attributes, setAttributes }) {
@@ -15,9 +17,33 @@ export default function EditBlock({ attributes, setAttributes }) {
 		firstButtonBackgroundColor,
 		secondButtonBackgroundColor,
 		apiKey,
-		heading,
 		status,
 	} = attributes;
+
+	const [apiKeyState, setApiKeyState] = useState(apiKey);
+	const [apiKeyLoading, setApiKeyLoading] = useState(false);
+	const [apiKeyError, setApiKeyError] = useState(false);
+
+	const testApiKey = (apiKeyState) => {
+		setApiKeyLoading(true);
+		axios
+			.get(
+				`https://www.eventbriteapi.com/v3/users/me/?token=${apiKeyState}`
+			)
+			.then((response) => {
+				setApiKeyLoading(false);
+				setAttributes({ apiKey: apiKeyState });
+				setApiKeyError(false);
+				setAttributes({
+					id: Date.now(),
+				});
+			})
+			.catch((error) => {
+				setApiKeyLoading(false);
+				setApiKeyError(error.response.data.error_description);
+				setAttributes({ apiKey: null });
+			});
+	};
 
 	return (
 		<Fragment>
@@ -27,7 +53,7 @@ export default function EditBlock({ attributes, setAttributes }) {
 						<PanelRow>
 							<TextControl
 								label="Api Key"
-								value={apiKey}
+								value={apiKeyState}
 								help={
 									<p>
 										Get api key{' '}
@@ -35,20 +61,35 @@ export default function EditBlock({ attributes, setAttributes }) {
 											href="https://www.eventbrite.com/platform/api-keys"
 											target="_blank"
 											rel="noopener noreferrer"
+											className="jw-text-blue-500"
 										>
 											here
 										</a>
 									</p>
 								}
 								onChange={(newApiKey) => {
-									setAttributes({
-										apiKey: newApiKey,
-									});
-									setAttributes({
-										id: Date.now(),
-									});
+									setApiKeyState(newApiKey);
 								}}
 							/>
+						</PanelRow>
+						{apiKeyError && (
+							<PanelRow>
+								<p className="jw-text-red-700">{apiKeyError}</p>
+							</PanelRow>
+						)}
+						{apiKeyLoading && (
+							<PanelRow>
+								<Spinner />
+							</PanelRow>
+						)}
+						<PanelRow>
+							<Button
+								isDefault
+								isBusy={apiKeyLoading}
+								onClick={() => testApiKey(apiKeyState)}
+							>
+								Save Api Key
+							</Button>
 						</PanelRow>
 						<PanelRow>
 							<SelectControl
@@ -110,42 +151,42 @@ export default function EditBlock({ attributes, setAttributes }) {
 				</InspectorControls>
 			</Fragment>
 
-			{/* <TextControl
-				label="Heading"
-				value={heading}
-				onChange={(newHeading) =>
-					setAttributes({ heading: newHeading })
-				}
-			/> */}
-			{!apiKey ? (
-				<p>
-					An Api Key is required. Please enter your Eventbrite Api Key
-					in the panel settings.{' '}
-				</p>
-			) : (
-				<Fragment>
+			<Fragment>
+				{!apiKey ? (
 					<p className="jw-font-sans">
-						This is a static preview of an Eventbrite event card.
+						An Api Key is required. Please enter your Eventbrite Api
+						Key in the block settings.
 					</p>
-					<Event
-						id={52766401728}
-						title={'Event Title'}
-						description={'Event description'}
-						cost={'$25'}
-						startDate={new Date()}
-						image={'https://placekitten.com/500/500'}
-						status={'live'}
-						colors={{
-							firstButtonBackgroundColor,
-							secondButtonBackgroundColor,
-						}}
-						venue={{
-							name: 'Venue name',
-							address: { city: 'Providence', region: 'RI' },
-						}}
-					/>
-				</Fragment>
-			)}
+				) : (
+					<div>
+						<p className="jw-font-sans jw-text-center">
+							This is a static preview of an Eventbrite event
+							card.
+						</p>
+						<Event
+							id={52766401728}
+							className="jw-mx-auto"
+							title={'Event Title'}
+							description={'Event description'}
+							cost={'$25'}
+							startDate={new Date()}
+							image={'https://placekitten.com/500/500'}
+							status={'live'}
+							colors={{
+								firstButtonBackgroundColor,
+								secondButtonBackgroundColor,
+							}}
+							venue={{
+								name: 'Venue name',
+								address: {
+									city: 'Providence',
+									region: 'RI',
+								},
+							}}
+						/>
+					</div>
+				)}
+			</Fragment>
 		</Fragment>
 	);
 }

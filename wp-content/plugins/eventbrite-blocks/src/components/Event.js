@@ -16,6 +16,7 @@ export default function Event({
 	status,
 	colors,
 	venue,
+	className,
 }) {
 	useEffect(() => {
 		EBWidgets.createWidget({
@@ -30,7 +31,9 @@ export default function Event({
 	const { name: venueName, address } = venue;
 
 	return (
-		<article className="jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full jw-font-sans">
+		<article
+			className={`jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full jw-font-sans ${className}`}
+		>
 			<div className="event__single">
 				{image ? (
 					<img
@@ -53,19 +56,19 @@ export default function Event({
 						</div>
 						<div className="event__details--right event__details--right jw-pl-2 jw-truncate jw-pb-2 jw-pr-2">
 							<div className="event__details--rightInnerTop">
-								<h3 className="jw-my-0 jw-text-black jw-font-semibold jw-text-sm jw-truncate">
+								<h3 className="jw-my-0 jw-text-black jw-font-semibold jw-text-sm jw-m-0 jw-truncate">
 									{title}
 								</h3>
 								<div className="event__details--dateWrapper">
-									<time className="event__details--date jw-font-sans jw-text-grey-dark jw-text-xs jw-font-medium">
+									<time className="event__details--date jw-font-sans jw-text-grey-dark jw-text-xs jw-font-medium jw-m-0">
 										{format('D, M d Y, g:ia', startDate)}
 									</time>
 								</div>
 								<div className="event__details--venue">
-									<p className="jw-font-sans jw-text-grey-dark jw-text-xs jw-truncate">
+									<p className="jw-font-sans jw-text-grey-dark jw-text-xs jw-m-0 jw-truncate">
 										{venueName}
 									</p>
-									<p className="jw-font-sans jw-text-grey-dark jw-text-xs jw-truncate">
+									<p className="jw-font-sans jw-text-grey-dark jw-text-xs jw-m-0 jw-truncate">
 										{address.city}, {address.region}
 									</p>
 								</div>

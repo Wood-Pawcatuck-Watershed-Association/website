@@ -97,6 +97,8 @@ function render_eventbrite_blocks_card($attributes)
     $transient_events_json = wp_json_encode($transient['events']);
     $transient_attributes_json = wp_json_encode($transient['attributes']);
 
+    if (is_admin()) return;
+
     // enqueue our script for the front-end
     wp_enqueue_script(
         'sandtrail-studios-eventbrite-blocks-script',
