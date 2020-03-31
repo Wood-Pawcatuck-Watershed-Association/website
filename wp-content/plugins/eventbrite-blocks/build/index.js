@@ -9147,10 +9147,10 @@ module.exports = exported;
 
 /***/ }),
 
-/***/ "./src/block/index.js":
-/*!****************************!*\
-  !*** ./src/block/index.js ***!
-  \****************************/
+/***/ "./src/blocks/event-cards/index.js":
+/*!*****************************************!*\
+  !*** ./src/blocks/event-cards/index.js ***!
+  \*****************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -9160,7 +9160,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_EditBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/EditBlock */ "./src/components/EditBlock.js");
+/* harmony import */ var _components_EditBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/EditBlock */ "./src/components/EditBlock.js");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
 
@@ -9185,7 +9185,7 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('sandtrail-studios/eventbrite-blocks-card', {
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('sandtrail-studios/eventbrite-blocks-events-card', {
   /**
    * This is the display title for your block, which can be translated with `i18n` functions.
    * The block inserter will show this name.
@@ -9633,7 +9633,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utilities */ "./src/utilities/index.js");
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./block */ "./src/block/index.js");
+/* harmony import */ var _blocks_event_cards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blocks/event-cards */ "./src/blocks/event-cards/index.js");
 
 
 
@@ -9725,6 +9725,7 @@ function getWindowData() {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+/* eslint-disable */
 !function (e) {
   function n(i) {
     if (t[i]) return t[i].exports;

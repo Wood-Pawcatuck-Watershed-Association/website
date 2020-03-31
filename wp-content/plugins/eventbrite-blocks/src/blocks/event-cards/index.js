@@ -4,7 +4,7 @@
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 import { registerBlockType } from '@wordpress/blocks';
-import EditBlock from '../components/EditBlock';
+import EditBlock from '../../components/EditBlock';
 
 /**
  * Retrieves the translation of text.
@@ -18,12 +18,12 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType('sandtrail-studios/eventbrite-blocks-card', {
+registerBlockType( 'sandtrail-studios/eventbrite-blocks-events-card', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __('Eventbrite Event Cards', 'sandtrail-studios'),
+	title: __( 'Eventbrite Event Cards', 'sandtrail-studios' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
@@ -89,8 +89,8 @@ registerBlockType('sandtrail-studios/eventbrite-blocks-card', {
 	 *
 	 * @return {WPElement} Element to render.
 	 */
-	edit(props) {
-		return <EditBlock {...props} />;
+	edit( props ) {
+		return <EditBlock { ...props } />;
 	},
 
 	/**
@@ -104,4 +104,4 @@ registerBlockType('sandtrail-studios/eventbrite-blocks-card', {
 	save() {
 		return null;
 	},
-});
+} );

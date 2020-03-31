@@ -1,6 +1,6 @@
 import Event from './Event';
 
-export default function EventList({ events, attributes }) {
+export default function EventList( { events, attributes } ) {
 	const {
 		firstButtonBackgroundColor,
 		secondButtonBackgroundColor,
@@ -8,24 +8,24 @@ export default function EventList({ events, attributes }) {
 
 	return (
 		<div className="jw-flex jw-flex-wrap jw-justify-center">
-			{events.map((event) => (
+			{ events.map( ( event ) => (
 				<Event
-					key={event.id}
-					id={event.id}
-					title={event.name.text}
-					description={event.description.text}
-					summary={event.summary}
-					cost={event.ticket_classes[0].cost?.display}
-					startDate={new Date(event.start.utc)}
-					image={event.logo?.original.url}
-					status={event.status}
-					venue={event.venue}
-					colors={{
+					key={ event.id }
+					id={ event.id }
+					title={ event.name.text }
+					description={ event.description.text }
+					summary={ event.summary }
+					cost={ event.ticket_classes[ 0 ].cost?.display }
+					startDate={ new Date( event.start.utc ) }
+					image={ event.logo?.original.url }
+					status={ event.status }
+					venue={ event.venue }
+					colors={ {
 						firstButtonBackgroundColor,
 						secondButtonBackgroundColor,
-					}}
+					} }
 				/>
-			))}
+			) ) }
 		</div>
 	);
 }

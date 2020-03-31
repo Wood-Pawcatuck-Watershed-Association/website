@@ -12,7 +12,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import axios from 'axios';
 import Event from '../components/Event';
 
-export default function EditBlock({ attributes, setAttributes }) {
+export default function EditBlock( { attributes, setAttributes } ) {
 	const {
 		firstButtonBackgroundColor,
 		secondButtonBackgroundColor,
@@ -20,47 +20,47 @@ export default function EditBlock({ attributes, setAttributes }) {
 		status,
 	} = attributes;
 
-	const [apiKeyState, setApiKeyState] = useState(apiKey);
-	const [apiKeyLoading, setApiKeyLoading] = useState(false);
-	const [apiKeyError, setApiKeyError] = useState(false);
+	const [ apiKeyState, setApiKeyState ] = useState( apiKey );
+	const [ apiKeyLoading, setApiKeyLoading ] = useState( false );
+	const [ apiKeyError, setApiKeyError ] = useState( false );
 
 	const defaultColors = [
 		{ name: 'blue', color: '#495EB1' },
 		{ name: 'orange', color: '#FF9F00' },
 	];
 
-	const testApiKey = (apiKeyState) => {
-		setApiKeyLoading(true);
+	const testApiKey = ( apiKeyState ) => {
+		setApiKeyLoading( true );
 		axios
 			.get(
-				`https://www.eventbriteapi.com/v3/users/me/?token=${apiKeyState}`
+				`https://www.eventbriteapi.com/v3/users/me/?token=${ apiKeyState }`
 			)
-			.then((response) => {
-				setApiKeyLoading(false);
-				setAttributes({ apiKey: apiKeyState });
-				setApiKeyError(false);
-				setAttributes({
+			.then( ( response ) => {
+				setApiKeyLoading( false );
+				setAttributes( { apiKey: apiKeyState } );
+				setApiKeyError( false );
+				setAttributes( {
 					id: Date.now(),
-				});
-			})
-			.catch((error) => {
-				setApiKeyLoading(false);
-				setApiKeyError(error.response.data.error_description);
-				setAttributes({ apiKey: null });
-			});
+				} );
+			} )
+			.catch( ( error ) => {
+				setApiKeyLoading( false );
+				setApiKeyError( error.response.data.error_description );
+				setAttributes( { apiKey: null } );
+			} );
 	};
 
 	return (
 		<Fragment>
 			<InspectorControls>
-				<PanelBody title="Eventbrite Api Settings" initialOpen={true}>
+				<PanelBody title="Eventbrite Api Settings" initialOpen={ true }>
 					<PanelRow>
 						<TextControl
 							label="Api Key"
-							value={apiKeyState}
+							value={ apiKeyState }
 							help={
 								<p>
-									Get api key{' '}
+									Get api key{ ' ' }
 									<a
 										href="https://www.eventbrite.com/platform/api-keys"
 										target="_blank"
@@ -71,26 +71,26 @@ export default function EditBlock({ attributes, setAttributes }) {
 									</a>
 								</p>
 							}
-							onChange={(newApiKey) => {
-								setApiKeyState(newApiKey);
-							}}
+							onChange={ ( newApiKey ) => {
+								setApiKeyState( newApiKey );
+							} }
 						/>
 					</PanelRow>
-					{apiKeyError && (
+					{ apiKeyError && (
 						<PanelRow>
-							<p className="jw-text-red-700">{apiKeyError}</p>
+							<p className="jw-text-red-700">{ apiKeyError }</p>
 						</PanelRow>
-					)}
+					) }
 					<PanelRow>
 						<Button
 							isDefault
-							isBusy={apiKeyLoading}
-							onClick={() => testApiKey(apiKeyState)}
+							isBusy={ apiKeyLoading }
+							onClick={ () => testApiKey( apiKeyState ) }
 						>
 							Save Api Key
 						</Button>
 						<div className="jw-text-center">
-							{apiKeyLoading && <Spinner />}
+							{ apiKeyLoading && <Spinner /> }
 						</div>
 					</PanelRow>
 				</PanelBody>
@@ -98,15 +98,15 @@ export default function EditBlock({ attributes, setAttributes }) {
 					<PanelRow>
 						<SelectControl
 							label="Status"
-							value={status}
-							options={[
+							value={ status }
+							options={ [
 								{ label: 'Live', value: 'live' },
 								{ label: 'Draft', value: 'draft' },
 								{ label: 'All', value: 'all' },
-							]}
-							onChange={(newStatus) => {
-								setAttributes({ status: newStatus });
-							}}
+							] }
+							onChange={ ( newStatus ) => {
+								setAttributes( { status: newStatus } );
+							} }
 						/>
 					</PanelRow>
 				</PanelBody>
@@ -119,13 +119,13 @@ export default function EditBlock({ attributes, setAttributes }) {
 					<PanelRow>
 						<ColorPalette
 							id="firstButtonBackgroundColor"
-							value={firstButtonBackgroundColor}
-							onChange={(newColor) =>
-								setAttributes({
+							value={ firstButtonBackgroundColor }
+							onChange={ ( newColor ) =>
+								setAttributes( {
 									firstButtonBackgroundColor: newColor,
-								})
+								} )
 							}
-							colors={defaultColors}
+							colors={ defaultColors }
 						/>
 					</PanelRow>
 					<PanelRow>
@@ -136,20 +136,20 @@ export default function EditBlock({ attributes, setAttributes }) {
 					<PanelRow>
 						<ColorPalette
 							id="secondButtonBackgroundColor"
-							value={secondButtonBackgroundColor}
-							onChange={(newColor) =>
-								setAttributes({
+							value={ secondButtonBackgroundColor }
+							onChange={ ( newColor ) =>
+								setAttributes( {
 									secondButtonBackgroundColor: newColor,
-								})
+								} )
 							}
-							colors={defaultColors}
+							colors={ defaultColors }
 						/>
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 
 			<Fragment>
-				{!apiKey ? (
+				{ ! apiKey ? (
 					<p className="jw-font-sans">
 						An Api Key is required. Please enter your Eventbrite Api
 						Key in the block settings.
@@ -161,27 +161,27 @@ export default function EditBlock({ attributes, setAttributes }) {
 						</p>
 						<Event
 							className="jw-mx-auto"
-							title={'Event Title'}
-							description={'Event description'}
-							summary={'Event description summary'}
-							cost={'$25'}
-							startDate={new Date()}
-							image={'https://placekitten.com/500/500'}
-							status={'live'}
-							colors={{
+							title={ 'Event Title' }
+							description={ 'Event description' }
+							summary={ 'Event description summary' }
+							cost={ '$25' }
+							startDate={ new Date() }
+							image={ 'https://placekitten.com/500/500' }
+							status={ 'live' }
+							colors={ {
 								firstButtonBackgroundColor,
 								secondButtonBackgroundColor,
-							}}
-							venue={{
+							} }
+							venue={ {
 								name: 'Venue name',
 								address: {
 									city: 'Providence',
 									region: 'RI',
 								},
-							}}
+							} }
 						/>
 					</div>
-				)}
+				) }
 			</Fragment>
 		</Fragment>
 	);

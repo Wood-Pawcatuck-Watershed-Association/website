@@ -50,7 +50,7 @@ add_action('init', function()
         SCRIPT_ASSET['version']
     );
 
-    register_block_type('sandtrail-studios/eventbrite-blocks-card', array(
+    register_block_type('sandtrail-studios/eventbrite-blocks-events-card', array(
         'editor_script' => 'sandtrail-studios-eventbrite-blocks-script',
         'render_callback' => 'render_eventbrite_blocks_card',
     ));
