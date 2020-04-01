@@ -13,12 +13,12 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (!defined('ABSPATH')) {
+    exit;
 }
 
 // Setup constants
-define('SCRIPT_ASSET_PATH', dirname(__FILE__).'/build/index.asset.php');
+define('SCRIPT_ASSET_PATH', dirname(__FILE__) . '/build/index.asset.php');
 define('SCRIPT_ASSET', require(SCRIPT_ASSET_PATH));
 define('INDEX_JS', 'build/index.js');
 
@@ -29,8 +29,7 @@ define('INDEX_JS', 'build/index.js');
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
  */
 
-add_action('init', function()
-{
+add_action('init', function () {
 
     if (!file_exists(SCRIPT_ASSET_PATH)) {
         throw new Error(
@@ -38,7 +37,7 @@ add_action('init', function()
         );
     }
 
-    if ( ! function_exists( 'register_block_type' ) ) {
+    if (!function_exists('register_block_type')) {
         // Gutenberg is not active.
         return;
     }
@@ -54,7 +53,6 @@ add_action('init', function()
         'editor_script' => 'sandtrail-studios-eventbrite-blocks-script',
         'render_callback' => 'render_eventbrite_blocks_card',
     ));
-
 });
 
 
@@ -64,13 +62,13 @@ function render_eventbrite_blocks_card($attributes)
     if (is_admin()) return;
 
     // set transient key based on the individual blocks
-    $TRANSIENT_KEY = "gutenberg_eventbrite_block_{$attributes['id']}";
+    $TRANSIENT_KEY = "eventbrite_blocks_{$attributes['id']}";
 
     // get transient based on current transient key
     $transient = get_transient($TRANSIENT_KEY);
 
     // if transient is empty or attributes have changed
-    if (empty($transient) || $transient['attributes'] !== $attributes) {
+    if (!$transient || $transient['attributes'] !== $attributes) {
 
         // make GET request to eventbrite api based on user's attribute settings
         $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$attributes['apiKey']}&expand=ticket_classes,venue&status={$attributes['status']}&order_by=start_asc&time_filter=current_future");
@@ -78,26 +76,25 @@ function render_eventbrite_blocks_card($attributes)
         // decode fetched data to json
         $data = json_decode($response['body'], true);
 
-        // remove apiKey from attributes so it's not accessible on the front-end
-        if (!empty($attributes['apiKey'])){
-            unset($attributes['apiKey']);
-        }
-
         // set transient data with current transient key for 1 minute
         set_transient($TRANSIENT_KEY, [
             'events' => $data['events'],
             'attributes' => $attributes,
+            'date' => date('Y-m-d')
         ], 60);
 
         // get transient based on current block
         $transient = get_transient($TRANSIENT_KEY);
     }
 
+    // remove apiKey from attributes so it's not accessible on the front-end
+    if (!empty($transient['attributes']['apiKey'])) {
+        unset($transient['attributes']['apiKey']);
+    }
+
     // prepare and encode transient data to json
     $transient_events_json = wp_json_encode($transient['events']);
     $transient_attributes_json = wp_json_encode($transient['attributes']);
-
-    if (is_admin()) return;
 
     // enqueue our script for the front-end
     wp_enqueue_script(
@@ -110,11 +107,11 @@ function render_eventbrite_blocks_card($attributes)
     ob_start();
 
     // add inline script that assigns our window data to be accessed in our js
-    wp_add_inline_script('sandtrail-studios-eventbrite-blocks-script',"
+    wp_add_inline_script('sandtrail-studios-eventbrite-blocks-script', "
         window.eventbriteBlocksExports = {
             events: {$transient_events_json},
             attributes: {$transient_attributes_json},
-        }" );
+        }");
 
     // use js to render events in this div
     echo '<div id="root-eventbrite"></div>';
