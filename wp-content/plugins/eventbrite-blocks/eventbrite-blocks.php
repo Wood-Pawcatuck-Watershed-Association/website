@@ -19,9 +19,11 @@ if (!defined('ABSPATH')) {
 }
 
 // Setup constants
-define('SCRIPT_ASSET_PATH', dirname(__FILE__) . '/build/index.asset.php');
-define('SCRIPT_ASSET', require(SCRIPT_ASSET_PATH));
-define('INDEX_JS', 'build/index.js');
+define('EVENTBRITE_BLOCKS_SCRIPT_ASSET_PATH', dirname(__FILE__) . '/build/index.asset.php');
+define('EVENTBRITE_BLOCKS_SCRIPT_ASSET', require(EVENTBRITE_BLOCKS_SCRIPT_ASSET_PATH));
+define('EVENTBRITE_BLOCKS_INDEX_JS', 'build/index.js');
+define('EVENTBRITE_BLOCKS_LOCALIZED_SCRIPT_NAME', 'eventbriteBlocks');
+define('EVENTBRITE_BLOCKS_SCRIPT_NAME', 'sandtrail-studios-eventbrite-blocks-script');
 
 /**
  * Registers all block assets so that they can be enqueued through the block editor
@@ -29,10 +31,9 @@ define('INDEX_JS', 'build/index.js');
  *
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
  */
-
 add_action('init', function () {
 
-    if (!file_exists(SCRIPT_ASSET_PATH)) {
+    if (!file_exists(EVENTBRITE_BLOCKS_SCRIPT_ASSET_PATH)) {
         throw new Error(
             'You need to run `npm start` or `npm run build` for the "sandtrail-studios/eventbrite-blocks-card" block first.'
         );
@@ -44,20 +45,30 @@ add_action('init', function () {
     }
 
     wp_register_script(
-        'sandtrail-studios-eventbrite-blocks-script',
-        plugins_url(INDEX_JS, __FILE__),
-        SCRIPT_ASSET['dependencies'],
-        SCRIPT_ASSET['version']
+        EVENTBRITE_BLOCKS_SCRIPT_NAME,
+        plugins_url(EVENTBRITE_BLOCKS_INDEX_JS, __FILE__),
+        EVENTBRITE_BLOCKS_SCRIPT_ASSET['dependencies'],
+        EVENTBRITE_BLOCKS_SCRIPT_ASSET['version']
+    );
+
+    // mock our data in js for the editor
+    wp_localize_script(
+        EVENTBRITE_BLOCKS_SCRIPT_NAME,
+        EVENTBRITE_BLOCKS_LOCALIZED_SCRIPT_NAME,
+        [
+            'events' => [],
+            'attributes' => []
+        ]
     );
 
     register_block_type('sandtrail-studios/eventbrite-blocks-events-card', array(
-        'editor_script' => 'sandtrail-studios-eventbrite-blocks-script',
+        'editor_script' => EVENTBRITE_BLOCKS_SCRIPT_NAME,
         'render_callback' => 'render_eventbrite_blocks_card',
     ));
 });
 
 /**
- * Add a block category for "Get With Gutenberg" if it doesn't exist already.
+ * Add a block category for "Eventbrite Blocks" if it doesn't exist already.
  *
  * @param array $categories Array of block categories.
  *
@@ -72,7 +83,7 @@ add_filter('block_categories', function ($categories) {
         array(
             array(
                 'slug'  => 'sandtrail-studios-eventbrite-blocks',
-                'title' => __('Eventbrite Blocks', 'sandtrail-studios-eventbrite-blocks'),
+                'title' => __('Eventbrite Blocks', 'sandtrail-studios'),
                 'icon'  => null,
             ),
         )
@@ -121,26 +132,25 @@ function render_eventbrite_blocks_card($attributes)
         unset($transient['attributes']['apiKey']);
     }
 
-    // prepare and encode transient data to json
-    $transient_events_json = wp_json_encode($transient['events']);
-    $transient_attributes_json = wp_json_encode($transient['attributes']);
-
     // enqueue our script for the front-end
     wp_enqueue_script(
-        'sandtrail-studios-eventbrite-blocks-script',
-        plugins_url(INDEX_JS, __FILE__),
-        SCRIPT_ASSET['dependencies'],
-        SCRIPT_ASSET['version']
+        EVENTBRITE_BLOCKS_SCRIPT_NAME,
+        plugins_url(EVENTBRITE_BLOCKS_INDEX_JS, __FILE__),
+        EVENTBRITE_BLOCKS_SCRIPT_ASSET['dependencies'],
+        EVENTBRITE_BLOCKS_SCRIPT_ASSET['version']
+    );
+
+    // access our transient data in js
+    wp_localize_script(
+        EVENTBRITE_BLOCKS_SCRIPT_NAME,
+        EVENTBRITE_BLOCKS_LOCALIZED_SCRIPT_NAME,
+        [
+            'events' => $transient['events'],
+            'attributes' => $transient['attributes'],
+        ]
     );
 
     ob_start();
-
-    // add inline script that assigns our window data to be accessed in our js
-    wp_add_inline_script('sandtrail-studios-eventbrite-blocks-script', "
-        window.eventbriteBlocksExports = {
-            events: {$transient_events_json},
-            attributes: {$transient_attributes_json},
-        }");
 
     // use js to render events in this div
     echo '<div id="root-eventbrite"></div>';

@@ -9372,7 +9372,7 @@ function EditBlock(_ref) {
   })), apiKeyError && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
     className: "jw-text-red-700"
   }, apiKeyError)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-    isDefault: true,
+    isSecondary: true,
     isBusy: apiKeyLoading,
     onClick: function onClick() {
       return testApiKey(apiKeyState);
@@ -9647,12 +9647,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function App() {
-  var _getWindowData = Object(_utilities__WEBPACK_IMPORTED_MODULE_4__["getWindowData"])('events', 'attributes'),
-      _getWindowData2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_getWindowData, 2),
-      events = _getWindowData2[0],
-      attributes = _getWindowData2[1];
+var _getLocalizeData = Object(_utilities__WEBPACK_IMPORTED_MODULE_4__["getLocalizeData"])('events', 'attributes'),
+    _getLocalizeData2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_getLocalizeData, 2),
+    events = _getLocalizeData2[0],
+    attributes = _getLocalizeData2[1];
 
+function App() {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_EventList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     events: events,
     attributes: attributes
@@ -9702,19 +9702,20 @@ module.exports = exported;
 /*!********************************!*\
   !*** ./src/utilities/index.js ***!
   \********************************/
-/*! exports provided: getWindowData */
+/*! exports provided: getLocalizeData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getWindowData", function() { return getWindowData; });
-function getWindowData() {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocalizeData", function() { return getLocalizeData; });
+function getLocalizeData() {
   for (var _len = arguments.length, props = new Array(_len), _key = 0; _key < _len; _key++) {
     props[_key] = arguments[_key];
   }
 
   return props.map(function (prop) {
-    return window.eventbriteBlocksExports[prop];
+    // eslint-disable-next-line no-undef
+    return eventbriteBlocks[prop];
   });
 }
 

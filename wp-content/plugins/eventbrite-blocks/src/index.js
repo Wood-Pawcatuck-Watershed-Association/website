@@ -2,13 +2,13 @@ import { render } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
 
 import EventList from './components/EventList';
-import { getWindowData } from './utilities';
+import { getLocalizeData } from './utilities';
 import './style.css';
 import './blocks/event-cards';
 
-function App() {
-	const [ events, attributes ] = getWindowData( 'events', 'attributes' );
+const [ events, attributes ] = getLocalizeData( 'events', 'attributes' );
 
+function App() {
 	return <EventList events={ events } attributes={ attributes } />;
 }
 

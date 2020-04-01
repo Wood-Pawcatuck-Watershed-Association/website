@@ -85,7 +85,7 @@ export default function EditBlock( { attributes, setAttributes } ) {
 					) }
 					<PanelRow>
 						<Button
-							isDefault
+							isSecondary
 							isBusy={ apiKeyLoading }
 							onClick={ () => testApiKey( apiKeyState ) }
 						>

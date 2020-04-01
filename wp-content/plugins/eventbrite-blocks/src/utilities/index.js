@@ -1,6 +1,7 @@
-function getWindowData( ...props ) {
+function getLocalizeData( ...props ) {
 	return props.map( ( prop ) => {
-		return window.eventbriteBlocksExports[ prop ];
+		// eslint-disable-next-line no-undef
+		return eventbriteBlocks[ prop ];
 	} );
 }
-export { getWindowData };
+export { getLocalizeData };
