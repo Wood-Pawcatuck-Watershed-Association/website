@@ -9289,9 +9289,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_Event__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Event */ "./src/components/Event.js");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_Event__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Event */ "./src/components/Event.js");
+
 
 
 
@@ -9330,9 +9333,9 @@ function EditBlock(_ref) {
     color: '#FF9F00'
   }];
 
-  var testApiKey = function testApiKey(apiKeyState) {
+  var testApiKey = function testApiKey() {
     setApiKeyLoading(true);
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("https://www.eventbriteapi.com/v3/users/me/?token=".concat(apiKeyState)).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.get("https://www.eventbriteapi.com/v3/users/me/?token=".concat(apiKeyState)).then(function (response) {
       setApiKeyLoading(false);
       setAttributes({
         apiKey: apiKeyState
@@ -9341,6 +9344,7 @@ function EditBlock(_ref) {
       setAttributes({
         id: Date.now()
       });
+      Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["dispatch"])('core/editor').savePost();
     }).catch(function (error) {
       setApiKeyLoading(false);
       setApiKeyError(error.response.data.error_description);
@@ -9423,7 +9427,7 @@ function EditBlock(_ref) {
     className: "jw-font-sans"
   }, "An Api Token Key is required. Please enter your Eventbrite Api Token Key in the block settings.") : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
     className: "jw-font-sans jw-text-center"
-  }, "This is a static preview of an Eventbrite event."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_Event__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "This is a static preview of an Eventbrite event."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_Event__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "jw-mx-auto",
     title: 'Event Title',
     description: 'Event description',
@@ -9797,6 +9801,17 @@ function getWindowData() {
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["components"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!***************************************!*\
+  !*** external {"this":["wp","data"]} ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["data"]; }());
 
 /***/ }),
 

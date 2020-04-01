@@ -9,6 +9,7 @@ import {
 	Spinner,
 } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
+import { dispatch } from '@wordpress/data';
 import axios from 'axios';
 import Event from '../components/Event';
 
@@ -29,7 +30,7 @@ export default function EditBlock( { attributes, setAttributes } ) {
 		{ name: 'orange', color: '#FF9F00' },
 	];
 
-	const testApiKey = ( apiKeyState ) => {
+	const testApiKey = () => {
 		setApiKeyLoading( true );
 		axios
 			.get(
@@ -42,6 +43,7 @@ export default function EditBlock( { attributes, setAttributes } ) {
 				setAttributes( {
 					id: Date.now(),
 				} );
+				dispatch( 'core/editor' ).savePost();
 			} )
 			.catch( ( error ) => {
 				setApiKeyLoading( false );
