@@ -5,6 +5,7 @@
  * Description:     A gutenberg block that fetches eventbrite events and displays them
  * Version:         1.0.0
  * Author:          Jon Waldstein
+ * Author URI:      https://jonwaldstein.com
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:     sandtrail-studios
