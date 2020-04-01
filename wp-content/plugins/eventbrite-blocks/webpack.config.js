@@ -9,7 +9,13 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [
-					{ loader: 'style-loader' },
+					{
+						loader: 'style-loader',
+						options: {
+							injectType: 'singletonStyleTag',
+							attributes: { id: 'eventbrite-blocks-css' },
+						},
+					},
 					{ loader: 'css-loader' },
 					{
 						loader: 'postcss-loader',

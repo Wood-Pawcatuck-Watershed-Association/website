@@ -6952,10 +6952,10 @@ var api = __webpack_require__(/*! ../../style-loader/dist/runtime/injectStylesIn
               content = [[module.i, content, '']];
             }
 
-var options = {};
+var options = {"injectType":"singletonStyleTag","attributes":{"id":"eventbrite-blocks-css"}};
 
 options.insert = "head";
-options.singleton = false;
+options.singleton = true;
 
 var update = api(content, options);
 
@@ -9132,10 +9132,10 @@ var api = __webpack_require__(/*! ../../style-loader/dist/runtime/injectStylesIn
               content = [[module.i, content, '']];
             }
 
-var options = {};
+var options = {"injectType":"singletonStyleTag","attributes":{"id":"eventbrite-blocks-css"}};
 
 options.insert = "head";
-options.singleton = false;
+options.singleton = true;
 
 var update = api(content, options);
 
@@ -9687,10 +9687,10 @@ var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtime/inje
               content = [[module.i, content, '']];
             }
 
-var options = {};
+var options = {"injectType":"singletonStyleTag","attributes":{"id":"eventbrite-blocks-css"}};
 
 options.insert = "head";
-options.singleton = false;
+options.singleton = true;
 
 var update = api(content, options);
 
