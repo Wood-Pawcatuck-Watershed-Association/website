@@ -1,4 +1,4 @@
 module.exports = {
 	prefix: 'jw-',
-	important: true,
+	important: '.eventbrite-blocks-css-wrapper',
 };

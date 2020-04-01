@@ -133,12 +133,7 @@ function render_eventbrite_blocks_card($attributes)
     }
 
     // enqueue our script for the front-end
-    wp_enqueue_script(
-        EVENTBRITE_BLOCKS_SCRIPT_NAME,
-        plugins_url(EVENTBRITE_BLOCKS_INDEX_JS, __FILE__),
-        EVENTBRITE_BLOCKS_SCRIPT_ASSET['dependencies'],
-        EVENTBRITE_BLOCKS_SCRIPT_ASSET['version']
-    );
+    wp_enqueue_script(EVENTBRITE_BLOCKS_SCRIPT_NAME);
 
     // access our transient data in js
     wp_localize_script(
@@ -153,7 +148,7 @@ function render_eventbrite_blocks_card($attributes)
     ob_start();
 
     // use js to render events in this div
-    echo '<div id="root-eventbrite"></div>';
+    echo '<div id="root-eventbrite-blocks" class="eventbrite-blocks eventbrite-blocks-css-wrapper"></div>';
 
     return ob_get_clean();
 }

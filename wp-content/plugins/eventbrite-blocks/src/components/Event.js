@@ -21,6 +21,7 @@ export default function Event( {
 } ) {
 	useEffect( () => {
 		if ( ! id ) return;
+		// eslint-disable-next-line no-undef
 		EBWidgets.createWidget( {
 			widgetType: 'checkout',
 			eventId: id,
@@ -85,6 +86,7 @@ export default function Event( {
 								<div className="event__details--buttonWrapper jw-flex jw-justify-between">
 									{ summary ? (
 										<Tippy
+											className="eventbrite-blocks-css-wrapper"
 											content={
 												<p className="jw-p-2">
 													{ summary }

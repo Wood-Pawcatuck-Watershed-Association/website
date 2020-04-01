@@ -1,4 +1,6 @@
-@import 'tailwindcss/base';
+.eventbrite-blocks-css-wrapper {
+	@import 'tailwindcss/base';
+}
 
 @import 'tailwindcss/components';
 

@@ -157,7 +157,7 @@ export default function EditBlock( { attributes, setAttributes } ) {
 						Eventbrite Api Token Key in the block settings.
 					</p>
 				) : (
-					<div>
+					<div className="eventbrite-blocks-css-wrapper">
 						<p className="jw-font-sans jw-text-center">
 							This is a static preview of an Eventbrite event.
 						</p>

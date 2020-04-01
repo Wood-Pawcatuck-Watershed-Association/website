@@ -13,7 +13,7 @@ function App() {
 }
 
 domReady( function() {
-	if ( document.getElementById( 'root-eventbrite' ) ) {
-		render( <App />, document.getElementById( 'root-eventbrite' ) );
+	if ( document.getElementById( 'root-eventbrite-blocks' ) ) {
+		render( <App />, document.getElementById( 'root-eventbrite-blocks' ) );
 	}
 } );
