@@ -9,7 +9,7 @@ import {
 	Spinner,
 } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
-import { dispatch } from '@wordpress/data';
+import { dispatch, select } from '@wordpress/data';
 import axios from 'axios';
 import Event from '../components/Event';
 
@@ -41,7 +41,7 @@ export default function EditBlock( { attributes, setAttributes } ) {
 				setAttributes( { apiKey: apiKeyState } );
 				setApiKeyError( false );
 				setAttributes( {
-					id: Date.now(),
+					id: select( 'core/editor' ).getCurrentPostId(),
 				} );
 				dispatch( 'core/editor' ).savePost();
 			} )

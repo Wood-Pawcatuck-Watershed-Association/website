@@ -9342,7 +9342,7 @@ function EditBlock(_ref) {
       });
       setApiKeyError(false);
       setAttributes({
-        id: Date.now()
+        id: Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["select"])('core/editor').getCurrentPostId()
       });
       Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["dispatch"])('core/editor').savePost();
     }).catch(function (error) {
