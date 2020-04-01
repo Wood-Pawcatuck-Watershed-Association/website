@@ -56,7 +56,35 @@ add_action('init', function () {
     ));
 });
 
+/**
+ * Add a block category for "Get With Gutenberg" if it doesn't exist already.
+ *
+ * @param array $categories Array of block categories.
+ *
+ * @return array
+ */
 
+add_filter('block_categories', function ($categories) {
+    $category_slugs = wp_list_pluck($categories, 'slug');
+
+    return in_array('sandtrail-studios-eventbrite-blocks', $category_slugs, true) ? $categories : array_merge(
+        $categories,
+        array(
+            array(
+                'slug'  => 'sandtrail-studios-eventbrite-blocks',
+                'title' => __('Eventbrite Blocks', 'sandtrail-studios-eventbrite-blocks'),
+                'icon'  => null,
+            ),
+        )
+    );
+});
+
+/**
+ * Render callback for eventbrite blocks event card
+ *
+ * @param object $attributes
+ *
+ */
 function render_eventbrite_blocks_card($attributes)
 {
     // do not render in the backend
