@@ -7,7 +7,7 @@ module.exports = {
 		rules: [
 			...defaultConfig.module.rules,
 			{
-				test: /\.css$/,
+				test: /^(?!.*?\.module).*\.css$/,
 				use: [
 					{
 						loader: 'style-loader',
@@ -16,18 +16,29 @@ module.exports = {
 							attributes: { id: 'eventbrite-blocks-css' },
 						},
 					},
-					{ loader: 'css-loader' },
+					{
+						loader: 'css-loader',
+						options: { importLoaders: 1 },
+					},
 					{
 						loader: 'postcss-loader',
+					},
+				],
+			},
+			{
+				test: /\.module\.css$/,
+				use: [
+					{
+						loader: 'style-loader',
+					},
+					{
+						loader: 'css-loader',
 						options: {
-							ident: 'postcss',
-							plugins: [
-								require( 'tailwindcss' ),
-								require( 'autoprefixer' ),
-								require( 'postcss-nested' ),
-								require( 'cssnano' ),
-							],
+							modules: true,
 						},
+					},
+					{
+						loader: 'postcss-loader',
 					},
 				],
 			},

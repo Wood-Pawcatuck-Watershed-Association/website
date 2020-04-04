@@ -3,7 +3,7 @@ import domReady from '@wordpress/dom-ready';
 
 import EventList from './components/EventList';
 import { getLocalizeData } from './utilities';
-import './style.css';
+import './base.css';
 import './blocks/event-cards';
 
 const [ events, attributes ] = getLocalizeData( 'events', 'attributes' );

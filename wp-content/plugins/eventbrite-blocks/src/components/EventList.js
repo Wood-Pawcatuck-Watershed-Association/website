@@ -1,4 +1,8 @@
 import Event from './Event';
+import styles from '../style.module.css';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind( styles );
 
 export default function EventList( { events, attributes } ) {
 	const {
@@ -7,7 +11,7 @@ export default function EventList( { events, attributes } ) {
 	} = attributes;
 
 	return (
-		<div className="jw-flex jw-flex-wrap jw-justify-center">
+		<div className={ cx( 'flex', 'flex-wrap', 'justify-center' ) }>
 			{ events.map( ( event ) => (
 				<Event
 					key={ event.id }

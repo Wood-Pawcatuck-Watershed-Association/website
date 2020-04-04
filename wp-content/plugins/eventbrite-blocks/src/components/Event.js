@@ -4,6 +4,10 @@ import Tippy from '@tippyjs/react';
 import '../vendor/eventbrite';
 import 'tippy.js/themes/light.css';
 import 'tippy.js/animations/shift-away.css';
+import styles from '../style.module.css';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind( styles );
 
 export default function Event( {
 	id,
@@ -35,60 +39,195 @@ export default function Event( {
 
 	return (
 		<article
-			className={ `jw-max-w-xs jw-w-full jw-px-2 jw-mb-4 jw-h-full jw-font-sans ${ className }` }
+			className={ cx(
+				'event__single',
+				'max-w-xs',
+				'w-full',
+				'px-2',
+				'mb-4',
+				'h-full',
+				'font-sans',
+				className
+			) }
 		>
-			<div className="event__single">
+			<div>
 				{ image ? (
 					<img
 						src={ image }
-						className="jw-block jw-h-32 jw-flex-none jw-object-cover jw-object-center jw-rounded-t jw-text-center jw-w-full jw-overflow-hidden jw-border-none"
+						className={ cx(
+							'block',
+							'h-32',
+							'flex-none',
+							'object-cover',
+							'object-center',
+							'rounded-t',
+							'text-center',
+							'w-full',
+							'overflow-hidden',
+							'border-none'
+						) }
 						alt={ title }
 					/>
 				) : null }
-				<div className="jw-border-r jw-border-b jw-border-l jw-border-grey-light jw-bg-white jw-rounded-b jw-py-4 jw-px-2 jw-flex jw-flex-col jw-justify-between jw-leading-normal jw-shadow-md">
-					<div className="event__details jw-flex">
-						<div className="event__details--left">
-							<div className="event__details--dateWrapper text-center">
-								<p className="event__details--dateMonth jw-text-sm jw-text-red-600 jw-uppercase jw-my-0 jw-font-sans jw-leading-tight">
+				<div
+					className={ cx(
+						'border-r',
+						'border-b',
+						'border-l',
+						'border-grey-light',
+						'bg-white',
+						'rounded-b',
+						'py-4',
+						'px-2',
+						'flex',
+						'flex-col',
+						'justify-between',
+						'leading-normal',
+						'shadow-md'
+					) }
+				>
+					<div className={ cx( 'event__details', 'flex' ) }>
+						<div className={ cx( 'event__details--left' ) }>
+							<div
+								className={ cx(
+									'event__details--dateWrapper',
+									'text-center'
+								) }
+							>
+								<p
+									className={ cx(
+										'event__details--dateMonth',
+										'text-sm',
+										'text-red-600',
+										'uppercase',
+										'my-0',
+										'font-sans',
+										'leading-tight'
+									) }
+								>
 									<time>{ format( 'M', startDate ) }</time>
 								</p>
-								<p className="event__details--dateDay jw-text-xl jw-text-grey-800 jw-my-0 jw-font-sans">
+								<p
+									className={ cx(
+										'event__details--dateDay',
+										'text-xl',
+										'text-grey-800',
+										'my-0',
+										'font-sans'
+									) }
+								>
 									<time>{ format( 'd', startDate ) }</time>
 								</p>
 							</div>
 						</div>
-						<div className="event__details--right event__details--right jw-pl-2 jw-truncate jw-pb-2 jw-pr-2 jw-w-full">
-							<div className="event__details--rightInnerTop">
-								<h3 className="jw-my-0 jw-text-black jw-font-semibold jw-text-sm jw-m-0 jw-truncate">
+						<div
+							className={ cx(
+								'event__details--right',
+								'event__details--right',
+								'pl-2',
+								'truncate',
+								'pb-2',
+								'pr-2',
+								'w-full'
+							) }
+						>
+							<div
+								className={ cx(
+									'event__details--rightInnerTop'
+								) }
+							>
+								<h3
+									className={ cx(
+										'my-0',
+										'text-black',
+										'font-semibold',
+										'text-sm',
+										'm-0',
+										'truncate'
+									) }
+								>
 									{ title }
 								</h3>
-								<div className="event__details--dateWrapper">
-									<time className="event__details--date jw-font-sans jw-text-grey-dark jw-text-xs jw-font-medium jw-m-0">
+								<div
+									className={ cx(
+										'event__details--dateWrapper'
+									) }
+								>
+									<time
+										className={ cx(
+											'event__details--date',
+											'font-sans',
+											'text-grey-dark',
+											'text-xs',
+											'font-medium',
+											'm-0'
+										) }
+									>
 										{ format(
 											'D, M d Y, g:ia',
 											startDate
 										) }
 									</time>
 								</div>
-								<div className="event__details--venue">
-									<p className="jw-font-sans jw-text-grey-dark jw-text-xs jw-m-0 jw-truncate">
+								<div
+									className={ cx( 'event__details--venue' ) }
+								>
+									<p
+										className={ cx(
+											'font-sans',
+											'text-grey-dark',
+											'text-xs',
+											'm-0',
+											'truncate'
+										) }
+									>
 										{ venueName }
 									</p>
-									<p className="jw-font-sans jw-text-grey-dark jw-text-xs jw-m-0 jw-truncate">
+									<p
+										className={ cx(
+											'font-sans',
+											'text-grey-dark',
+											'text-xs',
+											'm-0',
+											'truncate'
+										) }
+									>
 										{ address.city }, { address.region }
 									</p>
 								</div>
-								<p className="jw-text-sm jw-text-grey-dark jw-flex jw-items-center jw-font-sans jw-mb-2 jw-mt-0">
+								<p
+									className={ cx(
+										'text-sm',
+										'text-grey-dark',
+										'flex',
+										'items-center',
+										'font-sans',
+										'mb-2',
+										'mt-0'
+									) }
+								>
 									<span>{ cost }</span>
 								</p>
 							</div>
-							<div className="event__details--rightInnerBottom">
-								<div className="event__details--buttonWrapper jw-flex jw-justify-between">
+							<div
+								className={ cx(
+									'event__details--rightInnerBottom'
+								) }
+							>
+								<div
+									className={ cx(
+										'event__details--buttonWrapper',
+										'flex',
+										'justify-between'
+									) }
+								>
 									{ summary ? (
 										<Tippy
-											className="eventbrite-blocks-css-wrapper"
+											className={ cx(
+												'eventbrite-blocks-css-wrapper'
+											) }
 											content={
-												<p className="jw-p-2">
+												<p className={ cx( 'p-2' ) }>
 													{ summary }
 												</p>
 											}
@@ -97,8 +236,23 @@ export default function Event( {
 											animation="shift-away"
 										>
 											<button
-												className={ `jw-text-white jw-font-semibold jw-tracking-wider jw-py-1 jw-px-4 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${ ! firstButtonBackgroundColor &&
-													'jw-bg-blue-500 hover:jw-bg-blue-700' }` }
+												className={ cx(
+													'text-white',
+													'font-semibold',
+													'tracking-wider',
+													'py-1',
+													'px-4',
+													'rounded',
+													'transition',
+													'duration-200',
+													'ease-in-out',
+													{
+														'bg-blue-500': ! firstButtonBackgroundColor,
+													},
+													{
+														'hover:bg-blue-700': ! firstButtonBackgroundColor,
+													}
+												) }
 												style={ {
 													background: firstButtonBackgroundColor,
 												} }
@@ -111,8 +265,24 @@ export default function Event( {
 										<button
 											id={ `eventbrite-widget-modal-trigger-${ id }` }
 											type="button"
-											className={ `jw-text-white jw-font-semibold jw-tracking-wide jw-py-1 jw-px-4 jw-mr-2 jw-rounded jw-transition jw-duration-200 jw-ease-in-out ${ ! secondButtonBackgroundColor &&
-												'jw-bg-orange-500 hover:jw-bg-orange-700' }` }
+											className={ cx(
+												'text-white',
+												'font-semibold',
+												'tracking-wider',
+												'py-1',
+												'px-4',
+												'mr-2',
+												'rounded',
+												'transition',
+												'duration-200',
+												'ease-in-out',
+												{
+													'bg-orange-500': ! secondButtonBackgroundColor,
+												},
+												{
+													'hover:bg-orange-700': ! secondButtonBackgroundColor,
+												}
+											) }
 											style={ {
 												backgroundColor: secondButtonBackgroundColor,
 											} }
