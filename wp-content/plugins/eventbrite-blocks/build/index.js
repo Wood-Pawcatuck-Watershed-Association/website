@@ -21864,11 +21864,9 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('san
     apiKey: {
       type: 'string'
     },
-    heading: {
-      type: 'string'
-    },
     status: {
-      type: 'string'
+      type: 'string',
+      default: 'live'
     },
     firstButtonBackgroundColor: {
       type: 'string'
@@ -21945,6 +21943,7 @@ function EditBlock(_ref) {
       secondButtonBackgroundColor = attributes.secondButtonBackgroundColor,
       apiKey = attributes.apiKey,
       status = attributes.status;
+  console.log(attributes);
 
   var _useState = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useState"])(apiKey),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),

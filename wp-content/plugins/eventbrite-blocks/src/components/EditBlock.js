@@ -21,6 +21,8 @@ export default function EditBlock( { attributes, setAttributes } ) {
 		status,
 	} = attributes;
 
+	console.log( attributes );
+
 	const [ apiKeyState, setApiKeyState ] = useState( apiKey );
 	const [ apiKeyLoading, setApiKeyLoading ] = useState( false );
 	const [ apiKeyError, setApiKeyError ] = useState( false );
