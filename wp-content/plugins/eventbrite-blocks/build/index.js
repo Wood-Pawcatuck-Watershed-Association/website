@@ -22107,14 +22107,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tippyjs_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tippyjs/react */ "./node_modules/@tippyjs/react/dist/tippy-react.esm.js");
 /* harmony import */ var _vendor_eventbrite__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../vendor/eventbrite */ "./src/vendor/eventbrite.js");
 /* harmony import */ var _vendor_eventbrite__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_vendor_eventbrite__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var tippy_js_themes_light_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tippy.js/themes/light.css */ "./node_modules/tippy.js/themes/light.css");
-/* harmony import */ var tippy_js_themes_light_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(tippy_js_themes_light_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tippy.js/animations/shift-away.css */ "./node_modules/tippy.js/animations/shift-away.css");
-/* harmony import */ var tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _style_module_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../style.module.css */ "./src/style.module.css");
-/* harmony import */ var _style_module_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_style_module_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _style_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../style.module.css */ "./src/style.module.css");
+/* harmony import */ var _style_module_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_module_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -22122,9 +22118,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-var cx = classnames_bind__WEBPACK_IMPORTED_MODULE_7___default.a.bind(_style_module_css__WEBPACK_IMPORTED_MODULE_6___default.a);
+var cx = classnames_bind__WEBPACK_IMPORTED_MODULE_5___default.a.bind(_style_module_css__WEBPACK_IMPORTED_MODULE_4___default.a);
 var baseButtonStyles = ['text-white', 'font-semibold', 'tracking-wider', 'py-1', 'px-4', 'rounded', 'transition', 'duration-200', 'ease-in-out'];
 function Event(_ref) {
   var id = _ref.id,
@@ -22296,9 +22290,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_EventList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/EventList */ "./src/components/EventList.js");
 /* harmony import */ var _utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utilities */ "./src/utilities/index.js");
-/* harmony import */ var _base_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./base.css */ "./src/base.css");
-/* harmony import */ var _base_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_base_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _blocks_event_cards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blocks/event-cards */ "./src/blocks/event-cards/index.js");
+/* harmony import */ var _blocks_event_cards__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./blocks/event-cards */ "./src/blocks/event-cards/index.js");
+/* harmony import */ var tippy_js_themes_light_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tippy.js/themes/light.css */ "./node_modules/tippy.js/themes/light.css");
+/* harmony import */ var tippy_js_themes_light_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(tippy_js_themes_light_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tippy.js/animations/shift-away.css */ "./node_modules/tippy.js/animations/shift-away.css");
+/* harmony import */ var tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _base_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./base.css */ "./src/base.css");
+/* harmony import */ var _base_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_base_css__WEBPACK_IMPORTED_MODULE_8__);
+
+
 
 
 

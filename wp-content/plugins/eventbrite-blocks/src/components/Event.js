@@ -2,8 +2,6 @@ import { useEffect } from '@wordpress/element';
 import { format } from '@wordpress/date';
 import Tippy from '@tippyjs/react';
 import '../vendor/eventbrite';
-import 'tippy.js/themes/light.css';
-import 'tippy.js/animations/shift-away.css';
 import styles from '../style.module.css';
 import classNames from 'classnames/bind';
 

@@ -3,8 +3,11 @@ import domReady from '@wordpress/dom-ready';
 
 import EventList from './components/EventList';
 import { getLocalizeData } from './utilities';
-import './base.css';
 import './blocks/event-cards';
+
+import 'tippy.js/themes/light.css';
+import 'tippy.js/animations/shift-away.css';
+import './base.css';
 
 const [ events, attributes ] = getLocalizeData( 'events', 'attributes' );
 
