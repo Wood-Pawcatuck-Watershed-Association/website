@@ -22125,6 +22125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var cx = classnames_bind__WEBPACK_IMPORTED_MODULE_7___default.a.bind(_style_module_css__WEBPACK_IMPORTED_MODULE_6___default.a);
+var baseButtonStyles = ['text-white', 'font-semibold', 'tracking-wider', 'py-1', 'px-4', 'rounded', 'transition', 'duration-200', 'ease-in-out'];
 function Event(_ref) {
   var id = _ref.id,
       title = _ref.title,
@@ -22201,7 +22202,7 @@ function Event(_ref) {
     theme: "light",
     animation: "shift-away"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
-    className: cx('text-white', 'font-semibold', 'tracking-wider', 'py-1', 'px-4', 'rounded', 'transition', 'duration-200', 'ease-in-out', {
+    className: cx(baseButtonStyles, {
       'bg-blue-500': !firstButtonBackgroundColor
     }, {
       'hover:bg-blue-700': !firstButtonBackgroundColor
@@ -22212,7 +22213,7 @@ function Event(_ref) {
   }, "Info")) : null, status === 'live' ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
     id: "eventbrite-widget-modal-trigger-".concat(id),
     type: "button",
-    className: cx('text-white', 'font-semibold', 'tracking-wider', 'py-1', 'px-4', 'mr-2', 'rounded', 'transition', 'duration-200', 'ease-in-out', {
+    className: cx(baseButtonStyles, 'mr-2', {
       'bg-orange-500': !secondButtonBackgroundColor
     }, {
       'hover:bg-orange-700': !secondButtonBackgroundColor

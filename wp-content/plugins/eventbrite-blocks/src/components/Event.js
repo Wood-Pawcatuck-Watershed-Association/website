@@ -9,6 +9,18 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind( styles );
 
+const baseButtonStyles = [
+	'text-white',
+	'font-semibold',
+	'tracking-wider',
+	'py-1',
+	'px-4',
+	'rounded',
+	'transition',
+	'duration-200',
+	'ease-in-out',
+];
+
 export default function Event( {
 	id,
 	title,
@@ -237,15 +249,7 @@ export default function Event( {
 										>
 											<button
 												className={ cx(
-													'text-white',
-													'font-semibold',
-													'tracking-wider',
-													'py-1',
-													'px-4',
-													'rounded',
-													'transition',
-													'duration-200',
-													'ease-in-out',
+													baseButtonStyles,
 													{
 														'bg-blue-500': ! firstButtonBackgroundColor,
 													},
@@ -266,16 +270,8 @@ export default function Event( {
 											id={ `eventbrite-widget-modal-trigger-${ id }` }
 											type="button"
 											className={ cx(
-												'text-white',
-												'font-semibold',
-												'tracking-wider',
-												'py-1',
-												'px-4',
+												baseButtonStyles,
 												'mr-2',
-												'rounded',
-												'transition',
-												'duration-200',
-												'ease-in-out',
 												{
 													'bg-orange-500': ! secondButtonBackgroundColor,
 												},
