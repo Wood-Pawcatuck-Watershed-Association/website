@@ -110,8 +110,10 @@ function render_eventbrite_blocks_card($attributes)
     // if transient is empty or attributes have changed
     if (!$transient || $transient['attributes'] !== $attributes) {
 
+        $status = $attributes['status'] ? $attributes['status'] : 'live';
+
         // make GET request to eventbrite api based on user's attribute settings
-        $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$attributes['apiKey']}&expand=ticket_classes,venue&status={$attributes['status']}&order_by=start_asc&time_filter=current_future");
+        $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$attributes['apiKey']}&expand=ticket_classes,venue&status={$status}&order_by=start_asc&time_filter=current_future");
 
         // decode fetched data to json
         $data = json_decode($response['body'], true);

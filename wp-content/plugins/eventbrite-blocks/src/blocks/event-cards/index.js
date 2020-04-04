@@ -65,11 +65,9 @@ registerBlockType( 'sandtrail-studios/eventbrite-blocks-events-card', {
 		apiKey: {
 			type: 'string',
 		},
-		heading: {
-			type: 'string',
-		},
 		status: {
 			type: 'string',
+			default: 'live',
 		},
 		firstButtonBackgroundColor: {
 			type: 'string',
