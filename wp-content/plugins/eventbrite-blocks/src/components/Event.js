@@ -170,25 +170,27 @@ export default function Event( {
 							>
 								<h3
 									className={ cx(
-										'my-0',
+										'm-0',
 										'text-black',
 										'hover:text-blue-700',
 										'font-semibold',
 										'text-sm',
-										'm-0',
-										'mb-1',
 										'truncate',
 										'duration-300',
 										'transition-all'
 									) }
 								>
-									<a
-										href={ url }
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										{ title }
-									</a>
+									{ url ? (
+										<a
+											href={ url }
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{ title }
+										</a>
+									) : (
+										title
+									) }
 								</h3>
 								<div
 									className={ cx(

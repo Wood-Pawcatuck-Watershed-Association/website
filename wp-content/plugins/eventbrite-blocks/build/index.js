@@ -21799,12 +21799,12 @@ function Event(_ref) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: cx('event__details--rightInnerTop')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h3", {
-    className: cx('my-0', 'text-black', 'hover:text-blue-700', 'font-semibold', 'text-sm', 'm-0', 'mb-1', 'truncate', 'duration-300', 'transition-all')
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
+    className: cx('m-0', 'text-black', 'hover:text-blue-700', 'font-semibold', 'text-sm', 'truncate', 'duration-300', 'transition-all')
+  }, url ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
     href: url,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, title)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+  }, title) : title), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: cx('event__details--dateWrapper')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("time", {
     className: cx('event__details--date', 'font-sans', 'text-grey-dark', 'text-xs', 'font-medium', 'm-0')
