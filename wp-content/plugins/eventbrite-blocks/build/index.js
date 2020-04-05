@@ -5300,6 +5300,24 @@ module.exports = exports;
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js!./node_modules/tippy.js/themes/light-border.css":
+/*!*****************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--7-1!./node_modules/postcss-loader/src!./node_modules/tippy.js/themes/light-border.css ***!
+  \*****************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".tippy-box[data-theme~=light-border]{background-color:#fff;background-clip:padding-box;border:1px solid rgba(0,8,16,.15);color:#333;box-shadow:0 4px 14px -2px rgba(0,8,16,.08)}.tippy-box[data-theme~=light-border]>.tippy-backdrop{background-color:#fff}.tippy-box[data-theme~=light-border]>.tippy-arrow:after,.tippy-box[data-theme~=light-border]>.tippy-svg-arrow:after{content:\"\";position:absolute;z-index:-1}.tippy-box[data-theme~=light-border]>.tippy-arrow:after{border-color:transparent;border-style:solid}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-arrow:before{border-top-color:#fff}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-arrow:after{border-top-color:rgba(0,8,16,.2);border-width:7px 7px 0;top:17px;left:1px}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-svg-arrow>svg{top:16px}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-svg-arrow:after{top:17px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-arrow:before{border-bottom-color:#fff;bottom:16px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-arrow:after{border-bottom-color:rgba(0,8,16,.2);border-width:0 7px 7px;bottom:17px;left:1px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-svg-arrow>svg{bottom:16px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-svg-arrow:after{bottom:17px}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-arrow:before{border-left-color:#fff}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-arrow:after{border-left-color:rgba(0,8,16,.2);border-width:7px 0 7px 7px;left:17px;top:1px}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-svg-arrow>svg{left:11px}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-svg-arrow:after{left:12px}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-arrow:before{border-right-color:#fff;right:16px}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-arrow:after{border-width:7px 7px 7px 0;right:17px;top:1px;border-right-color:rgba(0,8,16,.2)}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-svg-arrow>svg{right:11px}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-svg-arrow:after{right:12px}.tippy-box[data-theme~=light-border]>.tippy-svg-arrow{fill:#fff}.tippy-box[data-theme~=light-border]>.tippy-svg-arrow:after{background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCA2czEuNzk2LS4wMTMgNC42Ny0zLjYxNUM1Ljg1MS45IDYuOTMuMDA2IDggMGMxLjA3LS4wMDYgMi4xNDguODg3IDMuMzQzIDIuMzg1QzE0LjIzMyA2LjAwNSAxNiA2IDE2IDZIMHoiIGZpbGw9InJnYmEoMCwgOCwgMTYsIDAuMikiLz48L3N2Zz4=);background-size:16px 6px;width:16px;height:6px}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js!./node_modules/tippy.js/themes/light.css":
 /*!**********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ref--7-1!./node_modules/postcss-loader/src!./node_modules/tippy.js/themes/light.css ***!
@@ -21296,6 +21314,37 @@ tippy.setDefaultProps({
 
 /***/ }),
 
+/***/ "./node_modules/tippy.js/themes/light-border.css":
+/*!*******************************************************!*\
+  !*** ./node_modules/tippy.js/themes/light-border.css ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(/*! ../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../../css-loader/dist/cjs.js??ref--7-1!../../postcss-loader/src!./light-border.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js!./node_modules/tippy.js/themes/light-border.css");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {"injectType":"singletonStyleTag","attributes":{"id":"eventbrite-blocks-css"}};
+
+options.insert = "head";
+options.singleton = true;
+
+var update = api(content, options);
+
+var exported = content.locals ? content.locals : {};
+
+
+
+module.exports = exported;
+
+/***/ }),
+
 /***/ "./node_modules/tippy.js/themes/light.css":
 /*!************************************************!*\
   !*** ./node_modules/tippy.js/themes/light.css ***!
@@ -21750,8 +21799,12 @@ function Event(_ref) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: cx('event__details--rightInnerTop')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h3", {
-    className: cx('my-0', 'text-black', 'font-semibold', 'text-sm', 'm-0', 'truncate')
-  }, title), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: cx('my-0', 'text-black', 'hover:text-blue-700', 'font-semibold', 'text-sm', 'm-0', 'mb-1', 'truncate', 'duration-300', 'transition-all')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
+    href: url,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, title)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: cx('event__details--dateWrapper')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("time", {
     className: cx('event__details--date', 'font-sans', 'text-grey-dark', 'text-xs', 'font-medium', 'm-0')
@@ -21831,6 +21884,7 @@ function EventList(_ref) {
       id: event.id,
       title: event.name.text,
       description: event.description.text,
+      url: event.url,
       summary: event.summary,
       cost: (_event$ticket_classes = event.ticket_classes[0].cost) === null || _event$ticket_classes === void 0 ? void 0 : _event$ticket_classes.display,
       startDate: new Date(event.start.utc),
@@ -21867,10 +21921,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_event_cards__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./blocks/event-cards */ "./src/blocks/event-cards/index.js");
 /* harmony import */ var tippy_js_themes_light_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tippy.js/themes/light.css */ "./node_modules/tippy.js/themes/light.css");
 /* harmony import */ var tippy_js_themes_light_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(tippy_js_themes_light_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tippy.js/animations/shift-away.css */ "./node_modules/tippy.js/animations/shift-away.css");
-/* harmony import */ var tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _base_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./base.css */ "./src/base.css");
-/* harmony import */ var _base_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_base_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var tippy_js_themes_light_border_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tippy.js/themes/light-border.css */ "./node_modules/tippy.js/themes/light-border.css");
+/* harmony import */ var tippy_js_themes_light_border_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(tippy_js_themes_light_border_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tippy.js/animations/shift-away.css */ "./node_modules/tippy.js/animations/shift-away.css");
+/* harmony import */ var tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(tippy_js_animations_shift_away_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _base_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./base.css */ "./src/base.css");
+/* harmony import */ var _base_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_base_css__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 

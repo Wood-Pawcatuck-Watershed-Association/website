@@ -172,13 +172,23 @@ export default function Event( {
 									className={ cx(
 										'my-0',
 										'text-black',
+										'hover:text-blue-700',
 										'font-semibold',
 										'text-sm',
 										'm-0',
-										'truncate'
+										'mb-1',
+										'truncate',
+										'duration-300',
+										'transition-all'
 									) }
 								>
-									{ title }
+									<a
+										href={ url }
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										{ title }
+									</a>
 								</h3>
 								<div
 									className={ cx(
