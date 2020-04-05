@@ -7,6 +7,9 @@ module.exports = {
 					eventbrite: '#d6472b',
 				},
 			},
+			opacity: {
+				'90': '.9',
+			},
 		},
 	},
 };

@@ -16,11 +16,19 @@ const baseButtonStyles = [
 	'px-4',
 	'rounded',
 	'transition',
-	'duration-200',
+	'duration-300',
 	'ease-in-out',
+	'hover:opacity-90',
+	'focus:opacity-90',
+	'active:opacity-90',
 ];
 
 const baseButtonLinkStyles = [
+	'text-blue-700',
+	'hover:text-black',
+	'focus:text-black',
+	'active:text-black',
+	'underline',
 	'font-sans',
 	'antialiased',
 	'font-semibold',
@@ -58,7 +66,7 @@ export default function Event( {
 		} );
 	}, [ id ] );
 
-	const { firstButtonBackgroundColor, secondButtonBackgroundColor } = colors;
+	const { signUpButtonBackgroundColor } = colors;
 	const { name: venueName, address } = venue;
 
 	return (
@@ -122,7 +130,7 @@ export default function Event( {
 									className={ cx(
 										'event__details--dateMonth',
 										'text-sm',
-										'text-red-600',
+										'text-orange-eventbrite',
 										'uppercase',
 										'my-0',
 										'font-sans',
@@ -256,14 +264,8 @@ export default function Event( {
 										>
 											<button
 												className={ cx(
-													baseButtonLinkStyles,
-													'text-blue-700',
-													'hover:text-black',
-													'underline'
+													baseButtonLinkStyles
 												) }
-												style={ {
-													background: firstButtonBackgroundColor,
-												} }
 											>
 												Details
 											</button>
@@ -278,14 +280,11 @@ export default function Event( {
 												'text-white',
 												'mr-2',
 												{
-													'bg-orange-eventbrite': ! secondButtonBackgroundColor,
-												},
-												{
-													'hover:bg-orange-eventbrite': ! secondButtonBackgroundColor,
+													'bg-orange-eventbrite': ! signUpButtonBackgroundColor,
 												}
 											) }
 											style={ {
-												backgroundColor: secondButtonBackgroundColor,
+												backgroundColor: signUpButtonBackgroundColor,
 											} }
 										>
 											Sign up
