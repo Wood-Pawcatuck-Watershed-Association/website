@@ -1,6 +1,6 @@
 import { useEffect } from '@wordpress/element';
 import { format } from '@wordpress/date';
-import Tippy from '@tippyjs/react';
+import Tippy, { useSingleton } from '@tippyjs/react';
 import '../vendor/eventbrite';
 import styles from '../style.module.css';
 import classNames from 'classnames/bind';
@@ -33,6 +33,8 @@ export default function Event( {
 	venue,
 	className,
 } ) {
+	const [ source, target ] = useSingleton();
+
 	useEffect( () => {
 		if ( ! id ) return;
 		// eslint-disable-next-line no-undef
@@ -233,17 +235,12 @@ export default function Event( {
 								>
 									{ summary ? (
 										<Tippy
-											className={ cx(
-												'eventbrite-blocks-css-wrapper'
-											) }
 											content={
 												<p className={ cx( 'p-2' ) }>
 													{ summary }
 												</p>
 											}
-											trigger="click"
-											theme="light"
-											animation="shift-away"
+											singleton={ target }
 										>
 											<button
 												className={ cx(
@@ -290,6 +287,13 @@ export default function Event( {
 					</div>
 				</div>
 			</div>
+			<Tippy
+				singleton={ source }
+				trigger="click"
+				theme="light"
+				animation="shift-away"
+				className={ cx( 'eventbrite-blocks-css-wrapper' ) }
+			/>
 		</article>
 	);
 }
