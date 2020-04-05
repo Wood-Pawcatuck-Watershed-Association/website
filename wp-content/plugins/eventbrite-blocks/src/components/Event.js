@@ -8,12 +8,24 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind( styles );
 
 const baseButtonStyles = [
-	'text-white',
+	'font-sans',
+	'antialiased',
 	'font-semibold',
-	'tracking-wider',
+	'text-sm',
 	'py-1',
 	'px-4',
 	'rounded',
+	'transition',
+	'duration-200',
+	'ease-in-out',
+];
+
+const baseButtonLinkStyles = [
+	'font-sans',
+	'antialiased',
+	'font-semibold',
+	'text-sm',
+	'py-1',
 	'transition',
 	'duration-200',
 	'ease-in-out',
@@ -244,19 +256,16 @@ export default function Event( {
 										>
 											<button
 												className={ cx(
-													baseButtonStyles,
-													{
-														'bg-blue-500': ! firstButtonBackgroundColor,
-													},
-													{
-														'hover:bg-blue-700': ! firstButtonBackgroundColor,
-													}
+													baseButtonLinkStyles,
+													'text-blue-700',
+													'hover:text-black',
+													'underline'
 												) }
 												style={ {
 													background: firstButtonBackgroundColor,
 												} }
 											>
-												Info
+												Details
 											</button>
 										</Tippy>
 									) : null }
@@ -266,12 +275,13 @@ export default function Event( {
 											type="button"
 											className={ cx(
 												baseButtonStyles,
+												'text-white',
 												'mr-2',
 												{
-													'bg-orange-500': ! secondButtonBackgroundColor,
+													'bg-orange-eventbrite': ! secondButtonBackgroundColor,
 												},
 												{
-													'hover:bg-orange-700': ! secondButtonBackgroundColor,
+													'hover:bg-orange-eventbrite': ! secondButtonBackgroundColor,
 												}
 											) }
 											style={ {

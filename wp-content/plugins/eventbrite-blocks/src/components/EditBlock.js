@@ -19,21 +19,13 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind( styles );
 
 export default function EditBlock( { attributes, setAttributes } ) {
-	const {
-		firstButtonBackgroundColor,
-		secondButtonBackgroundColor,
-		apiKey,
-		status,
-	} = attributes;
+	const { signUpButtonBackgroundColor, apiKey, status } = attributes;
 
 	const [ apiKeyState, setApiKeyState ] = useState( apiKey );
 	const [ apiKeyLoading, setApiKeyLoading ] = useState( false );
 	const [ apiKeyError, setApiKeyError ] = useState( false );
 
-	const defaultColors = [
-		{ name: 'blue', color: '#495EB1' },
-		{ name: 'orange', color: '#FF9F00' },
-	];
+	const defaultColors = [ { name: 'orange', color: '#d6472b' } ];
 
 	const testApiKey = () => {
 		setApiKeyLoading( true );
@@ -121,34 +113,17 @@ export default function EditBlock( { attributes, setAttributes } ) {
 				</PanelBody>
 				<PanelBody title="Eventbrite Design Settings">
 					<PanelRow>
-						<label htmlFor="firstButtonBackgroundColor">
-							First button background color
-						</label>
-					</PanelRow>
-					<PanelRow>
-						<ColorPalette
-							id="firstButtonBackgroundColor"
-							value={ firstButtonBackgroundColor }
-							onChange={ ( newColor ) =>
-								setAttributes( {
-									firstButtonBackgroundColor: newColor,
-								} )
-							}
-							colors={ defaultColors }
-						/>
-					</PanelRow>
-					<PanelRow>
 						<label htmlFor="secondButtonBackgroundColor">
-							Second button background color
+							Signup button background color
 						</label>
 					</PanelRow>
 					<PanelRow>
 						<ColorPalette
 							id="secondButtonBackgroundColor"
-							value={ secondButtonBackgroundColor }
+							value={ signUpButtonBackgroundColor }
 							onChange={ ( newColor ) =>
 								setAttributes( {
-									secondButtonBackgroundColor: newColor,
+									signUpButtonBackgroundColor: newColor,
 								} )
 							}
 							colors={ defaultColors }
@@ -203,7 +178,7 @@ export default function EditBlock( { attributes, setAttributes } ) {
 							This is a static preview of an Eventbrite event.
 						</p>
 						<Event
-							className="jw-mx-auto"
+							className={ cx( 'mx-auto' ) }
 							title={ 'Event Title' }
 							description={ 'Event description' }
 							summary={ 'Event description summary' }
@@ -212,8 +187,7 @@ export default function EditBlock( { attributes, setAttributes } ) {
 							image={ 'https://placekitten.com/500/500' }
 							status={ 'live' }
 							colors={ {
-								firstButtonBackgroundColor,
-								secondButtonBackgroundColor,
+								signUpButtonBackgroundColor,
 							} }
 							venue={ {
 								name: 'Venue name',
