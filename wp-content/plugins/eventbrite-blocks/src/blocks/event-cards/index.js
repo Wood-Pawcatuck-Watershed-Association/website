@@ -69,10 +69,7 @@ registerBlockType( 'sandtrail-studios/eventbrite-blocks-events-card', {
 			type: 'string',
 			default: 'live',
 		},
-		firstButtonBackgroundColor: {
-			type: 'string',
-		},
-		secondButtonBackgroundColor: {
+		signUpButtonBackgroundColor: {
 			type: 'string',
 		},
 	},

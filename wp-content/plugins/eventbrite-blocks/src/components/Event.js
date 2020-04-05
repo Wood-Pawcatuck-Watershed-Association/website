@@ -1,6 +1,6 @@
 import { useEffect } from '@wordpress/element';
 import { format } from '@wordpress/date';
-import Tippy from '@tippyjs/react';
+import Tippy, { useSingleton } from '@tippyjs/react';
 import '../vendor/eventbrite';
 import styles from '../style.module.css';
 import classNames from 'classnames/bind';
@@ -8,12 +8,32 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind( styles );
 
 const baseButtonStyles = [
-	'text-white',
+	'font-sans',
+	'antialiased',
 	'font-semibold',
-	'tracking-wider',
+	'text-sm',
 	'py-1',
 	'px-4',
 	'rounded',
+	'transition',
+	'duration-300',
+	'ease-in-out',
+	'hover:opacity-90',
+	'focus:opacity-90',
+	'active:opacity-90',
+];
+
+const baseButtonLinkStyles = [
+	'text-blue-700',
+	'hover:text-black',
+	'focus:text-black',
+	'active:text-black',
+	'underline',
+	'font-sans',
+	'antialiased',
+	'font-semibold',
+	'text-sm',
+	'py-1',
 	'transition',
 	'duration-200',
 	'ease-in-out',
@@ -33,6 +53,8 @@ export default function Event( {
 	venue,
 	className,
 } ) {
+	const [ source, target ] = useSingleton();
+
 	useEffect( () => {
 		if ( ! id ) return;
 		// eslint-disable-next-line no-undef
@@ -44,7 +66,7 @@ export default function Event( {
 		} );
 	}, [ id ] );
 
-	const { firstButtonBackgroundColor, secondButtonBackgroundColor } = colors;
+	const { signUpButtonBackgroundColor } = colors;
 	const { name: venueName, address } = venue;
 
 	return (
@@ -108,7 +130,7 @@ export default function Event( {
 									className={ cx(
 										'event__details--dateMonth',
 										'text-sm',
-										'text-red-600',
+										'text-orange-eventbrite',
 										'uppercase',
 										'my-0',
 										'font-sans',
@@ -148,15 +170,27 @@ export default function Event( {
 							>
 								<h3
 									className={ cx(
-										'my-0',
+										'm-0',
 										'text-black',
+										'hover:text-blue-700',
 										'font-semibold',
 										'text-sm',
-										'm-0',
-										'truncate'
+										'truncate',
+										'duration-300',
+										'transition-all'
 									) }
 								>
-									{ title }
+									{ url ? (
+										<a
+											href={ url }
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{ title }
+										</a>
+									) : (
+										title
+									) }
 								</h3>
 								<div
 									className={ cx(
@@ -233,33 +267,19 @@ export default function Event( {
 								>
 									{ summary ? (
 										<Tippy
-											className={ cx(
-												'eventbrite-blocks-css-wrapper'
-											) }
 											content={
 												<p className={ cx( 'p-2' ) }>
 													{ summary }
 												</p>
 											}
-											trigger="click"
-											theme="light"
-											animation="shift-away"
+											singleton={ target }
 										>
 											<button
 												className={ cx(
-													baseButtonStyles,
-													{
-														'bg-blue-500': ! firstButtonBackgroundColor,
-													},
-													{
-														'hover:bg-blue-700': ! firstButtonBackgroundColor,
-													}
+													baseButtonLinkStyles
 												) }
-												style={ {
-													background: firstButtonBackgroundColor,
-												} }
 											>
-												Info
+												Details
 											</button>
 										</Tippy>
 									) : null }
@@ -269,16 +289,14 @@ export default function Event( {
 											type="button"
 											className={ cx(
 												baseButtonStyles,
+												'text-white',
 												'mr-2',
 												{
-													'bg-orange-500': ! secondButtonBackgroundColor,
-												},
-												{
-													'hover:bg-orange-700': ! secondButtonBackgroundColor,
+													'bg-orange-eventbrite': ! signUpButtonBackgroundColor,
 												}
 											) }
 											style={ {
-												backgroundColor: secondButtonBackgroundColor,
+												backgroundColor: signUpButtonBackgroundColor,
 											} }
 										>
 											Sign up
@@ -290,6 +308,13 @@ export default function Event( {
 					</div>
 				</div>
 			</div>
+			<Tippy
+				singleton={ source }
+				trigger="click"
+				theme="light"
+				animation="shift-away"
+				className={ cx( 'eventbrite-blocks-css-wrapper' ) }
+			/>
 		</article>
 	);
 }

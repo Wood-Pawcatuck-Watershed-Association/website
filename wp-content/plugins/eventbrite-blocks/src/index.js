@@ -6,6 +6,7 @@ import { getLocalizeData } from './utilities';
 import './blocks/event-cards';
 
 import 'tippy.js/themes/light.css';
+import 'tippy.js/themes/light-border.css';
 import 'tippy.js/animations/shift-away.css';
 import './base.css';
 
