@@ -21498,6 +21498,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('san
     },
     signUpButtonBackgroundColor: {
       type: 'string'
+    },
+    noEventsText: {
+      type: 'string',
+      default: 'There are no events at this time. Please check back for upcoming events.'
     }
   },
 
@@ -21581,7 +21585,8 @@ function EditBlock(_ref) {
   var signUpButtonBackgroundColor = attributes.signUpButtonBackgroundColor,
       apiKey = attributes.apiKey,
       status = attributes.status,
-      orderBy = attributes.orderBy;
+      orderBy = attributes.orderBy,
+      noEventsText = attributes.noEventsText;
 
   var _useState = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useState"])(apiKey),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
@@ -21688,6 +21693,15 @@ function EditBlock(_ref) {
     onChange: function onChange(newOrderBy) {
       setAttributes({
         orderBy: newOrderBy
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["TextControl"], {
+    label: "No events message",
+    help: "This is the text that displays in place of your events when there are none to display.",
+    value: noEventsText,
+    onChange: function onChange(newNoEventsText) {
+      return setAttributes({
+        noEventsText: newNoEventsText
       });
     }
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelBody"], {
@@ -21905,8 +21919,8 @@ var cx = classnames_bind__WEBPACK_IMPORTED_MODULE_3___default.a.bind(_style_modu
 function EventList(_ref) {
   var events = _ref.events,
       attributes = _ref.attributes;
-  var firstButtonBackgroundColor = attributes.firstButtonBackgroundColor,
-      secondButtonBackgroundColor = attributes.secondButtonBackgroundColor;
+  var signUpButtonBackgroundColor = attributes.signUpButtonBackgroundColor,
+      noEventsText = attributes.noEventsText;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: cx('flex', 'flex-wrap', 'justify-center')
   }, (events === null || events === void 0 ? void 0 : events.length) > 0 ? events.map(function (event) {
@@ -21925,13 +21939,12 @@ function EventList(_ref) {
       status: event.status,
       venue: event.venue,
       colors: {
-        firstButtonBackgroundColor: firstButtonBackgroundColor,
-        secondButtonBackgroundColor: secondButtonBackgroundColor
+        signUpButtonBackgroundColor: signUpButtonBackgroundColor
       }
     });
   }) : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: cx('text-base', 'text-orange-eventbrite')
-  }, "There are no events at this time. Please check back for upcoming events."));
+  }, noEventsText));
 }
 
 /***/ }),

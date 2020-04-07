@@ -76,6 +76,11 @@ registerBlockType( 'sandtrail-studios/eventbrite-blocks-events-card', {
 		signUpButtonBackgroundColor: {
 			type: 'string',
 		},
+		noEventsText: {
+			type: 'string',
+			default:
+				'There are no events at this time. Please check back for upcoming events.',
+		},
 	},
 
 	/**

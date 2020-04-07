@@ -67,6 +67,20 @@ add_action('init', function () {
     register_block_type('sandtrail-studios/eventbrite-blocks-events-card', array(
         'editor_script' => EVENTBRITE_BLOCKS_SCRIPT_NAME,
         'render_callback' => 'render_eventbrite_blocks_card',
+        'attributes' => [
+            'status' => [
+                'type' => 'string',
+                'default' => 'live',
+            ],
+            'orderBy' => [
+                'type' => 'string',
+                'default' => 'start_asc',
+            ],
+            'noEventsText' => [
+                'type' => 'string',
+                'default' => 'There are no events at this time. Please check back for upcoming events.'
+            ]
+        ]
     ));
 });
 

@@ -5,10 +5,7 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind( styles );
 
 export default function EventList( { events, attributes } ) {
-	const {
-		firstButtonBackgroundColor,
-		secondButtonBackgroundColor,
-	} = attributes;
+	const { signUpButtonBackgroundColor, noEventsText } = attributes;
 
 	return (
 		<div className={ cx( 'flex', 'flex-wrap', 'justify-center' ) }>
@@ -27,15 +24,13 @@ export default function EventList( { events, attributes } ) {
 						status={ event.status }
 						venue={ event.venue }
 						colors={ {
-							firstButtonBackgroundColor,
-							secondButtonBackgroundColor,
+							signUpButtonBackgroundColor,
 						} }
 					/>
 				) )
 			) : (
 				<p className={ cx( 'text-base', 'text-orange-eventbrite' ) }>
-					There are no events at this time. Please check back for
-					upcoming events.
+					{ noEventsText }
 				</p>
 			) }
 		</div>

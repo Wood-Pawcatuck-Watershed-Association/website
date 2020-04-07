@@ -22,7 +22,13 @@ const cx = classNames.bind( styles );
 const [ assets ] = getLocalizeData( 'assets' );
 
 export default function EditBlock( { attributes, setAttributes } ) {
-	const { signUpButtonBackgroundColor, apiKey, status, orderBy } = attributes;
+	const {
+		signUpButtonBackgroundColor,
+		apiKey,
+		status,
+		orderBy,
+		noEventsText,
+	} = attributes;
 
 	const [ apiKeyState, setApiKeyState ] = useState( apiKey );
 	const [ apiKeyLoading, setApiKeyLoading ] = useState( false );
@@ -138,6 +144,18 @@ export default function EditBlock( { attributes, setAttributes } ) {
 							onChange={ ( newOrderBy ) => {
 								setAttributes( { orderBy: newOrderBy } );
 							} }
+						/>
+					</PanelRow>
+					<PanelRow>
+						<TextControl
+							label="No events message"
+							help="This is the text that displays in place of your events when there are none to display."
+							value={ noEventsText }
+							onChange={ ( newNoEventsText ) =>
+								setAttributes( {
+									noEventsText: newNoEventsText,
+								} )
+							}
 						/>
 					</PanelRow>
 				</PanelBody>
