@@ -12,11 +12,14 @@ import {
 import { InspectorControls } from '@wordpress/block-editor';
 import { dispatch, select } from '@wordpress/data';
 import axios from 'axios';
+import { getLocalizeData } from '../utilities';
 import Event from '../components/Event';
 import styles from '../style.module.css';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind( styles );
+
+const [ assets ] = getLocalizeData( 'assets' );
 
 export default function EditBlock( { attributes, setAttributes } ) {
 	const { signUpButtonBackgroundColor, apiKey, status } = attributes;
@@ -175,7 +178,10 @@ export default function EditBlock( { attributes, setAttributes } ) {
 				) : (
 					<div className="eventbrite-blocks-css-wrapper">
 						<p className={ cx( 'font-sans', 'text-center' ) }>
-							This is a static preview of an Eventbrite event.
+							This is a static preview of an event card. Each
+							event pulled from your Eventbrite account will be
+							displayed in this format on the front&ndash;end of
+							your website.
 						</p>
 						<Event
 							className={ cx( 'mx-auto' ) }
@@ -184,7 +190,7 @@ export default function EditBlock( { attributes, setAttributes } ) {
 							summary={ 'Event description summary' }
 							cost={ '$25' }
 							startDate={ new Date() }
-							image={ 'https://placekitten.com/500/500' }
+							image={ assets.placeholderImage }
 							status={ 'live' }
 							colors={ {
 								signUpButtonBackgroundColor,

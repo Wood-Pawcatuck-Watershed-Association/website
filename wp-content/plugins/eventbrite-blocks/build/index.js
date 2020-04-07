@@ -21456,7 +21456,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('san
    * This is a short description for your block, can be translated with `i18n` functions.
    * It will be shown in the Block Tab in the Settings Sidebar.
    */
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Fetch your events from Eventbrite and dislay them on your website.', 'sandtrail-studios'),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Fetch your events from Eventbrite and display them on your website.', 'sandtrail-studios'),
 
   /**
    * Blocks are grouped into categories to help users browse and discover them.
@@ -21548,11 +21548,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_Event__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Event */ "./src/components/Event.js");
-/* harmony import */ var _style_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../style.module.css */ "./src/style.module.css");
-/* harmony import */ var _style_module_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_style_module_css__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utilities */ "./src/utilities/index.js");
+/* harmony import */ var _components_Event__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Event */ "./src/components/Event.js");
+/* harmony import */ var _style_module_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../style.module.css */ "./src/style.module.css");
+/* harmony import */ var _style_module_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_style_module_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
@@ -21563,7 +21564,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var cx = classnames_bind__WEBPACK_IMPORTED_MODULE_8___default.a.bind(_style_module_css__WEBPACK_IMPORTED_MODULE_7___default.a);
+
+var cx = classnames_bind__WEBPACK_IMPORTED_MODULE_9___default.a.bind(_style_module_css__WEBPACK_IMPORTED_MODULE_8___default.a);
+
+var _getLocalizeData = Object(_utilities__WEBPACK_IMPORTED_MODULE_6__["getLocalizeData"])('assets'),
+    _getLocalizeData2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_getLocalizeData, 1),
+    assets = _getLocalizeData2[0];
+
 function EditBlock(_ref) {
   var attributes = _ref.attributes,
       setAttributes = _ref.setAttributes;
@@ -21686,14 +21693,14 @@ function EditBlock(_ref) {
     className: "eventbrite-blocks-css-wrapper"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
     className: cx('font-sans', 'text-center')
-  }, "This is a static preview of an Eventbrite event."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_Event__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, "This is a static preview of an event card. Each event pulled from your Eventbrite account will be displayed in this format on the front\u2013end of your website."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_Event__WEBPACK_IMPORTED_MODULE_7__["default"], {
     className: cx('mx-auto'),
     title: 'Event Title',
     description: 'Event description',
     summary: 'Event description summary',
     cost: '$25',
     startDate: new Date(),
-    image: 'https://placekitten.com/500/500',
+    image: assets.placeholderImage,
     status: 'live',
     colors: {
       signUpButtonBackgroundColor: signUpButtonBackgroundColor
@@ -21876,7 +21883,7 @@ function EventList(_ref) {
       secondButtonBackgroundColor = attributes.secondButtonBackgroundColor;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: cx('flex', 'flex-wrap', 'justify-center')
-  }, events.map(function (event) {
+  }, (events === null || events === void 0 ? void 0 : events.length) > 0 ? events.map(function (event) {
     var _event$ticket_classes, _event$logo;
 
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_Event__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -21896,7 +21903,9 @@ function EventList(_ref) {
         secondButtonBackgroundColor: secondButtonBackgroundColor
       }
     });
-  }));
+  }) : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+    className: cx('text-base', 'text-orange-eventbrite')
+  }, "There are no events at this time. Please check back for upcoming events."));
 }
 
 /***/ }),

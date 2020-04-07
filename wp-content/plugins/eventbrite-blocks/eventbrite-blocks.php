@@ -35,7 +35,7 @@ add_action('init', function () {
 
     if (!file_exists(EVENTBRITE_BLOCKS_SCRIPT_ASSET_PATH)) {
         throw new Error(
-            'You need to run `npm start` or `npm run build` for the "sandtrail-studios/eventbrite-blocks-card" block first.'
+            'Block script not found.  Please contact support.'
         );
     }
 
@@ -57,7 +57,10 @@ add_action('init', function () {
         EVENTBRITE_BLOCKS_LOCALIZED_SCRIPT_NAME,
         [
             'events' => [],
-            'attributes' => []
+            'attributes' => [],
+            'assets' => [
+                'placeholderImage' => plugins_url('src/img/placeholder.jpg', __FILE__),
+            ],
         ]
     );
 

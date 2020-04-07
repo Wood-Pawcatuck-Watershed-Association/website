@@ -12,25 +12,32 @@ export default function EventList( { events, attributes } ) {
 
 	return (
 		<div className={ cx( 'flex', 'flex-wrap', 'justify-center' ) }>
-			{ events.map( ( event ) => (
-				<Event
-					key={ event.id }
-					id={ event.id }
-					title={ event.name.text }
-					description={ event.description.text }
-					url={ event.url }
-					summary={ event.summary }
-					cost={ event.ticket_classes[ 0 ].cost?.display }
-					startDate={ new Date( event.start.utc ) }
-					image={ event.logo?.original.url }
-					status={ event.status }
-					venue={ event.venue }
-					colors={ {
-						firstButtonBackgroundColor,
-						secondButtonBackgroundColor,
-					} }
-				/>
-			) ) }
+			{ events?.length > 0 ? (
+				events.map( ( event ) => (
+					<Event
+						key={ event.id }
+						id={ event.id }
+						title={ event.name.text }
+						description={ event.description.text }
+						url={ event.url }
+						summary={ event.summary }
+						cost={ event.ticket_classes[ 0 ].cost?.display }
+						startDate={ new Date( event.start.utc ) }
+						image={ event.logo?.original.url }
+						status={ event.status }
+						venue={ event.venue }
+						colors={ {
+							firstButtonBackgroundColor,
+							secondButtonBackgroundColor,
+						} }
+					/>
+				) )
+			) : (
+				<p className={ cx( 'text-base', 'text-orange-eventbrite' ) }>
+					There are no events at this time. Please check back for
+					upcoming events.
+				</p>
+			) }
 		</div>
 	);
 }
