@@ -30,7 +30,7 @@ registerBlockType( 'sandtrail-studios/eventbrite-blocks-events-card', {
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'Fetch your events from Eventbrite and dislay them on your website.',
+		'Fetch your events from Eventbrite and display them on your website.',
 		'sandtrail-studios'
 	),
 
@@ -69,8 +69,17 @@ registerBlockType( 'sandtrail-studios/eventbrite-blocks-events-card', {
 			type: 'string',
 			default: 'live',
 		},
+		orderBy: {
+			type: 'string',
+			default: 'start_asc',
+		},
 		signUpButtonBackgroundColor: {
 			type: 'string',
+		},
+		noEventsText: {
+			type: 'string',
+			default:
+				'There are no events at this time. Please check back for upcoming events.',
 		},
 	},
 

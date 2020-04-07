@@ -35,7 +35,7 @@ add_action('init', function () {
 
     if (!file_exists(EVENTBRITE_BLOCKS_SCRIPT_ASSET_PATH)) {
         throw new Error(
-            'You need to run `npm start` or `npm run build` for the "sandtrail-studios/eventbrite-blocks-card" block first.'
+            'Block script not found.  Please contact support.'
         );
     }
 
@@ -57,13 +57,30 @@ add_action('init', function () {
         EVENTBRITE_BLOCKS_LOCALIZED_SCRIPT_NAME,
         [
             'events' => [],
-            'attributes' => []
+            'attributes' => [],
+            'assets' => [
+                'placeholderImage' => plugins_url('src/img/placeholder.jpg', __FILE__),
+            ],
         ]
     );
 
     register_block_type('sandtrail-studios/eventbrite-blocks-events-card', array(
         'editor_script' => EVENTBRITE_BLOCKS_SCRIPT_NAME,
         'render_callback' => 'render_eventbrite_blocks_card',
+        'attributes' => [
+            'status' => [
+                'type' => 'string',
+                'default' => 'live',
+            ],
+            'orderBy' => [
+                'type' => 'string',
+                'default' => 'start_asc',
+            ],
+            'noEventsText' => [
+                'type' => 'string',
+                'default' => 'There are no events at this time. Please check back for upcoming events.'
+            ]
+        ]
     ));
 });
 
@@ -111,9 +128,10 @@ function render_eventbrite_blocks_card($attributes)
     if (!$transient || $transient['attributes'] !== $attributes) {
 
         $status = $attributes['status'] ? $attributes['status'] : 'live';
+        $orderBy = $attributes['orderBy'] ? $attributes['orderBy'] : 'start_asc';
 
         // make GET request to eventbrite api based on user's attribute settings
-        $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$attributes['apiKey']}&expand=ticket_classes,venue&status={$status}&order_by=start_asc&time_filter=current_future");
+        $response = wp_remote_get("https://www.eventbriteapi.com/v3/users/me/events/?token={$attributes['apiKey']}&expand=ticket_classes,venue&status={$status}&order_by={$orderBy}&time_filter=current_future");
 
         // decode fetched data to json
         $data = json_decode($response['body'], true);

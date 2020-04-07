@@ -12,14 +12,23 @@ import {
 import { InspectorControls } from '@wordpress/block-editor';
 import { dispatch, select } from '@wordpress/data';
 import axios from 'axios';
+import { getLocalizeData } from '../utilities';
 import Event from '../components/Event';
 import styles from '../style.module.css';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind( styles );
 
+const [ assets ] = getLocalizeData( 'assets' );
+
 export default function EditBlock( { attributes, setAttributes } ) {
-	const { signUpButtonBackgroundColor, apiKey, status } = attributes;
+	const {
+		signUpButtonBackgroundColor,
+		apiKey,
+		status,
+		orderBy,
+		noEventsText,
+	} = attributes;
 
 	const [ apiKeyState, setApiKeyState ] = useState( apiKey );
 	const [ apiKeyLoading, setApiKeyLoading ] = useState( false );
@@ -110,6 +119,45 @@ export default function EditBlock( { attributes, setAttributes } ) {
 							} }
 						/>
 					</PanelRow>
+					<PanelRow>
+						<SelectControl
+							label="Order By"
+							value={ orderBy }
+							options={ [
+								{
+									label: 'Start Date Ascending',
+									value: 'start_asc',
+								},
+								{
+									label: 'Start Date Descending',
+									value: 'start_desc',
+								},
+								{
+									label: 'Name Ascending',
+									value: 'name_asc',
+								},
+								{
+									label: 'Name Descending',
+									value: 'name_desc',
+								},
+							] }
+							onChange={ ( newOrderBy ) => {
+								setAttributes( { orderBy: newOrderBy } );
+							} }
+						/>
+					</PanelRow>
+					<PanelRow>
+						<TextControl
+							label="No events message"
+							help="This is the text that displays in place of your events when there are none to display."
+							value={ noEventsText }
+							onChange={ ( newNoEventsText ) =>
+								setAttributes( {
+									noEventsText: newNoEventsText,
+								} )
+							}
+						/>
+					</PanelRow>
 				</PanelBody>
 				<PanelBody title="Eventbrite Design Settings">
 					<PanelRow>
@@ -175,7 +223,10 @@ export default function EditBlock( { attributes, setAttributes } ) {
 				) : (
 					<div className="eventbrite-blocks-css-wrapper">
 						<p className={ cx( 'font-sans', 'text-center' ) }>
-							This is a static preview of an Eventbrite event.
+							This is a static preview of how your event card will
+							look. Each event pulled from your Eventbrite account
+							will be displayed in this format on the
+							front&ndash;end of your website.
 						</p>
 						<Event
 							className={ cx( 'mx-auto' ) }
@@ -184,7 +235,11 @@ export default function EditBlock( { attributes, setAttributes } ) {
 							summary={ 'Event description summary' }
 							cost={ '$25' }
 							startDate={ new Date() }
-							image={ 'https://placekitten.com/500/500' }
+							image={
+								assets?.placeholderImage
+									? assets?.placeholderImage
+									: 'https://placekitten.com/500/500'
+							}
 							status={ 'live' }
 							colors={ {
 								signUpButtonBackgroundColor,
