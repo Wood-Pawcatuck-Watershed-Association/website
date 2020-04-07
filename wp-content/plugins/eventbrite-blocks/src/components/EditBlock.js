@@ -178,10 +178,10 @@ export default function EditBlock( { attributes, setAttributes } ) {
 				) : (
 					<div className="eventbrite-blocks-css-wrapper">
 						<p className={ cx( 'font-sans', 'text-center' ) }>
-							This is a static preview of an event card. Each
-							event pulled from your Eventbrite account will be
-							displayed in this format on the front&ndash;end of
-							your website.
+							This is a static preview of how your event card will
+							look. Each event pulled from your Eventbrite account
+							will be displayed in this format on the
+							front&ndash;end of your website.
 						</p>
 						<Event
 							className={ cx( 'mx-auto' ) }
@@ -190,7 +190,11 @@ export default function EditBlock( { attributes, setAttributes } ) {
 							summary={ 'Event description summary' }
 							cost={ '$25' }
 							startDate={ new Date() }
-							image={ assets.placeholderImage }
+							image={
+								assets?.placeholderImage
+									? assets?.placeholderImage
+									: 'https://placekitten.com/500/500'
+							}
 							status={ 'live' }
 							colors={ {
 								signUpButtonBackgroundColor,

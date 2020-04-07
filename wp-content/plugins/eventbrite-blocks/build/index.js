@@ -21693,14 +21693,14 @@ function EditBlock(_ref) {
     className: "eventbrite-blocks-css-wrapper"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
     className: cx('font-sans', 'text-center')
-  }, "This is a static preview of an event card. Each event pulled from your Eventbrite account will be displayed in this format on the front\u2013end of your website."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_Event__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, "This is a static preview of how your event card will look. Each event pulled from your Eventbrite account will be displayed in this format on the front\u2013end of your website."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_Event__WEBPACK_IMPORTED_MODULE_7__["default"], {
     className: cx('mx-auto'),
     title: 'Event Title',
     description: 'Event description',
     summary: 'Event description summary',
     cost: '$25',
     startDate: new Date(),
-    image: assets.placeholderImage,
+    image: (assets === null || assets === void 0 ? void 0 : assets.placeholderImage) ? assets === null || assets === void 0 ? void 0 : assets.placeholderImage : 'https://placekitten.com/500/500',
     status: 'live',
     colors: {
       signUpButtonBackgroundColor: signUpButtonBackgroundColor
