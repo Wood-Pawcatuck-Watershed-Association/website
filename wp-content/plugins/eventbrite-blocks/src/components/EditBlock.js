@@ -22,7 +22,7 @@ const cx = classNames.bind( styles );
 const [ assets ] = getLocalizeData( 'assets' );
 
 export default function EditBlock( { attributes, setAttributes } ) {
-	const { signUpButtonBackgroundColor, apiKey, status } = attributes;
+	const { signUpButtonBackgroundColor, apiKey, status, orderBy } = attributes;
 
 	const [ apiKeyState, setApiKeyState ] = useState( apiKey );
 	const [ apiKeyLoading, setApiKeyLoading ] = useState( false );
@@ -110,6 +110,33 @@ export default function EditBlock( { attributes, setAttributes } ) {
 							] }
 							onChange={ ( newStatus ) => {
 								setAttributes( { status: newStatus } );
+							} }
+						/>
+					</PanelRow>
+					<PanelRow>
+						<SelectControl
+							label="Order By"
+							value={ orderBy }
+							options={ [
+								{
+									label: 'Start Date Ascending',
+									value: 'start_asc',
+								},
+								{
+									label: 'Start Date Descending',
+									value: 'start_desc',
+								},
+								{
+									label: 'Name Ascending',
+									value: 'name_asc',
+								},
+								{
+									label: 'Name Descending',
+									value: 'name_desc',
+								},
+							] }
+							onChange={ ( newOrderBy ) => {
+								setAttributes( { orderBy: newOrderBy } );
 							} }
 						/>
 					</PanelRow>

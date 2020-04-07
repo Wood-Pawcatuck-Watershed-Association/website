@@ -21492,6 +21492,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('san
       type: 'string',
       default: 'live'
     },
+    orderBy: {
+      type: 'string',
+      default: 'start_asc'
+    },
     signUpButtonBackgroundColor: {
       type: 'string'
     }
@@ -21576,7 +21580,8 @@ function EditBlock(_ref) {
       setAttributes = _ref.setAttributes;
   var signUpButtonBackgroundColor = attributes.signUpButtonBackgroundColor,
       apiKey = attributes.apiKey,
-      status = attributes.status;
+      status = attributes.status,
+      orderBy = attributes.orderBy;
 
   var _useState = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useState"])(apiKey),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
@@ -21662,6 +21667,27 @@ function EditBlock(_ref) {
     onChange: function onChange(newStatus) {
       setAttributes({
         status: newStatus
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["SelectControl"], {
+    label: "Order By",
+    value: orderBy,
+    options: [{
+      label: 'Start Date Ascending',
+      value: 'start_asc'
+    }, {
+      label: 'Start Date Descending',
+      value: 'start_desc'
+    }, {
+      label: 'Name Ascending',
+      value: 'name_asc'
+    }, {
+      label: 'Name Descending',
+      value: 'name_desc'
+    }],
+    onChange: function onChange(newOrderBy) {
+      setAttributes({
+        orderBy: newOrderBy
       });
     }
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelBody"], {
