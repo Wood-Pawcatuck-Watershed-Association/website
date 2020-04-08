@@ -1,4 +1,4 @@
-=== Gutenberg Eventbrite ===
+=== Blocks for Gutenberg ===
 Contributors:      Jon Waldstein
 Tags:              block
 Requires at least: 5.3.2
@@ -9,11 +9,11 @@ License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-A gutenberg block that fetches eventbrite events and displays them.
+Gutenberg blocks that display eventbrite events
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/eventbrite-blocks` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/blocks-for-eventbrite` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Changelog ==
