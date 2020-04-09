@@ -23,7 +23,7 @@ define('BLOCKS_FOR_EVENTBRITE_SCRIPT_ASSET_PATH', dirname(__FILE__) . '/build/in
 define('BLOCKS_FOR_EVENTBRITE_SCRIPT_ASSET', require(BLOCKS_FOR_EVENTBRITE_SCRIPT_ASSET_PATH));
 define('BLOCKS_FOR_EVENTBRITE_INDEX_JS', 'build/index.js');
 define('BLOCKS_FOR_EVENTBRITE_LOCALIZED_SCRIPT_NAME', 'blocksForEventbrite');
-define('BLOCKS_FOR_EVENTBRITE_SCRIPT_NAME', 'sandtrail-studios-blocks-for-eventbrite-script');
+define('BLOCKS_FOR_EVENTBRITE_SCRIPT_NAME', 'blocks-for-eventbrite-script');
 
 /**
  * Registers all block assets so that they can be enqueued through the block editor
@@ -64,7 +64,7 @@ add_action('init', function () {
         ]
     );
 
-    register_block_type('sandtrail-studios/blocks-for-eventbrite-events-card', array(
+    register_block_type('blocks-for-eventbrite/events-card', array(
         'editor_script' => BLOCKS_FOR_EVENTBRITE_SCRIPT_NAME,
         'render_callback' => 'render_blocks_for_eventbrite_card',
         'attributes' => [
@@ -95,11 +95,11 @@ add_action('init', function () {
 add_filter('block_categories', function ($categories) {
     $category_slugs = wp_list_pluck($categories, 'slug');
 
-    return in_array('sandtrail-studios-blocks-for-eventbrite', $category_slugs, true) ? $categories : array_merge(
+    return in_array('blocks-for-eventbrite', $category_slugs, true) ? $categories : array_merge(
         $categories,
         array(
             array(
-                'slug'  => 'sandtrail-studios-blocks-for-eventbrite',
+                'slug'  => 'blocks-for-eventbrite',
                 'title' => __('Blocks For Eventbrite', 'sandtrail-studios'),
                 'icon'  => null,
             ),

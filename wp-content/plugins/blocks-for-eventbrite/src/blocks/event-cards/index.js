@@ -18,7 +18,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'sandtrail-studios/blocks-for-eventbrite-events-card', {
+registerBlockType( 'blocks-for-eventbrite/events-card', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
@@ -38,7 +38,7 @@ registerBlockType( 'sandtrail-studios/blocks-for-eventbrite-events-card', {
 	 * Blocks are grouped into categories to help users browse and discover them.
 	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
 	 */
-	category: 'sandtrail-studios-blocks-for-eventbrite',
+	category: 'blocks-for-eventbrite',
 
 	/**
 	 * An icon property should be specified to make it easier to identify a block.
