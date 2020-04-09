@@ -1,5 +1,5 @@
 === Blocks for Gutenberg ===
-Contributors:      Jon Waldstein
+Contributors:      jonwaldstein
 Tags:              block
 Requires at least: 5.3.2
 Tested up to:      5.3.2
